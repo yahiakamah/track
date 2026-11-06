@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Stock Picking Form View Inheritance -->
+         <!-- تعديل واجهة أمر البيع في موديول السيلز -->
+    <record id="view_order_form_inherit_sales_cash" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.sales.cash</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pricelist_id']" position="after">
+                <field name="pricelist_is_sales_cash" widget="boolean_toggle" invisible="not pricelist_id"/>
+            </xpath>
+            <xpath expr="//group[@name='note_group']" position="inside">
+                <group name="discount_group" string="Fixed Discount">
+                    <field name="discount_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- تعديل واجهة قائمة الأسعار (Pricelist) لتظهر الخانة فيها أيضاً -->
+    <record id="product_pricelist_view_inherit_v2" model="ir.ui.view">
+        <field name="name">product.pricelist.form.inherit.sales.cash</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="is_sales_cash" widget="boolean_toggle"/>
+                <field name="sales_limit" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_form_inherit_sales_rep" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.sales.rep</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="created_sales_rep_id" string="Sales Rep"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']//list//field[@name='product_uom_qty']" position="before">
+                <field name="requested_uom_qty" string="Requested Quantity" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']//list//field[@name='quantity']" position="after">
+                <field name="sent_qty" string="Sent Quantity" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Account Move (Invoice) Form View Inheritance -->
+    <record id="view_move_form_inherit_sales_rep" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.sales.rep</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_user_id']" position="before">
+                <field name="created_sales_rep_id" string="Sales Rep" invisible="move_type not in ('out_invoice', 'out_refund', 'out_receipt')"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

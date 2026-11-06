@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form_inherit_sales_rep" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.sales.rep</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='vat']" position="before">
+                    <field name="area"/>
+                </xpath>
+                <!-- Add to Sales Group -->
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <field name="created_sales_rep_id"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="is_cash"/>
+                </xpath>
+
+                <!-- Add Location Page -->
+                <xpath expr="//notebook" position="inside">
+                    <!-- Invisible field to hold the setting value -->
+                    <field name="is_location_tracking_enabled" invisible="1"/>
+                    
+                    <page string="Location Link" name="geo_location" invisible="not is_location_tracking_enabled">
+                        <field name="is_location_restriction_enabled" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="visit_latitude" string="Visit Latitude"/>
+                                <field name="visit_longitude" string="Visit Longitude"/>
+                                <button name="action_reverse_geocode" 
+                                        type="object" 
+                                        string="Get Address from GPS" 
+                                        class="btn-primary" 
+                                        icon="fa-refresh"
+                                        invisible="not visit_latitude or not visit_longitude"/>
+                            </group>
+                            <group>
+                                <field name="location_type" widget="location_radio_image" options="{'horizontal': true}"/>
+                                <field name="enable_location" widget="boolean_toggle" readonly="not is_location_restriction_enabled"/>
+                                <field name="location_radius" invisible="not enable_location"/>
+                            </group>
+                        </group>
+                        <group string="Customer Location Map" name="map_group" class="p-0 border-top mt-4">
+                            <field name="visit_latitude" widget="contact_map_widget" nolabel="1" colspan="2"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

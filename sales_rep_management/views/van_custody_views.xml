@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Representative: van & cash custody settings -->
+    <record id="view_sales_representative_form_custody" model="ir.ui.view">
+        <field name="name">sales.representative.form.custody</field>
+        <field name="model">sales.representative</field>
+        <field name="inherit_id" ref="sales_rep_management.view_sales_representative_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page string="Van &amp; Cash Custody" name="custody">
+                    <group>
+                        <group string="Van">
+                            <field name="vehicle_id"/>
+                            <field name="transit_location_id"/>
+                            <field name="load_variance_location_id" required="transit_location_id"/>
+                            <field name="quarantine_location_id"/>
+                        </group>
+                        <group string="Cash">
+                            <field name="cash_journal_id"/>
+                            <field name="treasury_journal_id" required="cash_journal_id"/>
+                            <field name="require_day_close"/>
+                            <field name="pending_day_close_date" invisible="not pending_day_close_date"/>
+                        </group>
+                    </group>
+                    <div class="text-muted">
+                        With a transit location, stock requests are issued warehouse &#8594; transit and the
+                        representative accepts the load in the app with the quantities he counted.
+                        Missing quantities go to the shortage location, damaged ones to quarantine.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Transfers: load acceptance information -->
+    <record id="view_picking_form_load_acceptance" model="ir.ui.view">
+        <field name="name">stock.picking.form.load.acceptance</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="load_acceptance_state" invisible="not load_acceptance_state" widget="badge"
+                       decoration-warning="load_acceptance_state == 'pending'"
+                       decoration-success="load_acceptance_state == 'accepted'"
+                       decoration-danger="load_acceptance_state == 'disputed'"/>
+                <field name="load_source_picking_id" invisible="not load_source_picking_id"/>
+                <field name="load_accepted_by" invisible="not load_accepted_by"/>
+                <field name="load_accepted_date" invisible="not load_accepted_date"/>
+                <field name="load_acceptance_note" invisible="not load_acceptance_note"/>
+                <field name="load_variance_picking_ids" widget="many2many_tags" invisible="not load_variance_picking_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_search_load_acceptance" model="ir.ui.view">
+        <field name="name">stock.picking.search.load.acceptance</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='draft']" position="before">
+                <filter name="load_pending" string="Loads Waiting Rep Acceptance" domain="[('load_acceptance_state', '=', 'pending')]"/>
+                <filter name="load_disputed" string="Loads With Differences" domain="[('load_acceptance_state', '=', 'disputed')]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_rep_load_acceptance" model="ir.actions.act_window">
+        <field name="name">Van Loads</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('load_acceptance_state', '!=', False)]</field>
+        <field name="context">{'search_default_load_pending': 1}</field>
+    </record>
+
+    <!-- Day close -->
+    <record id="view_sales_rep_day_close_list" model="ir.ui.view">
+        <field name="name">sales.rep.day.close.list</field>
+        <field name="model">sales.rep.day.close</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state == 'submitted'" decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="sales_rep_id"/>
+                <field name="system_cash" sum="Total"/>
+                <field name="counted_cash" sum="Total"/>
+                <field name="cash_difference" sum="Total" decoration-danger="cash_difference &lt; 0"/>
+                <field name="stock_difference_count"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'submitted'" decoration-success="state == 'approved'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sales_rep_day_close_form" model="ir.ui.view">
+        <field name="name">sales.rep.day.close.form</field>
+        <field name="model">sales.rep.day.close</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_compute" string="Recompute Expected" type="object" invisible="state not in ('draft', 'submitted')"/>
+                    <button name="action_submit" string="Submit" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_approve" string="Approve &amp; Post" type="object" class="btn-primary"
+                            invisible="state != 'submitted'" groups="sales_rep_management.group_sales_supervisor"
+                            confirm="Stock differences will be posted to the van and the cash handed over to treasury. Continue?"/>
+                    <button name="action_reset_draft" string="Back to Draft" type="object" invisible="state not in ('submitted', 'cancelled')"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ('approved', 'cancelled')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sales_rep_id" readonly="state != 'draft'"/>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="van_location_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Cash">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="cash_journal_id"/>
+                            <field name="system_cash"/>
+                            <field name="counted_cash" readonly="state not in ('draft', 'submitted')"/>
+                            <field name="cash_difference" decoration-danger="cash_difference &lt; 0" decoration-success="cash_difference &gt; 0"/>
+                            <field name="handover_move_id" invisible="not handover_move_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Van Count" name="van_count">
+                            <field name="line_ids" readonly="state not in ('draft', 'submitted')">
+                                <list editable="bottom" decoration-danger="difference_qty &lt; 0" decoration-warning="difference_qty &gt; 0">
+                                    <field name="product_id"/>
+                                    <field name="product_uom_id" optional="show"/>
+                                    <field name="system_qty"/>
+                                    <field name="counted_qty"/>
+                                    <field name="difference_qty"/>
+                                    <field name="counted_set" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Collections" name="collections">
+                            <field name="payment_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="partner_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Routes" name="routes" invisible="not route_ids">
+                            <field name="route_ids" readonly="1"/>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                    <group invisible="not approved_by">
+                        <field name="submitted_date"/>
+                        <field name="approved_by"/>
+                        <field name="approved_date"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sales_rep_day_close_search" model="ir.ui.view">
+        <field name="name">sales.rep.day.close.search</field>
+        <field name="model">sales.rep.day.close</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sales_rep_id"/>
+                <field name="name"/>
+                <filter name="to_approve" string="To Approve" domain="[('state', '=', 'submitted')]"/>
+                <filter name="with_cash_diff" string="Cash Difference" domain="[('cash_difference', '!=', 0)]"/>
+                <separator/>
+                <filter name="date" string="Day" date="date"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_rep" string="Representative" context="{'group_by': 'sales_rep_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sales_rep_day_close" model="ir.actions.act_window">
+        <field name="name">Day Close</field>
+        <field name="res_model">sales.rep.day.close</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_to_approve': 1}</field>
+    </record>
+
+    <menuitem id="menu_sales_rep_day_close"
+              name="Day Close"
+              parent="sales_rep_management.menu_sales_rep_operations"
+              action="action_sales_rep_day_close"
+              sequence="10"/>
+    <menuitem id="menu_sales_rep_van_loads"
+              name="Van Loads"
+              parent="sales_rep_management.menu_sales_rep_operations"
+              action="action_rep_load_acceptance"
+              sequence="11"/>
+</odoo>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sales Rep Performance Report Tree View -->
+        <record id="view_sales_rep_performance_report_tree" model="ir.ui.view">
+            <field name="name">sales.rep.performance.report.tree</field>
+            <field name="model">sales.rep.performance.report</field>
+            <field name="arch" type="xml">
+                <list string="Sales Representative Performance" default_order="sales_rep_id">
+                    <field name="sales_rep_id" string="Sales Representative" invisible="level != 1"/>
+                    <field name="route_id" string="Route" invisible="level != 2"/>
+                    <field name="visit_id" string="Visit" invisible="level != 3"/>
+
+                    <!-- Name column that shows appropriate record based on level -->
+                    <!-- <field name="display_name" string="Name" widget="handle"/> -->
+
+                    <!-- Count columns -->
+                    <field name="sale_order_count" string="Sales Orders"/>
+                    <!-- <field name="pos_order_count" string="POS Orders"/> -->
+                    <field name="payment_count" string="Payments"/>
+
+                    <!-- Amount columns -->
+                    <field name="sale_order_total" string="Sales Total"/>
+                    <!-- <field name="pos_order_total" string="POS Total"/> -->
+                    <field name="payment_total" string="Payments Total"/>
+                    <field name="total_amount" string="Grand Total"/>
+
+                    <!-- Quantity columns -->
+                    <field name="sale_order_qty" string="Sales Qty"/>
+                    <!-- <field name="pos_order_qty" string="POS Qty"/> -->
+                    <field name="total_qty" string="Total Qty"/>
+
+                    <!-- Level indicator -->
+                    <field name="level" invisible="1"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Sales Rep Performance Report Search View -->
+        <record id="view_sales_rep_performance_report_search" model="ir.ui.view">
+            <field name="name">sales.rep.performance.report.search</field>
+            <field name="model">sales.rep.performance.report</field>
+            <field name="arch" type="xml">
+                <search string="Sales Representative Performance">
+                    <field name="sales_rep_id" string="Sales Representative"/>
+                    <field name="route_id" string="Route"/>
+                    <separator/>
+                    <filter string="This Month" name="this_month" domain="[]"/>
+                    <filter string="This Quarter" name="this_quarter" domain="[]"/>
+                    <filter string="This Year" name="this_year" domain="[]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Sales Representative" name="group_sales_rep" context="{'group_by': 'sales_rep_id'}"/>
+                        <filter string="Route" name="group_route" context="{'group_by': 'route_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Sales Rep Performance Report Pivot View -->
+        <record id="view_sales_rep_performance_report_pivot" model="ir.ui.view">
+            <field name="name">sales.rep.performance.report.pivot</field>
+            <field name="model">sales.rep.performance.report</field>
+            <field name="arch" type="xml">
+                <pivot string="Sales Performance Analysis">
+                    <field name="sales_rep_id" type="row"/>
+                    <field name="route_id" type="row"/>
+                    <field name="sale_order_total" type="measure"/>
+                    <!-- <field name="pos_order_total" type="measure"/> -->
+                    <field name="payment_total" type="measure"/>
+                    <field name="total_amount" type="measure"/>
+                    <field name="sale_order_count" type="measure"/>
+                    <!-- <field name="pos_order_count" type="measure"/> -->
+                    <field name="payment_count" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Sales Rep Performance Report Graph View -->
+        <record id="view_sales_rep_performance_report_graph" model="ir.ui.view">
+            <field name="name">sales.rep.performance.report.graph</field>
+            <field name="model">sales.rep.performance.report</field>
+            <field name="arch" type="xml">
+                <graph string="Sales Performance" type="bar">
+                    <field name="sales_rep_id"/>
+                    <field name="sale_order_total" type="measure"/>
+                    <!-- <field name="pos_order_total" type="measure"/> -->
+                    <field name="payment_total" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Sales Rep Performance Report Action -->
+        <record id="action_sales_rep_performance_report" model="ir.actions.act_window">
+            <field name="name">Sales Representative Performance</field>
+            <field name="res_model">sales.rep.performance.report</field>
+            <field name="view_mode">graph,pivot,list</field>
+            <field name="view_id" ref="view_sales_rep_performance_report_tree"/>
+            <field name="search_view_id" ref="view_sales_rep_performance_report_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No performance data available!
+                </p>
+                <p>
+                    This report shows the performance of sales representatives with detailed breakdown
+                    by routes and visits. Expand each sales representative to see their routes, and
+                    expand routes to see individual visits.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

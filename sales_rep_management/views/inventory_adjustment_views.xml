@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!-- List View -->
+    <record id="view_sales_rep_inventory_adjustment_tree" model="ir.ui.view">
+        <field name="name">sales.rep.inventory.adjustment.tree</field>
+        <field name="model">sales.rep.inventory.adjustment</field>
+        <field name="arch" type="xml">
+            <list string="Sales Rep Inventory Adjustments" export_xlsx="1">
+                <field name="name"/>
+                <field name="sales_rep_id"/>
+                <field name="location_id"/>
+                <field name="date"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_sales_rep_inventory_adjustment_form" model="ir.ui.view">
+        <field name="name">sales.rep.inventory.adjustment.form</field>
+        <field name="model">sales.rep.inventory.adjustment</field>
+        <field name="arch" type="xml">
+            <form string="Sales Rep Inventory Adjustment">
+                <header>
+                    <button name="action_print_pdf" type="object" string="Print PDF" class="oe_highlight" icon="fa-print"/>
+                    <button name="action_export_excel" type="object" string="Export Excel" icon="fa-file-excel-o"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sales_rep_id"/>
+                            <field name="allowed_location_ids" invisible="1"/>
+                            <field name="location_id" domain="[('id', 'in', allowed_location_ids)]"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Adjustment Lines" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="theoretical_qty" readonly="1" force_save="1"/>
+                                    <field name="counted_qty"/>
+                                    <field name="difference_qty" readonly="1" force_save="1"/>
+                                    <field name="product_uom_id" groups="uom.group_uom"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Expanded Lines List View (flat detail for export) -->
+    <record id="view_sales_rep_inventory_adjustment_line_tree" model="ir.ui.view">
+        <field name="name">sales.rep.inventory.adjustment.line.tree</field>
+        <field name="model">sales.rep.inventory.adjustment.line</field>
+        <field name="arch" type="xml">
+            <list string="Inventory Adjustment Lines" create="0" edit="0" delete="0" export_xlsx="1">
+                <field name="adjustment_id"/>
+                <field name="product_id"/>
+                <field name="theoretical_qty" string="On Hand"/>
+                <field name="counted_qty" string="Counted"/>
+                <field name="difference_qty" string="Difference"/>
+                <field name="product_uom_id" string="UoM" groups="uom.group_uom"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sales_rep_inventory_adjustment_search" model="ir.ui.view">
+        <field name="name">sales.rep.inventory.adjustment.search</field>
+        <field name="model">sales.rep.inventory.adjustment</field>
+        <field name="arch" type="xml">
+            <search string="Search Inventory Adjustments">
+                <field name="name"/>
+                <field name="sales_rep_id"/>
+                <field name="location_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Sales Representative" name="group_by_sales_rep" context="{'group_by': 'sales_rep_id'}"/>
+                    <filter string="Location" name="group_by_location" context="{'group_by': 'location_id'}"/>
+                    <filter string="Date" name="group_by_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Search view for lines -->
+    <record id="view_sales_rep_inventory_adjustment_line_search" model="ir.ui.view">
+        <field name="name">sales.rep.inventory.adjustment.line.search</field>
+        <field name="model">sales.rep.inventory.adjustment.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Adjustment Lines">
+                <field name="product_id"/>
+                <field name="adjustment_id"/>
+                <filter string="Has Difference" name="has_difference" domain="[('difference_qty', '!=', 0)]"/>
+                <filter string="Shortage" name="shortage" domain="[('difference_qty', '&lt;', 0)]"/>
+                <filter string="Surplus" name="surplus" domain="[('difference_qty', '&gt;', 0)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Adjustment" name="group_by_adjustment" context="{'group_by': 'adjustment_id'}"/>
+                    <filter string="Product" name="group_by_product" context="{'group_by': 'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action: Adjustment Summary (list view for header records) -->
+    <record id="action_sales_rep_inventory_adjustment" model="ir.actions.act_window">
+        <field name="name">Inventory Adjustments</field>
+        <field name="res_model">sales.rep.inventory.adjustment</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_sales_rep_inventory_adjustment_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No inventory adjustments yet. They will appear here once synced from the mobile app.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action: Detailed Lines (flat list of all adjustment lines for easy XLSX export) -->
+    <record id="action_sales_rep_inventory_adjustment_lines" model="ir.actions.act_window">
+        <field name="name">Adjustment Detail Lines</field>
+        <field name="res_model">sales.rep.inventory.adjustment.line</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_sales_rep_inventory_adjustment_line_tree"/>
+        <field name="search_view_id" ref="view_sales_rep_inventory_adjustment_line_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No adjustment lines yet. They will appear here once synced from the mobile app.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu: Adjustments Summary under Reports -->
+    <menuitem id="menu_sales_rep_inventory_adjustment"
+              name="Inventory Adjustments"
+              parent="menu_sales_rep_reports"
+              action="action_sales_rep_inventory_adjustment"
+              sequence="10"/>
+
+    <!-- Menu: Detailed Lines under Reports (REMOVED as per user request) -->
+    <!-- <menuitem id="menu_sales_rep_inventory_adjustment_lines"
+              name="Adjustment Detail Lines"
+              parent="menu_sales_rep_reports"
+              action="action_sales_rep_inventory_adjustment_lines"
+              sequence="11"/> -->
+</data>
+</odoo>

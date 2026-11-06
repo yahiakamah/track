@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sales Rep Collection Tree View -->
+        <record id="view_sales_rep_collection_tree" model="ir.ui.view">
+            <field name="name">sales.rep.collection.tree</field>
+            <field name="model">sales.rep.collection</field>
+            <field name="arch" type="xml">
+                <list string="Collections" decoration-info="state=='draft'" decoration-warning="state=='submitted'" decoration-success="state=='confirmed'" decoration-primary="state=='reconciled'">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="sales_rep_id"/>
+                    <field name="collection_date"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="payment_method"/>
+                    <field name="payment_reference"/>
+                    <field name="receipt_number"/>
+                    <field name="submitted_by"/>
+                    <field name="confirmed_by"/>
+                    <field name="state" widget="badge" decoration-info="state=='draft'" decoration-warning="state=='submitted'" decoration-success="state=='confirmed'" decoration-primary="state=='reconciled'" decoration-muted="state=='cancelled'"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Sales Rep Collection Form View -->
+        <record id="view_sales_rep_collection_form" model="ir.ui.view">
+            <field name="name">sales.rep.collection.form</field>
+            <field name="model">sales.rep.collection</field>
+            <field name="arch" type="xml">
+                <form string="Collection">
+                    <header>
+                        <button name="action_submit" type="object" string="Submit for Approval" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" invisible="state != 'submitted'" groups="sales_rep_management.group_sales_supervisor"/>
+                        <button name="action_reconcile" type="object" string="Reconcile" class="oe_highlight" invisible="state != 'confirmed'" groups="sales_rep_management.group_finance_collections"/>
+                        <button name="action_reject" type="object" string="Reject" invisible="state != 'submitted'" groups="sales_rep_management.group_sales_supervisor"/>
+                        <button name="action_cancel" type="object" string="Cancel" invisible="state not in ['draft', 'submitted']"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submitted,confirmed,reconciled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="open_related_invoices" type="object" class="oe_stat_button" icon="fa-file-text-o" invisible="not invoice_ids">
+                                <span class="o_stat_text">View</span>
+                                <span class="o_stat_text">Invoices</span>
+                            </button>
+                            <button name="action_view_payment" type="object" class="oe_stat_button" icon="fa-money" invisible="not payment_id">
+                                <span class="o_stat_text">View</span>
+                                <span class="o_stat_text">Payment</span>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="basic_info">
+                                <field name="visit_id" required="1"/>
+                                <field name="partner_id" readonly="1"/>
+                                <field name="sales_rep_id" readonly="1"/>
+                                <field name="collection_date" required="1"/>
+                            </group>
+                            <group name="amount_info">
+                                <field name="amount" required="1"/>
+                                <field name="currency_id" readonly="1"/>
+                                <field name="outstanding_amount" readonly="1"/>
+                                <field name="collection_efficiency" widget="percentage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group name="payment_info" string="Payment Information">
+                            <group>
+                                <field name="payment_method" required="1"/>
+                                <field name="payment_reference" required="payment_method in ['check', 'bank_transfer']"/>
+                                <field name="is_partial_payment"/>
+                            </group>
+                            <group>
+                                <field name="receipt_number" readonly="1"/>
+                                <field name="receipt_image" widget="image" required="payment_method != 'bank_transfer' and state in ['submitted', 'confirmed']"/>
+                                <field name="receipt_filename" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Invoice Information" name="invoice_info">
+                                <field name="invoice_ids" widget="many2many">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="invoice_date"/>
+                                        <field name="amount_total"/>
+                                        <field name="amount_residual"/>
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Approval History" name="approval_history">
+                                <group>
+                                    <group string="Submission">
+                                        <field name="submitted_by" readonly="1"/>
+                                        <field name="submitted_date" readonly="1"/>
+                                    </group>
+                                    <group string="Confirmation">
+                                        <field name="confirmed_by" readonly="1"/>
+                                        <field name="confirmed_date" readonly="1"/>
+                                    </group>
+                                </group>
+                                <group string="Accounting Integration">
+                                    <field name="payment_id" readonly="1"/>
+                                    <field name="bank_statement_line_id" readonly="1"/>
+                                </group>
+                            </page>
+                            <page string="Notes" name="notes">
+                                <field name="notes" placeholder="Collection notes and comments..."/>
+                                <separator string="Rejection Reason" invisible="state != 'rejected'"/>
+                                <field name="rejection_reason" placeholder="Reason for rejection..." invisible="state != 'rejected'"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Sales Rep Collection Search View -->
+        <record id="view_sales_rep_collection_search" model="ir.ui.view">
+            <field name="name">sales.rep.collection.search</field>
+            <field name="model">sales.rep.collection</field>
+            <field name="arch" type="xml">
+                <search string="Collections">
+                    <field name="name" string="Collection" filter_domain="['|', '|', ('name', 'ilike', self), ('receipt_number', 'ilike', self), ('partner_id', 'ilike', self)]"/>
+                    <field name="partner_id"/>
+                    <field name="sales_rep_id"/>
+                    <field name="payment_method"/>
+                    <field name="collection_date"/>
+                    <separator/>
+                    <filter string="Today" name="today"/>
+                    <filter string="This Week" name="this_week"/>
+                    <filter string="This Month" name="this_month"/>
+                    <separator/>
+                    <filter string="Draft" name="draft"/>
+                    <filter string="Pending Approval" name="submitted"/>
+                    <filter string="Confirmed" name="confirmed"/>
+                    <filter string="Reconciled" name="reconciled"/>
+                    <filter string="Cancelled" name="cancelled"/>
+                    <separator/>
+                    <filter string="Cash" name="cash"/>
+                    <filter string="Check" name="check"/>
+                    <filter string="Bank Transfer" name="bank_transfer"/>
+                    <filter string="Card" name="card"/>
+                    <separator/>
+                    <filter string="Partial Payments" name="partial_payments"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Customer" name="group_customer" context="{'group_by': 'partner_id'}"/>
+                        <filter string="Sales Rep" name="group_sales_rep" context="{'group_by': 'sales_rep_id'}"/>
+                        <filter string="Payment Method" name="group_payment_method" context="{'group_by': 'payment_method'}"/>
+                        <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Collection Date" name="group_collection_date" context="{'group_by': 'collection_date:day'}"/>
+                        <filter string="Submitted By" name="group_submitted_by" context="{'group_by': 'submitted_by'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Sales Rep Collection Kanban View -->
+        <record id="view_sales_rep_collection_kanban" model="ir.ui.view">
+            <field name="name">sales.rep.collection.kanban</field>
+            <field name="model">sales.rep.collection</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="sales_rep_id"/>
+                    <field name="amount"/>
+                    <field name="payment_method"/>
+                    <field name="collection_date"/>
+                    <field name="receipt_number"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary">
+                                            <strong>$<field name="amount"/></strong>
+                                        </div>
+                                        <div class="o_secondary">
+                                            <field name="name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_card_content">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <strong><field name="partner_id"/></strong>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <field name="sales_rep_id"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <i class="fa fa-calendar"/> <field name="collection_date" widget="date"/>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <span class="badge badge-pill badge-secondary"><field name="payment_method"/></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <small>Receipt: <field name="receipt_number"/></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_card_manage_pane">
+                                    <a role="button" type="edit" class="btn btn-sm btn-secondary">Edit</a>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Sales Rep Collection Action -->
+        <record id="action_sales_rep_collection" model="ir.actions.act_window">
+            <field name="name">Collections</field>
+            <field name="res_model">sales.rep.collection</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="search_view_id" ref="view_sales_rep_collection_search"/>
+            <field name="context">{'search_default_this_week': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Record your first Collection!
+                </p>
+                <p>
+                    Collections track money received from customers during visits.
+                    Upload receipts, specify payment methods, and manage approvals.
+                </p>
+            </field>
+        </record>
+
+        <!-- Daily Report Tree View -->
+        <record id="view_sales_rep_daily_report_tree" model="ir.ui.view">
+            <field name="name">sales.rep.daily.report.tree</field>
+            <field name="model">sales.rep.daily.report</field>
+            <field name="arch" type="xml">
+                <list string="Daily Reports" decoration-info="state=='draft'" decoration-warning="state=='submitted'" decoration-success="state=='approved'">
+                    <field name="name"/>
+                    <field name="sales_rep_id"/>
+                    <field name="report_date"/>
+                    <field name="total_visits_planned"/>
+                    <field name="total_visits_completed"/>
+                    <field name="completion_rate" widget="percentage"/>
+                    <field name="total_sales_amount" sum="Total Sales"/>
+                    <field name="total_collections" sum="Total Collections"/>
+                    <field name="submitted_by"/>
+                    <field name="approved_by"/>
+                    <field name="state" widget="badge" decoration-info="state=='draft'" decoration-warning="state=='submitted'" decoration-success="state=='approved'" decoration-danger="state=='rejected'"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Daily Report Form View -->
+        <record id="view_sales_rep_daily_report_form" model="ir.ui.view">
+            <field name="name">sales.rep.daily.report.form</field>
+            <field name="model">sales.rep.daily.report</field>
+            <field name="arch" type="xml">
+                <form string="Daily Report">
+                    <header>
+                        <button name="action_submit" type="object" string="Submit for Approval" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_approve" type="object" string="Approve" class="oe_highlight" invisible="state != 'submitted'" groups="sales_rep_management.group_sales_supervisor"/>
+                        <button name="action_reject" type="object" string="Reject" invisible="state != 'submitted'" groups="sales_rep_management.group_sales_supervisor"/>
+                        <button name="action_reset_to_draft" type="object" string="Reset to Draft" invisible="state != 'rejected'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="basic_info">
+                                <field name="sales_rep_id" required="1"/>
+                                <field name="report_date" required="1"/>
+                            </group>
+                            <group name="summary_stats">
+                                <field name="total_visits_planned" readonly="1"/>
+                                <field name="total_visits_completed" readonly="1"/>
+                                <field name="completion_rate" widget="percentage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group name="financial_summary" string="Financial Summary">
+                            <group>
+                                <field name="total_sales_amount" readonly="1"/>
+                                <field name="total_collections" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Routes Covered" name="routes">
+                                <field name="route_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="date"/>
+                                        <field name="planned_visits"/>
+                                        <field name="completed_visits"/>
+                                        <field name="completion_rate" widget="percentage"/>
+                                        <field name="actual_sales"/>
+                                        <field name="actual_collections"/>
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Summary Notes" name="summary">
+                                <field name="summary_notes" placeholder="Summary of the day's activities..."/>
+                            </page>
+                            <page string="Challenges" name="challenges">
+                                <field name="challenges_faced" placeholder="What challenges were encountered?..."/>
+                            </page>
+                            <page string="Next Day Plan" name="next_day">
+                                <field name="next_day_plan" placeholder="Plans for tomorrow..."/>
+                            </page>
+                            <page string="Approval History" name="approval">
+                                <group>
+                                    <group string="Submission">
+                                        <field name="submitted_by" readonly="1"/>
+                                        <field name="submitted_date" readonly="1"/>
+                                    </group>
+                                    <group string="Approval">
+                                        <field name="approved_by" readonly="1"/>
+                                        <field name="approved_date" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Daily Report Search View -->
+        <record id="view_sales_rep_daily_report_search" model="ir.ui.view">
+            <field name="name">sales.rep.daily.report.search</field>
+            <field name="model">sales.rep.daily.report</field>
+            <field name="arch" type="xml">
+                <search string="Daily Reports">
+                    <field name="name" string="Report" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="sales_rep_id"/>
+                    <field name="report_date"/>
+                    <separator/>
+                    <filter string="Today" name="today"/>
+                    <filter string="This Week" name="this_week"/>
+                    <filter string="This Month" name="this_month"/>
+                    <separator/>
+                    <filter string="Draft" name="draft"/>
+                    <filter string="Pending Approval" name="submitted"/>
+                    <filter string="Approved" name="approved"/>
+                    <filter string="Rejected" name="rejected"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Sales Rep" name="group_sales_rep" context="{'group_by': 'sales_rep_id'}"/>
+                        <filter string="Report Date" name="group_report_date" context="{'group_by': 'report_date:day'}"/>
+                        <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Submitted By" name="group_submitted_by" context="{'group_by': 'submitted_by'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Daily Report Action -->
+        <record id="action_sales_rep_daily_report" model="ir.actions.act_window">
+            <field name="name">Daily Reports</field>
+            <field name="res_model">sales.rep.daily.report</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_sales_rep_daily_report_search"/>
+            <field name="context">{'search_default_this_week': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first Daily Report!
+                </p>
+                <p>
+                    Daily reports summarize the day's activities, challenges, and achievements.
+                    They help track performance and plan for upcoming activities.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
