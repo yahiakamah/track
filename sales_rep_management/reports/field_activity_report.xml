@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_field_activity" model="report.paperformat">
+        <field name="name">Field Activity (A4 Landscape)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">28</field>
+        <field name="margin_bottom">16</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_spacing">22</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_field_activity" model="ir.actions.report">
+        <field name="name">Field Activity Report</field>
+        <field name="model">sales.rep.field.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sales_rep_management.report_field_activity</field>
+        <field name="report_file">sales_rep_management.report_field_activity</field>
+        <field name="print_report_name">'Field Activity %s - %s' % (object.date_from, object.date_to)</field>
+        <field name="paperformat_id" ref="paperformat_field_activity"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_field_activity">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="data" t-value="report_data[o.id]"/>
+                <t t-set="currency" t-value="data['currency']"/>
+                <t t-call="web.external_layout">
+                    <div class="page fr">
+                        <style>
+                            .fr { font-size: 11px; color: #1E293B; }
+                            .fr h3 { font-size: 20px; margin: 0 0 6px 0; color: #312E81; }
+                            .fr h4 { font-size: 15px; margin: 14px 0 6px 0; padding-bottom: 3px; border-bottom: 2px solid #4F46E5; color: #312E81; }
+                            .fr h6 { font-size: 12px; margin: 8px 0 4px 0; color: #475569; }
+                            .fr table.fr-t { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+                            .fr table.fr-t th { background: #EEF2FF; border: 1px solid #CBD5E1; padding: 3px 5px; font-weight: bold; }
+                            .fr table.fr-t th.kpi { background: #C7D2FE; }
+                            .fr table.fr-t td { border: 1px solid #E2E8F0; padding: 3px 5px; vertical-align: top; }
+                            .fr table.fr-t tr.tot td { font-weight: bold; background: #F8FAFC; }
+                            .fr table.fr-t tbody tr:nth-child(even) td { background: #F8FAFC; }
+                            .fr .num { text-align: right; white-space: nowrap; }
+                            .fr .ctr { text-align: center; }
+                            .fr table.fr-f td { padding: 1px 12px 1px 0; }
+                            .fr table.fr-d { font-size: 9.5px; }
+                            .fr .muted { color: #94A3B8; }
+                            .fr .avoid { page-break-inside: avoid; }
+                        </style>
+                        <h3>Field Activity Report</h3>
+                        <table class="fr-f">
+                            <tr t-foreach="data['filters']" t-as="f">
+                                <td style="font-weight: bold;" t-esc="f[0]"/>
+                                <td t-esc="f[1]"/>
+                            </tr>
+                        </table>
+
+                        <t t-foreach="data['sections']" t-as="s">
+                            <div class="avoid">
+                                <h4 t-esc="s['title']"/>
+                                <!-- KPI strip -->
+                                <table class="fr-t ctr">
+                                    <thead>
+                                        <tr>
+                                            <th t-foreach="s['measures']" t-as="m" t-esc="m[1]"/>
+                                            <th class="kpi" t-foreach="s['kpis']" t-as="k" t-esc="k[0]"/>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="tot">
+                                            <td t-foreach="s['totals_cells']" t-as="c" t-esc="c"/>
+                                            <td t-foreach="s['kpis']" t-as="k" t-esc="k[3]"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- breakdown by the chosen axis -->
+                            <table class="fr-t" t-if="s['groups']">
+                                <thead>
+                                    <tr>
+                                        <th t-esc="data['group_label']"/>
+                                        <th class="num" t-foreach="s['measures']" t-as="m" t-esc="m[1]"/>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="s['groups']" t-as="g">
+                                        <td t-esc="g['label']"/>
+                                        <td class="num" t-foreach="g['cells']" t-as="c" t-esc="c"/>
+                                    </tr>
+                                    <tr class="tot">
+                                        <td>Total</td>
+                                        <td class="num" t-foreach="s['totals_cells']" t-as="c" t-esc="c"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p t-else="" class="muted">No data for this period.</p>
+
+                            <!-- flow-specific breakdown -->
+                            <t t-set="bd" t-value="s['breakdown']"/>
+                            <div t-if="bd['rows']" style="page-break-inside: avoid;">
+                                <h6 t-esc="bd['title']"/>
+                                <table class="fr-t" style="width: 60%;">
+                                    <thead>
+                                        <tr>
+                                            <th/>
+                                            <th class="num" t-foreach="bd['measures']" t-as="m" t-esc="m[1]"/>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="bd['rows']" t-as="g">
+                                            <td t-esc="g['label']"/>
+                                            <td class="num" t-foreach="g['cells']" t-as="c" t-esc="c"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- document lines -->
+                            <t t-if="s['details']">
+                                <h6>Details</h6>
+                                <table class="fr-t fr-d">
+                                    <thead>
+                                        <tr><th t-foreach="s['detail_headers']" t-as="h" t-esc="h"/></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="s['details']" t-as="row">
+                                            <td t-foreach="row" t-as="c" t-esc="c"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p t-if="s['detail_truncated']" class="muted">
+                                    Only the first <t t-esc="o.detail_limit"/> lines are printed; use Excel or the analysis for all lines.
+                                </p>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

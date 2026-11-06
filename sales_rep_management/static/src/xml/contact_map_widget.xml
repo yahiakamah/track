@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="sales_rep_management.ContactMapWidget">
+        <div class="o_contact_map_widget" style="width: 100%; margin-top: 10px;">
+            <div class="o_contact_map_wrapper" style="height: 400px; width: 100%; position: relative; border: 1px solid #dee2e6; border-radius: 8px; z-index: 10; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                <!-- Dedicated Map Container (Empty for Leaflet) -->
+                <div t-ref="mapContainer" class="h-100 w-100" />
+
+                <!-- Loading Overlay -->
+                <div t-if="!state.mapReady" class="d-flex align-items-center justify-content-center h-100 bg-light text-muted" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 20;">
+                    <div class="text-center">
+                        <div class="spinner-border text-primary mb-2" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="fw-bold">Initializing Map...</div>
+                    </div>
+                </div>
+                <!-- Error Overlay -->
+                <div t-if="state.mapError" class="d-flex align-items-center justify-content-center h-100" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background-color: rgba(255, 255, 255, 0.9);">
+                    <div class="text-center p-4">
+                        <i class="fa fa-map-o fa-3x text-danger mb-3" />
+                        <h5 class="text-danger">Map Error</h5>
+                        <p class="text-muted" t-esc="state.mapError" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ Plans ============ -->
+    <record id="view_sales_rep_commission_plan_list" model="ir.ui.view">
+        <field name="name">sales.rep.commission.plan.list</field>
+        <field name="model">sales.rep.commission.plan</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="base"/>
+                <field name="target_gate"/>
+                <field name="target_bonus"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sales_rep_commission_plan_form" model="ir.ui.view">
+        <field name="name">sales.rep.commission.plan.form</field>
+        <field name="model">sales.rep.commission.plan</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_sheets" type="object" string="Generate This Month's Sheets"
+                            class="btn-primary" invisible="not sales_rep_ids"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title"><h1><field name="name" placeholder="e.g. Field sales 2026"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="base" widget="radio"/>
+                            <field name="active" invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Target link">
+                            <field name="target_gate"/>
+                            <field name="target_bonus"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Rules" name="rules">
+                            <field name="rule_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"/>
+                                    <field name="categ_id" readonly="product_id"/>
+                                    <field name="rate"/>
+                                </list>
+                            </field>
+                            <div class="text-muted">The most specific rule applies: product, then the closest category, then a rule with neither (all other products). Products with no matching rule earn nothing.</div>
+                        </page>
+                        <page string="Representatives" name="reps">
+                            <field name="sales_rep_ids" readonly="1">
+                                <list><field name="name"/><field name="supervisor_id"/></list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sales_rep_commission_plan" model="ir.actions.act_window">
+        <field name="name">Commission Plans</field>
+        <field name="res_model">sales.rep.commission.plan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ============ Sheets ============ -->
+    <record id="view_sales_rep_commission_sheet_list" model="ir.ui.view">
+        <field name="name">sales.rep.commission.sheet.list</field>
+        <field name="model">sales.rep.commission.sheet</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'cancelled'" decoration-success="state == 'paid'" decoration-warning="gate_blocked">
+                <field name="sales_rep_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="plan_id" optional="show"/>
+                <field name="base_amount" sum="Total"/>
+                <field name="target_score" optional="show"/>
+                <field name="gate_blocked" optional="hide"/>
+                <field name="total_amount" sum="Total"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'paid'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sales_rep_commission_sheet_form" model="ir.ui.view">
+        <field name="name">sales.rep.commission.sheet.form</field>
+        <field name="model">sales.rep.commission.sheet</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_compute" type="object" string="Compute" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_confirm" type="object" string="Confirm" invisible="state != 'draft'"/>
+                    <button name="action_mark_paid" type="object" string="Mark as Paid" class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button name="action_reset_draft" type="object" string="Reset to Draft" invisible="state not in ('confirmed', 'cancelled')"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state in ('paid', 'cancelled')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-warning" role="alert" invisible="not gate_blocked">
+                        The target score is below the plan's minimum: no commission is due for this period.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sales_rep_id" readonly="state != 'draft'"/>
+                            <field name="plan_id" readonly="state != 'draft'"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="gate_blocked" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="date_from" readonly="state != 'draft'"/>
+                            <field name="date_to" readonly="state != 'draft'"/>
+                            <field name="target_score"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" readonly="1">
+                        <list>
+                            <field name="scope"/>
+                            <field name="invoice_count"/>
+                            <field name="base_amount" sum="Total"/>
+                            <field name="rate"/>
+                            <field name="commission_amount" sum="Total"/>
+                            <field name="currency_id" column_invisible="1"/>
+                        </list>
+                    </field>
+                    <group class="oe_subtotal_footer">
+                        <field name="commission_amount"/>
+                        <field name="bonus_amount"/>
+                        <field name="total_amount" class="oe_subtotal_footer_separator"/>
+                    </group>
+                    <field name="note" placeholder="Notes for payroll..."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sales_rep_commission_sheet_search" model="ir.ui.view">
+        <field name="name">sales.rep.commission.sheet.search</field>
+        <field name="model">sales.rep.commission.sheet</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sales_rep_id"/>
+                <field name="plan_id"/>
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="to_pay" string="To Pay" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="paid" string="Paid" domain="[('state', '=', 'paid')]"/>
+                <separator/>
+                <filter name="date_from" string="Period" date="date_from"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_rep" string="Representative" context="{'group_by': 'sales_rep_id'}"/>
+                    <filter name="group_period" string="Period" context="{'group_by': 'date_from:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sales_rep_commission_sheet" model="ir.actions.act_window">
+        <field name="name">Commission Sheets</field>
+        <field name="res_model">sales.rep.commission.sheet</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_period': 1}</field>
+    </record>
+
+    <record id="view_sales_representative_form_commission" model="ir.ui.view">
+        <field name="name">sales.representative.form.commission</field>
+        <field name="model">sales.representative</field>
+        <field name="inherit_id" ref="sales_rep_management.view_sales_representative_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='territories']" position="inside">
+                <group string="Commission">
+                    <field name="commission_plan_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_sales_rep_commission_sheets" name="Commissions" parent="sales_rep_management.menu_sales_rep_planning"
+              action="action_sales_rep_commission_sheet" sequence="40" groups="sales_rep_management.group_sales_supervisor"/>
+    <menuitem id="menu_sales_rep_commission_plans" name="Commission Plans" parent="sales_rep_management.menu_sales_rep_config"
+              action="action_sales_rep_commission_plan" sequence="40" groups="sales_rep_management.group_sales_manager"/>
+</odoo>

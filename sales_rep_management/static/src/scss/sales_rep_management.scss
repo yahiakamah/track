@@ -1,0 +1,210 @@
+.o_pill_grid_container {
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 12px 16px !important;
+    margin-bottom: 15px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.o_modern_time_selector {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+    align-items: center;
+
+    .o_radio_item {
+        margin: 3px 0 !important;
+        padding: 0 !important;
+        flex: 0 0 auto;
+
+        input {
+            display: none !important;
+        }
+
+        label {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            color: #495057;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 0;
+            text-align: center;
+            min-width: 55px;
+            user-select: none;
+            white-space: nowrap;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+
+            &:hover {
+                background-color: #f1f3f5;
+                border-color: #adb5bd;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        input:checked+label {
+            background-color: #714B67;
+            border-color: #714B67;
+            color: white;
+            box-shadow: 0 3px 8px rgba(113, 75, 103, 0.3);
+            transform: scale(1.05);
+        }
+    }
+}
+
+// Fix for Odoo 17 Form Squeezing - Specifically for the Recurrence group
+.o_inner_group[name="recurrence"] .o_cell.o_label {
+    min-width: 150px !important;
+    white-space: nowrap !important;
+    display: table-cell !important;
+    vertical-align: middle !important;
+}
+
+// Alternative: If the selection is still too wide,
+// we ensure the radio labels wrap but the group labels stay fixed.
+.o_form_view .o_group .o_field_widget.o_modern_time_selector {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+// ============================================
+// Map Widgets - Leaflet CSS Overrides
+// ============================================
+// Odoo's form view CSS can interfere with Leaflet's
+// absolute positioning and tile image rendering.
+
+.o_contact_map_widget, .o_visit_map_widget {
+    width: 100% !important;
+
+    .o_contact_map_wrapper, .o_visit_map_wrapper {
+        height: 400px !important;
+        width: 100% !important;
+        position: relative !important;
+        background-color: #f8f9fa !important;
+        display: block !important;
+    }
+
+    // CRITICAL: Prevent Odoo global styles from breaking Leaflet tiles
+    .leaflet-container img.leaflet-tile {
+        max-width: none !important;
+        max-height: none !important;
+        width: 256px !important;
+        height: 256px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    .leaflet-container {
+        height: 100% !important;
+        width: 100% !important;
+        position: relative !important;
+        z-index: 10 !important;
+        background: #f8f9fa !important;
+        outline: none !important;
+
+        &.leaflet-touch-drag {
+            touch-action: none;
+        }
+    }
+
+    .leaflet-tile-container {
+        z-index: 11 !important;
+    }
+
+    .leaflet-pane {
+        z-index: 12 !important;
+    }
+
+    .leaflet-top,
+    .leaflet-bottom {
+        z-index: 1000 !important;
+    }
+
+    .leaflet-control-zoom {
+        z-index: 1000 !important;
+    }
+}
+
+// ============================================
+// Location Type Selection Radio styling
+// ============================================
+[name="location_type"].o_field_radio {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+    align-items: center !important;
+
+    .form-check {
+        display: inline-flex !important;
+        align-items: center !important;
+        padding-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .form-check-input {
+        margin-right: 8px !important;
+        margin-left: 0 !important;
+        cursor: pointer !important;
+        width: 18px !important;
+        height: 18px !important;
+        float: none !important;
+        border-color: #cbd5e1 !important;
+
+        &:checked {
+            background-color: #0ea5e9 !important;
+            border-color: #0ea5e9 !important;
+        }
+    }
+
+    .form-check-label {
+        font-size: 0 !important; /* Hide the text */
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        
+        &::before {
+            font-family: "FontAwesome" !important;
+            font-size: 20px !important;
+            line-height: 1 !important;
+            display: inline-block !important;
+            transition: transform 0.2s, color 0.2s !important;
+        }
+
+        &:hover::before {
+            transform: scale(1.15) !important;
+        }
+    }
+
+    .form-check:has(input[value="customer"]) .form-check-label::before {
+        content: "\f007" !important; /* fa-user */
+        color: #3b82f6 !important;
+    }
+
+    .form-check:has(input[value="house"]) .form-check-label::before {
+        content: "\f015" !important; /* fa-home */
+        color: #f59e0b !important;
+    }
+
+    .form-check:has(input[value="company"]) .form-check-label::before {
+        content: "\f1ad" !important; /* fa-building */
+        color: #10b981 !important;
+    }
+
+    .form-check:has(input[value="other"]) .form-check-label::before {
+        content: "\f041" !important; /* fa-map-marker */
+        color: #6b7280 !important;
+    }
+}

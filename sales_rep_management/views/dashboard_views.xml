@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sales Rep Dashboard Form View -->
+        <record id="view_sales_rep_dashboard_form" model="ir.ui.view">
+            <field name="name">sales.rep.dashboard.form</field>
+            <field name="model">sales.rep.dashboard</field>
+            <field name="arch" type="xml">
+                <form string="Sales Rep Dashboard">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Sales Representative Dashboard</h1>
+                        </div>
+                        <group>
+                            <group name="filters">
+                                <field name="date_from" required="1"/>
+                                <field name="date_to" required="1"/>
+                                <field name="sales_rep_id"/>
+                            </group>
+                            <group>
+                                <button name="get_dashboard_data" type="object" string="Refresh Data" class="oe_highlight"/>
+                            </group>
+                        </group>
+                        
+                        <!-- KPI Cards -->
+                        <div class="o_dashboard_view">
+                            <div class="row">
+                                <div class="col-lg-3 col-6">
+                                    <div class="card border-primary">
+                                        <div class="card-body text-center">
+                                            <h2 class="text-primary"><field name="total_routes"/></h2>
+                                            <p class="card-text">Total Routes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <div class="card border-success">
+                                        <div class="card-body text-center">
+                                            <h2 class="text-success"><field name="completed_routes"/></h2>
+                                            <p class="card-text">Completed Routes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <div class="card border-info">
+                                        <div class="card-body text-center">
+                                            <h2 class="text-info"><field name="total_visits"/></h2>
+                                            <p class="card-text">Total Visits</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <div class="card border-warning">
+                                        <div class="card-body text-center">
+                                            <h2 class="text-warning"><field name="completed_visits"/></h2>
+                                            <p class="card-text">Completed Visits</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-3">
+                                <div class="col-lg-4 col-12">
+                                    <div class="card border-success">
+                                        <div class="card-body text-center">
+                                            <h2 class="text-success">$<field name="total_sales"/></h2>
+                                            <p class="card-text">Total Sales</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <div class="card border-primary">
+                                        <div class="card-body text-center">
+                                            <h2 class="text-primary">$<field name="total_collections"/></h2>
+                                            <p class="card-text">Total Collections</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <div class="card border-info">
+                                        <div class="card-body text-center">
+                                            <h2 class="text-info"><field name="collection_efficiency" widget="percentage"/></h2>
+                                            <p class="card-text">Collection Efficiency</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-3">
+                                <div class="col-lg-6 col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Route Completion Rate</h5>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h2><field name="route_completion_rate" widget="percentage"/></h2>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Visit Completion Rate</h5>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h2><field name="visit_completion_rate" widget="percentage"/></h2>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="row mt-4">
+                            <div class="col-lg-4 col-12">
+                                <button name="action_open_routes" type="object" class="btn btn-primary btn-block">
+                                    <i class="fa fa-route"/> View Routes
+                                </button>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <button name="action_open_visits" type="object" class="btn btn-info btn-block">
+                                    <i class="fa fa-users"/> View Visits
+                                </button>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <button name="action_open_collections" type="object" class="btn btn-success btn-block">
+                                    <i class="fa fa-money"/> View Collections
+                                </button>
+                            </div>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sales_rep_dashboard_client" model="ir.actions.client">
+            <field name="name">Sales Rep Dashboard</field>
+            <field name="tag">sales_rep_dashboard</field>
+        </record>
+        
+        <!-- Sales Rep Dashboard Action -->
+        <!-- <record id="action_sales_rep_dashboard" model="ir.actions.act_window">
+            <field name="name">Sales Rep Dashboard</field>
+            <field name="res_model">sales.rep.dashboard</field>
+            <field name="view_mode">ir.actions.client</field>
+            <field name="tag">sales_rep_dashboard</field>
+            <field name="view_id" ref="view_sales_rep_dashboard_form"/>
+            <field name="target">current</field>
+            <field name="context">{}</field>
+        </record> -->
+
+    </data>
+</odoo>

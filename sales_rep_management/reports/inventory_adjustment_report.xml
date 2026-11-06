@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <template id="report_inventory_adjustment_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center">
+                            <h2>Inventory Adjustment Report</h2>
+                        </div>
+
+                        <div class="row mt16 mb16" style="border: 1px solid #dee2e6; border-radius: 4px; padding: 12px;">
+                            <div class="col-6">
+                                <strong>Reference:</strong> <span t-field="o.name"/><br/>
+                                <strong>Sales Representative:</strong> <span t-field="o.sales_rep_id.name"/><br/>
+                                <strong>Location:</strong> <span t-field="o.location_id.display_name"/><br/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Date:</strong> <span t-field="o.date" t-options='{"widget": "datetime", "format": "dd/MM/yyyy HH:mm"}'/><br/>
+                                <strong>Company:</strong> <span t-field="o.company_id.name"/><br/>
+                            </div>
+                        </div>
+
+                        <table class="table table-sm table-striped o_main_table mt16">
+                            <thead style="background-color: #f8f9fa;">
+                                <tr>
+                                    <th name="th_seq" class="text-center" style="width: 40px;">#</th>
+                                    <th name="th_product">Product</th>
+                                    <th name="th_code">Internal Ref</th>
+                                    <th name="th_theoretical" class="text-end">On Hand</th>
+                                    <th name="th_counted" class="text-end">Counted</th>
+                                    <th name="th_difference" class="text-end">Difference</th>
+                                    <th name="th_uom">UoM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="seq" t-value="0"/>
+                                <tr t-foreach="o.line_ids" t-as="line">
+                                    <t t-set="seq" t-value="seq + 1"/>
+                                    <td class="text-center"><t t-esc="seq"/></td>
+                                    <td name="td_product"><span t-field="line.product_id.display_name"/></td>
+                                    <td name="td_code"><span t-field="line.product_id.default_code"/></td>
+                                    <td name="td_theoretical" class="text-end"><span t-field="line.theoretical_qty"/></td>
+                                    <td name="td_counted" class="text-end"><span t-field="line.counted_qty"/></td>
+                                    <td name="td_difference" class="text-end">
+                                        <span t-field="line.difference_qty" t-attf-class="fw-bold text-#{'danger' if line.difference_qty &lt; 0 else 'success' if line.difference_qty &gt; 0 else 'muted'}"/>
+                                    </td>
+                                    <td name="td_uom"><span t-field="line.product_uom_id.name"/></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="border-top: 2px solid #000;">
+                                    <td colspan="3" class="text-end fw-bold">Totals:</td>
+                                    <td class="text-end fw-bold"><t t-esc="sum(o.line_ids.mapped('theoretical_qty'))"/></td>
+                                    <td class="text-end fw-bold"><t t-esc="sum(o.line_ids.mapped('counted_qty'))"/></td>
+                                    <td class="text-end fw-bold"><t t-esc="sum(o.line_ids.mapped('difference_qty'))"/></td>
+                                    <td/>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <div class="row mt32">
+                            <div class="col-4">
+                                <p>Items with shortage: <strong><t t-esc="len([l for l in o.line_ids if l.difference_qty &lt; 0])"/></strong></p>
+                            </div>
+                            <div class="col-4">
+                                <p>Items with surplus: <strong><t t-esc="len([l for l in o.line_ids if l.difference_qty &gt; 0])"/></strong></p>
+                            </div>
+                            <div class="col-4">
+                                <p>Items matched: <strong><t t-esc="len([l for l in o.line_ids if l.difference_qty == 0])"/></strong></p>
+                            </div>
+                        </div>
+
+                        <div class="row mt64">
+                            <div class="col-6">
+                                <p>_________________________</p>
+                                <strong>Sales Representative Signature</strong>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p>_________________________</p>
+                                <strong>Supervisor Signature</strong>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_inventory_adjustment" model="ir.actions.report">
+        <field name="name">Inventory Adjustment Report</field>
+        <field name="model">sales.rep.inventory.adjustment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sales_rep_management.report_inventory_adjustment_document</field>
+        <field name="report_file">sales_rep_management.report_inventory_adjustment_document</field>
+        <field name="print_report_name">'Inventory Adjustment - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_sales_rep_inventory_adjustment"/>
+        <field name="binding_type">report</field>
+    </record>
+</data>
+</odoo>

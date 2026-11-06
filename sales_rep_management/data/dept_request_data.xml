@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_sales_rep_dept_request" model="ir.sequence">
+            <field name="name">Department Request</field>
+            <field name="code">sales.rep.dept.request</field>
+            <field name="prefix">REQ/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="dept_request_type_advance" model="sales.rep.dept.request.type">
+            <field name="name">Advance</field>
+            <field name="code">advance</field>
+            <field name="sequence">1</field>
+            <field name="needs_amount" eval="True"/>
+            <field name="icon">cash-outline</field>
+        </record>
+        <record id="dept_request_type_mission" model="sales.rep.dept.request.type">
+            <field name="name">Mission</field>
+            <field name="code">mission</field>
+            <field name="sequence">2</field>
+            <field name="needs_dates" eval="True"/>
+            <field name="icon">briefcase-outline</field>
+        </record>
+        <record id="dept_request_type_maintenance" model="sales.rep.dept.request.type">
+            <field name="name">Vehicle Maintenance</field>
+            <field name="code">maintenance</field>
+            <field name="sequence">3</field>
+            <field name="icon">construct-outline</field>
+        </record>
+        <record id="dept_request_type_route_change" model="sales.rep.dept.request.type">
+            <field name="name">Route Change</field>
+            <field name="code">route_change</field>
+            <field name="sequence">4</field>
+            <field name="icon">git-branch-outline</field>
+        </record>
+        <record id="dept_request_type_customer_change" model="sales.rep.dept.request.type">
+            <field name="name">Customer Data Change</field>
+            <field name="code">customer_change</field>
+            <field name="category">customer</field>
+            <field name="sequence">5</field>
+            <field name="needs_customer" eval="True"/>
+            <field name="icon">person-circle-outline</field>
+        </record>
+        <record id="dept_request_type_customer_complaint" model="sales.rep.dept.request.type">
+            <field name="name">Customer Complaint</field>
+            <field name="code">customer_complaint</field>
+            <field name="category">customer</field>
+            <field name="sequence">6</field>
+            <field name="needs_customer" eval="True"/>
+            <field name="icon">alert-circle-outline</field>
+        </record>
+        <record id="dept_request_type_customer_request" model="sales.rep.dept.request.type">
+            <field name="name">Customer Request</field>
+            <field name="code">customer_request</field>
+            <field name="category">customer</field>
+            <field name="sequence">7</field>
+            <field name="needs_customer" eval="True"/>
+            <field name="icon">chatbox-ellipses-outline</field>
+        </record>
+        <record id="dept_request_type_other" model="sales.rep.dept.request.type">
+            <field name="name">Other</field>
+            <field name="code">other</field>
+            <field name="sequence">9</field>
+            <field name="icon">document-text-outline</field>
+        </record>
+    </data>
+    <function model="sales.rep.dept.request.type" name="_fix_categories"/>
+</odoo>

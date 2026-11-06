@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sales Rep Visit Tree View -->
+        <record id="view_sales_rep_visit_tree" model="ir.ui.view">
+            <field name="name">sales.rep.visit.tree</field>
+            <field name="model">sales.rep.visit</field>
+            <field name="arch" type="xml">
+                <list string="Customer Visits" decoration-info="state=='planned'" decoration-warning="state=='in_progress'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+                    <field name="name"/>
+                    <field name="route_id"/>
+                    <field name="sales_rep_id" string="Sales Rep"/>
+                    <field name="partner_id"/>
+                    <field name="visit_type"/>
+                    <field name="planned_time"/>
+                    <field name="visit_time"/>
+                    <field name="duration"/>
+                    <field name="visit_result"/>
+                    <field name="sale_amount" sum="Total Sales"/>
+                    <field name="total_collected" sum="Total Collections"/>
+                    <field name="state" widget="badge" decoration-info="state=='planned'" decoration-warning="state=='in_progress'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'"/>
+                    <field name="visit_location_lat" column_invisible="True"/>
+                    <field name="visit_location_long" column_invisible="True"/>
+                    <button name="action_open_google_maps" type="object" string="Map" icon="fa-map-marker" invisible="not visit_location_lat or not visit_location_long"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Sales Rep Visit Form View -->
+        <record id="view_sales_rep_visit_form" model="ir.ui.view">
+            <field name="name">sales.rep.visit.form</field>
+            <field name="model">sales.rep.visit</field>
+            <field name="arch" type="xml">
+                <form string="Customer Visit">
+                    <header>
+                        <button name="action_start_visit" type="object" string="Start Visit" class="oe_highlight" invisible="state != 'planned'"/>
+                        <button name="action_complete_visit" type="object" string="Complete Visit" class="oe_highlight" invisible="state != 'in_progress'"/>
+                        <button name="action_reschedule_visit" type="object" string="Reschedule" invisible="state not in ['planned', 'in_progress']"/>
+                        <button name="action_cancel_visit" type="object" string="Cancel" invisible="state != 'planned'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="planned,in_progress,completed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!-- Sales Order Button -->
+                            <button name="action_view_sale_order" type="object" class="oe_stat_button" icon="fa-file-text-o" invisible="not sale_order_id">
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="sale_order_id" string="" widget="statinfo"/>
+                                    </span>
+                                    <span class="o_stat_text">Sales Order</span>
+                                </div>
+                            </button>
+                            <button name="action_create_sale_order" type="object" class="oe_stat_button" icon="fa-plus-square" invisible="state != 'completed' or sale_order_id">
+                                <span class="o_stat_text">Create Sale Order</span>
+                            </button>
+
+                            <!-- POS Order Button -->
+                            <!-- <button name="action_view_pos_orders" type="object" class="oe_stat_button" icon="fa-shopping-cart">
+                                <field name="pos_order_count" string="POS Orders" widget="statinfo"/>
+                            </button> -->
+
+                            <!-- Payment Button -->
+                            <button name="action_view_payments" type="object" class="oe_stat_button" icon="fa-money">
+                                <field name="payment_count" string="Payments" widget="statinfo"/>
+                            </button>
+
+                            <!-- Collection Button -->
+                            <!-- <button name="action_view_collections" type="object" class="oe_stat_button" icon="fa-credit-card">
+                                <field name="total_collected" widget="monetary" class="o_stat_value"/>
+                                <span class="o_stat_text">Collections</span>
+                            </button> -->
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="basic_info">
+                                <field name="sales_rep_id" string="Sales Representative" readonly="1"/>
+                                <field name="route_id" required="1"/>
+                                <field name="partner_id" required="1"/>
+                                <field name="sequence"/>
+                                <field name="visit_type" required="1"/>
+                            </group>
+                            <group name="timing">
+                                <field name="planned_time" required="1"/>
+                                <field name="visit_time" readonly="1"/>
+                                <field name="duration" readonly="1"/>
+                            </group>
+                        </group>
+                        <group name="customer_info" string="Customer Information">
+                            <group>
+                                <field name="customer_name" readonly="1"/>
+                                <field name="customer_phone" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="customer_email" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Visit Details" name="visit_details">
+                                <group>
+                                    <group name="results">
+                                        <field name="visit_result"/>
+                                        <field name="sale_amount"/>
+                                        <field name="sale_order_id" readonly="1"/>
+                                    </group>
+                                    <group name="follow_up">
+                                        <field name="follow_up_required"/>
+                                        <field name="next_visit_date" required="follow_up_required"/>
+                                    </group>
+                                </group>
+                                <separator string="Visit Notes"/>
+                                <field name="notes" placeholder="Describe what happened during the visit..."/>
+                                <separator string="Internal Notes"/>
+                                <field name="internal_notes" placeholder="Internal notes not visible to customer..."/>
+                                <separator string="Follow-up Notes" invisible="not follow_up_required"/>
+                                <field name="follow_up_notes" placeholder="What needs to be followed up?" invisible="not follow_up_required"/>
+                            </page>
+                            <!-- <page string="Products" name="products">
+                                <field name="product_ids" widget="many2many_tags"/>
+                            </page> -->
+                            <!-- <page string="Collections" name="collections">
+                                <field name="collection_ids" context="{'default_visit_id': id}">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="collection_date"/>
+                                        <field name="amount"/>
+                                        <field name="payment_method"/>
+                                        <field name="payment_reference"/>
+                                        <field name="receipt_number"/>
+                                        <field name="state" widget="badge"/>
+                                        <button name="action_submit" type="object" string="Submit" invisible="state != 'draft'" class="btn-primary"/>
+                                        <button name="action_confirm" type="object" string="Confirm" invisible="state != 'submitted'" class="btn-success" groups="sales_rep_management.group_sales_supervisor"/>
+                                    </list>
+                                </field>
+                            </page> -->
+                            <page string="Related Orders" name="related_orders">
+                                <group>
+                                    <group string="Sales Order Summary">
+                                        <field name="sale_order_id" readonly="1"/>
+                                        <button name="action_view_sale_order" type="object" string="View Sales Order" class="btn-primary" invisible="not sale_order_id"/>
+                                        <button name="action_create_sale_order" type="object" string="Create Sales Order" class="btn-secondary" invisible="sale_order_id or state != 'completed'"/>
+                                    </group>
+                                    <group string="Payments">
+                                        <field name="payment_ids" widget="many2many_tags" readonly="1"/>
+                                        <button name="action_view_payments" type="object" string="View Payments" class="btn-primary" invisible="not payment_ids"/>
+                                    </group>
+                                </group>
+                                <!-- <separator string="All Attached Sales Orders"/>
+                                <field name="sale_order_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="date_order"/>
+                                        <field name="partner_id"/>
+                                        <field name="amount_total" sum="Total Amount"/>
+                                        <field name="state" widget="badge" decoration-info="state in ('draft', 'sent')" decoration-success="state in ('sale', 'done')" decoration-muted="state == 'cancel'"/>
+                                    </list>
+                                </field> -->
+                            </page>
+                            <!-- <page string="Images" name="images">
+                                <field name="image_ids" context="{'default_visit_id': id}">
+                                    <list>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="image" widget="image" width="50px" height="50px"/>
+                                        <field name="name"/>
+                                        <field name="image_type"/>
+                                        <field name="notes"/>
+                                    </list>
+                                    <form>
+                                        <group>
+                                            <field name="name" required="1"/>
+                                            <field name="image_type"/>
+                                            <field name="sequence"/>
+                                        </group>
+                                        <field name="image" widget="image"/>
+                                        <field name="notes" placeholder="Description of the image..."/>
+                                    </form>
+                                </field>
+                            </page> -->
+                            <!-- <page string="Attachments" name="attachments">
+                                <field name="attachment_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="mimetype"/>
+                                        <field name="file_size"/>
+                                        <field name="create_date"/>
+                                    </list>
+                                </field>
+                            </page> -->
+
+                            <page string="Visit Location" name="visit_location">
+                                <group>
+                                    <group>
+                                        <field name="visit_location_lat" string="Visit Lat"/>
+                                        <field name="visit_location_long" string="Visit Long"/>
+                                        <button name="action_open_google_maps" type="object" string="Map" icon="fa-map-marker" invisible="not visit_location_lat or not visit_location_long"/>
+                                    </group>
+                                    <group>
+                                        <field name="partner_id" string="Customer"/>
+                                        <field name="customer_latitude" string="Customer Lat"/>
+                                        <field name="customer_longitude" string="Customer Long"/>
+                                    </group>
+                                </group>
+                                
+                                <div class="o_visit_map_widget" style="width: 100%; margin-top: 10px;">
+                                    <div class="o_visit_map_wrapper" style="height: 400px; width: 100%; position: relative; border: 1px solid #dee2e6; border-radius: 8px; z-index: 10; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                                        <!-- Dedicated Map Container -->
+                                        <div id="visit_map" class="h-100 w-100" />
+
+                                        <!-- Loading Overlay -->
+                                        <div id="visit_map_loading" class="d-flex align-items-center justify-content-center h-100 bg-light text-muted" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 20;">
+                                            <div class="text-center">
+                                                <i class="fa fa-circle-o-notch fa-spin fa-2x mb-2" />
+                                                <div class="fw-bold">Initializing Map...</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Error Overlay (Hidden by default) -->
+                                        <div id="visit_map_error" class="d-none align-items-center justify-content-center h-100 bg-light text-danger" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 25;">
+                                            <div class="text-center p-3">
+                                                <i class="fa fa-exclamation-triangle fa-2x mb-2" />
+                                                <div id="visit_map_error_text" class="fw-bold">Unable to load map data.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Sales Rep Visit Calendar View -->
+        <record id="view_sales_rep_visit_calendar" model="ir.ui.view">
+            <field name="name">sales.rep.visit.calendar</field>
+            <field name="model">sales.rep.visit</field>
+            <field name="arch" type="xml">
+                <calendar string="Visit Calendar" date_start="planned_time" mode="week" color="state">
+                    <field name="sales_rep_id" string="Sales Rep"/>
+                    <field name="partner_id"/>
+                    <field name="visit_type"/>
+                    <field name="state"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Sales Rep Visit Kanban View -->
+        <record id="view_sales_rep_visit_kanban" model="ir.ui.view">
+            <field name="name">sales.rep.visit.kanban</field>
+            <field name="model">sales.rep.visit</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column">
+                    <field name="name"/>
+                    <field name="route_id"/>
+                    <field name="sales_rep_id"/>
+                    <field name="partner_id"/>
+                    <field name="visit_type"/>
+                    <field name="planned_time"/>
+                    <field name="visit_time"/>
+                    <field name="visit_result"/>
+                    <field name="sale_amount"/>
+                    <field name="total_collected"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary">
+                                            <strong><field name="partner_id"/></strong>
+                                        </div>
+                                        <div class="o_secondary">
+                                            <field name="name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_card_content">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <small class="text-muted"><field name="sales_rep_id"/></small>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <span class="badge badge-pill badge-info"><field name="visit_type"/></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <i class="fa fa-clock-o"/> <field name="planned_time" widget="datetime"/>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2" t-if="record.visit_time.raw_value">
+                                            <div class="col-12">
+                                                <i class="fa fa-check"/> <field name="visit_time" widget="datetime"/>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2" t-if="record.visit_result.raw_value">
+                                            <div class="col-12">
+                                                <strong>Result:</strong> <field name="visit_result"/>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-6" t-if="record.sale_amount.raw_value">
+                                                <div class="text-muted">Sales</div>
+                                                <div>$<field name="sale_amount"/></div>
+                                            </div>
+                                            <div class="col-6" t-if="record.total_collected.raw_value">
+                                                <div class="text-muted">Collected</div>
+                                                <div>$<field name="total_collected"/></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_card_manage_pane">
+                                    <a role="button" type="edit" class="btn btn-sm btn-secondary">Edit</a>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Sales Rep Visit Search View -->
+        <record id="view_sales_rep_visit_search" model="ir.ui.view">
+            <field name="name">sales.rep.visit.search</field>
+            <field name="model">sales.rep.visit</field>
+            <field name="arch" type="xml">
+                <search string="Customer Visits">
+                    <field name="name" string="Visit" filter_domain="['|', ('name', 'ilike', self), ('partner_id', 'ilike', self)]"/>
+                    <field name="partner_id"/>
+                    <field name="route_id"/>
+                    <field name="sales_rep_id" string="Sales Rep"/>
+                    <field name="visit_type"/>
+                    <separator/>
+                    <filter string="Today" name="today"/>
+                    <filter string="This Week" name="this_week"/>
+                    <separator/>
+                    <filter string="Planned" name="planned"/>
+                    <filter string="In Progress" name="in_progress"/>
+                    <filter string="Completed" name="completed"/>
+                    <filter string="Cancelled" name="cancelled"/>
+                    <separator/>
+                    <filter string="Sales Visits" name="sales_visits"/>
+                    <filter string="Collection Visits" name="collection_visits"/>
+                    <filter string="Follow-up Required" name="follow_up_required"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Customer" name="group_customer" context="{'group_by': 'partner_id'}"/>
+                        <filter string="Route" name="group_route" context="{'group_by': 'route_id'}"/>
+                        <filter string="Sales Rep" name="group_sales_rep" context="{'group_by': 'sales_rep_id'}"/>
+                        <filter string="Visit Type" name="group_visit_type" context="{'group_by': 'visit_type'}"/>
+                        <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Visit Result" name="group_result" context="{'group_by': 'visit_result'}"/>
+                        <filter string="Planned Date" name="group_planned_date" context="{'group_by': 'planned_time:day'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Leaflet Map View -->
+        <record id="view_sales_rep_visit_leaflet_map" model="ir.ui.view">
+            <field name="name">sales.rep.visit.leaflet.map</field>
+            <field name="model">sales.rep.visit</field>
+            <field name="arch" type="xml">
+                <leaflet_map>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="visit_result"/>
+                </leaflet_map>
+            </field>
+        </record>
+
+        <!-- Sales Rep Visit Action -->
+        <record id="action_sales_rep_visit" model="ir.actions.act_window">
+            <field name="name">Customer Visits</field>
+            <field name="res_model">sales.rep.visit</field>
+            <field name="view_mode">kanban,list,form,calendar,leaflet_map</field>
+            <field name="search_view_id" ref="view_sales_rep_visit_search"/>
+            <field name="context">{'search_default_this_week': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first Customer Visit!
+                </p>
+                <p>
+                    Customer visits are the individual stops within a sales route.
+                    Track visit outcomes, record sales, and manage collections.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Payment Method Tree View -->
+        <record id="view_sales_rep_payment_method_tree" model="ir.ui.view">
+            <field name="name">sales.rep.payment.method.tree</field>
+            <field name="model">sales.rep.payment.method</field>
+            <field name="arch" type="xml">
+                <list string="Payment Methods">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="company_id" optional="hide"/>
+                    <field name="payment_type"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Payment Method Form View -->
+        <record id="view_sales_rep_payment_method_form" model="ir.ui.view">
+            <field name="name">sales.rep.payment.method.form</field>
+            <field name="model">sales.rep.payment.method</field>
+            <field name="arch" type="xml">
+                <form string="Payment Method">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. Cash"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="payment_method" string="Payment">
+                                <field name="active" widget="boolean_toggle"/>
+                                <field name="payment_type" widget="radio"/>
+                                <field name="journal_id"/>
+                                <field name="company_id"/>
+                            </group>
+                            <group name="payment_settings" string="Configuration">
+                                <field name="payment_provider_id" invisible="payment_type != 'online'" required="payment_type == 'online'"/>
+                                <field name="split_transactions"/>
+                            </group>
+                        </group>
+                        <group string="Display">
+                            <group>
+                                <field name="icon"/>
+                                <field name="color" widget="color"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Payment Method Search View -->
+        <record id="view_sales_rep_payment_method_search" model="ir.ui.view">
+            <field name="name">sales.rep.payment.method.search</field>
+            <field name="model">sales.rep.payment.method</field>
+            <field name="arch" type="xml">
+                <search string="Search Payment Methods">
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Cash" name="cash" domain="[('payment_type', '=', 'cash')]"/>
+                    <filter string="Bank" name="bank" domain="[('payment_type', '=', 'bank')]"/>
+                    <filter string="Online" name="online" domain="[('payment_type', '=', 'online')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Payment Type" name="group_type" context="{'group_by': 'payment_type'}"/>
+                        <filter string="Journal" name="group_journal" context="{'group_by': 'journal_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Payment Method Action -->
+        <record id="action_sales_rep_config_payment_method" model="ir.actions.act_window">
+            <field name="name">Payment Methods</field>
+            <field name="res_model">sales.rep.payment.method</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'active_test': False, 'search_default_active': 1}</field>
+            <field name="search_view_id" ref="view_sales_rep_payment_method_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new payment method
+                </p>
+                <p>
+                    Configure the payment methods available for your sales representatives.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_sales_rep_config_payment_method"
+            name="Payment Methods"
+            parent="sales_rep_management.menu_sales_rep_config"
+            sequence="10"
+            action="action_sales_rep_config_payment_method"
+            groups="sales_rep_management.group_sales_manager"/>
+
+    </data>
+</odoo>
