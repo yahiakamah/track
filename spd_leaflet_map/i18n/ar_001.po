@@ -1,0 +1,179 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* spd_leaflet_map
+#
+msgid ""
+msgstr "Project-Id-Version: Odoo Server 18.0+e-20250820\n Report-Msgid-Bugs-To: \n POT-Creation-Date: 2026-06-30 18:15+0000\n PO-Revision-Date: 2026-06-30 18:15+0000\n Last-Translator: \n Language-Team: \n MIME-Version: 1.0\n Content-Type: text/plain; charset=UTF-8\n Content-Transfer-Encoding: \n Plural-Forms: \n"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.xml:0
+msgid ""
+".st0{opacity:0.3;enable-background:new;}\n"
+"                .st1{fill:currentColor;stroke:#1A1919;stroke-width:3;stroke-miterlimit:10;}"
+msgstr ".st0{التعتيم:0.3;تمكين الخلفية:جديد;}\n .st1{ملء:اللون الحالي;السكتة الدماغية:#1A1919;عرض السكتة الدماغية:3;حدود الحد:10;}"
+
+#. module: spd_leaflet_map
+#: model:ir.model,name:spd_leaflet_map.model_ir_actions_act_window_view
+msgid "Action Window View"
+msgstr "عرض نافذة الإجراء"
+
+#. module: spd_leaflet_map
+#: model:ir.model,name:spd_leaflet_map.model_base
+msgid "Base"
+msgstr "قاعدة "
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.xml:0
+msgid "Close"
+msgstr "يغلق"
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__create_uid
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__create_date
+msgid "Created on"
+msgstr "تم الإنشاء بتاريخ"
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: spd_leaflet_map
+#: model:ir.model,name:spd_leaflet_map.model_ir_http
+msgid "HTTP Routing"
+msgstr "مسار HTTP"
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__id
+msgid "ID"
+msgstr "بطاقة تعريف"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_view.js:0
+msgid "Items"
+msgstr "أغراض"
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث بتاريخ"
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__latitude
+msgid "Latitude"
+msgstr "خط العرض"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_view.js:0
+#: model:ir.model.fields.selection,name:spd_leaflet_map.selection__ir_actions_act_window_view__view_mode__leaflet_map
+#: model:ir.model.fields.selection,name:spd_leaflet_map.selection__ir_ui_view__type__leaflet_map
+msgid "Leaflet Map"
+msgstr "خريطة النشرة"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.xml:0
+msgid "Locating new addresses..."
+msgstr "جارٍ تحديد العناوين الجديدة..."
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__longitude
+msgid "Longitude"
+msgstr "خط الطول"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.js:0
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_map_location__name
+msgid "Name"
+msgstr "اسم"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_model.js:0
+msgid "No"
+msgstr "لا"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_model.js:0
+msgid "None"
+msgstr "لا أحد"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.xml:0
+msgid "Set up token"
+msgstr "إعداد الرمز المميز"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.xml:0
+msgid ""
+"To get routing on your map, you first need to set up your MapBox token. It's"
+" free."
+msgstr "للحصول على التوجيه على خريطتك، تحتاج أولاً إلى إعداد رمز MapBox الخاص بك. إنه مجاني."
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.xml:0
+msgid "Undefined"
+msgstr "غير محدد"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.xml:0
+msgid "Unsuccessful routing request:"
+msgstr "طلب توجيه غير ناجح:"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_controller.js:0
+msgid "Untitled"
+msgstr "بدون عنوان"
+
+#. module: spd_leaflet_map
+#: model:ir.model,name:spd_leaflet_map.model_res_users
+msgid "User"
+msgstr "المستخدم"
+
+#. module: spd_leaflet_map
+#: model:ir.model,name:spd_leaflet_map.model_ir_ui_view
+msgid "View"
+msgstr "أداة العرض"
+
+#. module: spd_leaflet_map
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_ir_actions_act_window_view__view_mode
+#: model:ir.model.fields,field_description:spd_leaflet_map.field_ir_ui_view__type
+msgid "View Type"
+msgstr "نوع واجهة العرض"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_renderer.xml:0
+msgid "View in Google Maps"
+msgstr "عرض في خرائط جوجل"
+
+#. module: spd_leaflet_map
+#. odoo-javascript
+#: code:addons/spd_leaflet_map/static/src/map_view/map_model.js:0
+msgid "Yes"
+msgstr "نعم"
+
+#. module: spd_leaflet_map
+#: model:ir.model,name:spd_leaflet_map.model_map_location
+msgid "map.location"
+msgstr "خريطة. الموقع"

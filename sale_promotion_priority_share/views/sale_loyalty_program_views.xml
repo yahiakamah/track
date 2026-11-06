@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         LIST VIEW — add priority / sharing columns
+         ═══════════════════════════════════════════════════════════════ -->
+    <record id="loyalty_program_view_tree" model="ir.ui.view">
+        <field name="name">loyalty.program.list.priority</field>
+        <field name="model">loyalty.program</field>
+        <field name="inherit_id" ref="loyalty.loyalty_program_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="priority" widget="integer" optional="show"/>
+                <field name="can_be_shared" optional="show"/>
+                <field name="is_cash" optional="show"/>
+                <field name="is_auto"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FORM VIEW — priority, customer targeting, tier configuration
+         ═══════════════════════════════════════════════════════════════ -->
+    <record id="loyalty_program_view_form" model="ir.ui.view">
+        <field name="name">loyalty.program.form.priority</field>
+        <field name="model">loyalty.program</field>
+        <field name="inherit_id" ref="loyalty.loyalty_program_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- ── Priority & Sharing settings above the main groups ── -->
+            <xpath expr="//sheet/group[1]" position="before">
+                <group string="Promotion Priority Settings" name="priority_settings">
+                    <group>
+                        <field name="priority" required="1"/>
+                        <field name="can_be_shared"/>
+                        <field name="is_cash"/>
+                        <field name="is_auto"/>
+                    </group>
+                    <group>
+                        <separator string="Priority Rules" colspan="4"/>
+                        <div colspan="4" class="text-muted">
+                            <div>• Lower priority number = Higher priority (1 is highest)</div>
+                            <div>• Priority must be unique across all programs</div>
+                            <div>• Non-shareable programs block other standard programs</div>
+                            <div>• Tier programs are always evaluated independently</div>
+                            <div>• <b>Is Cash</b>: Only applies to cash orders</div>
+                        </div>
+                    </group>
+                </group>
+
+                <group name="customer_target" string="Customer Target">
+                    <group>
+                        <field name="limit_partner_ids" widget="many2many_tags"/>
+                        <field name="limit_partner_category_ids" widget="many2many_tags"/>
+                        <field name="limit_country_ids" widget="many2many_tags"/>
+                        <field name="limit_state_ids" widget="many2many_tags"/>
+                        <field name="limit_area_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+            </xpath>
+
+            <!-- ── Tier configuration inside the Rules & Rewards page ── -->
+            <xpath expr="//page[@name='rules_rewards']" position="inside">
+                <group string="Program Tiers" invisible="program_type != 'tier'">
+                    <field name="tiers_type" required="program_type == 'tier'"/>
+                    <field name="discount_product_id"/>
+                    <field name="program_tier_ids" nolabel="1">
+                        <list string="Tiers" editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="rule_product_uom_category_id" column_invisible="1"/>
+                            <field name="reward_product_uom_category_id" column_invisible="1"/>
+                            <field name="rule_product_id" column_invisible="parent.tiers_type == 'order_total'"/>
+                            <field name="rule_uom_id" column_invisible="parent.tiers_type == 'order_total'" 
+                                   domain="[('category_id', '=', rule_product_uom_category_id)]"
+                                   force_save="1"/>
+                            <field name="tiers_type" column_invisible="1"/>
+                            <field name="minimum_amount" string="From"/>
+                            <field name="maximum_amount" string="To"/>
+                            <field name="reward_type"/>
+                            <field name="reward_amount"
+                                   string="Discount %"
+                                   invisible="reward_type != 'discount'"/>
+                            <field name="reward_product_id"
+                                   string="Reward Product"
+                                   invisible="reward_type != 'bonus'"
+                                   required="reward_type in ['bonus']"/>
+                            <field name="qty"
+                                   string="Bonus Qty"
+                                   invisible="reward_type != 'bonus'"/>
+                            <field name="uom_id"
+                                   string="UoM"
+                                   invisible="reward_type != 'bonus'"
+                                   domain="[('category_id', '=', reward_product_uom_category_id)]"
+                                   force_save="1"/>
+                        </list>
+                    </field>
+                </group>
+            </xpath>
+
+            <!-- ── Hide standard Rules & Rewards for tier programs ── -->
+            <xpath expr="//field[@name='rule_ids']" position="attributes">
+                <attribute name="invisible">program_type == 'tier'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='reward_ids']" position="attributes">
+                <attribute name="invisible">program_type == 'tier'</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SEARCH VIEW — filters and group-by
+         ═══════════════════════════════════════════════════════════════ -->
+    <record id="loyalty_program_view_search" model="ir.ui.view">
+        <field name="name">loyalty.program.search.priority</field>
+        <field name="model">loyalty.program</field>
+        <field name="inherit_id" ref="loyalty.loyalty_program_view_search"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="priority"/>
+                <field name="can_be_shared"/>
+                <field name="is_cash"/>
+                <field name="is_auto"/>
+            </field>
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter string="Shareable" name="filter_shareable"
+                        domain="[('can_be_shared', '=', True)]"/>
+                <filter string="Non-Shareable" name="filter_non_shareable"
+                        domain="[('can_be_shared', '=', False)]"/>
+                <separator/>
+                <filter string="Cash Promotions" name="filter_is_cash"
+                        domain="[('is_cash', '=', True)]"/>
+                <separator/>
+                <filter string="Priority" name="group_by_priority"
+                        context="{'group_by': 'priority'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

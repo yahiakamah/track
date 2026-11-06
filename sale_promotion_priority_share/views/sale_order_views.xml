@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add a smart button to show applied promotions -->
+    <record id="view_order_form_inherit_promotion_info" model="ir.ui.view">
+        <field name="name">sale.order.form.promotion.info</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add promotion info in the order lines tab -->
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <page string="Promotion Info" name="promotion_info" invisible="state not in ['sale', 'done']">
+                    <group string="Applied Promotions">
+                        <field name="applied_program_ids" widget="many2many_tags" readonly="1"/>
+                        <!-- <field name="applied_tier_ids" widget="many2many_tags" readonly="1"/> -->
+                    </group>
+                    <group string="Promotion Application Rules">
+                        <separator string="Rules Applied"/>
+                        <div colspan="2" class="text-muted">
+                            <div>• Promotions are applied only after order confirmation</div>
+                            <div>• Highest priority program determines combination rules</div>
+                            <div>• Non-shareable programs are applied alone</div>
+                            <div>• Shareable programs are combined with other shareable programs</div>
+                        </div>
+                    </group>
+                </page>
+            </xpath>
+
+            <!-- Add a status indicator for promotions -->
+            <div name="button_box" position="inside">
+                <button type="object"
+                        name="action_view_promotions"
+                        class="oe_stat_button"
+                        icon="fa-tags"
+                        invisible="applied_program_count == 0">
+                    <div class="o_stat_info">
+                        <field name="applied_program_count"/>
+                        <span class="o_stat_text">Promotions</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <!-- Add to search view -->
+    <record id="view_sales_order_filter_inherit_promotion" model="ir.ui.view">
+        <field name="name">sale.order.search.promotion</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter string="Has Promotions" name="has_promotions" domain="[('order_line.reward_id', '!=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

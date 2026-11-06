@@ -1,0 +1,28 @@
+<odoo>
+    <record id="view_product_template_form_discount_account" model="ir.ui.view">
+        <field name="name">product.template.form.discount.account</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="account.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_account_income_id']" position="after">
+                <field name="discount_account_id"/>
+                <field name="bonus_product_account_id"/>
+            </xpath>
+           
+        </field>
+    </record>
+
+    <record id="view_product_category_form_discount_account" model="ir.ui.view">
+        <field name="name">product.category.form.discount.account</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="account.view_category_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_account_income_categ_id']" position="after">
+                <field name="discount_account_id"/>
+            </xpath>
+             <xpath expr="//field[@name='property_stock_account_output_categ_id']" position="after">
+                <field name="bonus_product_account_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

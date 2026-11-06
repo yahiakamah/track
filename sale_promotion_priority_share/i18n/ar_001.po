@@ -1,0 +1,637 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_promotion_priority_share
+#
+msgid ""
+msgstr "Project-Id-Version: Odoo Server 18.0+e-20250820\n Report-Msgid-Bugs-To: \n POT-Creation-Date: 2026-06-30 18:13+0000\n PO-Revision-Date: 2026-06-30 18:13+0000\n Last-Translator: \n Language-Team: \n MIME-Version: 1.0\n Content-Type: text/plain; charset=UTF-8\n Content-Transfer-Encoding: \n Plural-Forms: \n"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "<span class=\"o_stat_text\">Promotions</span>"
+msgstr "<span class=\"o_stat_text\">الترقيات</span>"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__loyalty_program_tier__trigger_type__amount
+msgid "Amount"
+msgstr "كمية"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__applied_program_ids
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "Applied Promotions"
+msgstr "الترقيات التطبيقية"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order_line__tier_id
+msgid "Applied Tier"
+msgstr "الطبقة المطبقة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__applied_tier_ids
+msgid "Applied Tiers"
+msgstr "الطبقات المطبقة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__sale_order__gift_approval_state__approved
+msgid "Approved"
+msgstr "موافقة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_area__name
+msgid "Area Name"
+msgstr "اسم المنطقة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.constraint,message:sale_promotion_priority_share.constraint_loyalty_area_name_unique
+msgid "Area name must be unique!"
+msgstr "يجب أن يكون اسم المنطقة فريدًا!"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__limit_area_ids
+msgid "Areas"
+msgstr "المناطق"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__is_auto
+msgid "Auto Apply"
+msgstr "تطبيق تلقائي"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__sale_order_line__gift_status__available
+msgid "Available"
+msgstr "متاح"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__loyalty_program_tier__reward_type__bonus
+msgid "Bonus"
+msgstr "علاوة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__qty
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "Bonus Qty"
+msgstr "الكمية الإضافية"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_order.py:0
+msgid "Bonus: %s (%s)"
+msgstr "المكافأة: %s (%s)"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__can_be_shared
+msgid "Can Be Shared"
+msgstr "يمكن مشاركتها"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__is_cash
+msgid "Cash Promotion"
+msgstr "الترويج النقدي"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_search
+msgid "Cash Promotions"
+msgstr "الترقيات النقدية"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__is_competitor_war
+msgid "Competitor Price Pressure"
+msgstr "ضغط أسعار المنافسين"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program_tier__reward_product_uom_category_id
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program_tier__rule_product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr "لا يمكن أن يحدث التحويل بين وحدات القياس إلا إذا كانت تنتمي إلى نفس الفئة. سيتم إجراء التحويل على أساس النسب."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__limit_country_ids
+msgid "Countries"
+msgstr "بلدان"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "Coupons"
+msgstr "كوبونات"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_area__create_uid
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__create_uid
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_area__create_date
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__create_date
+msgid "Created on"
+msgstr "تم الإنشاء بتاريخ"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__limit_partner_category_ids
+msgid "Customer Tags"
+msgstr "علامات العملاء"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "Customer Target"
+msgstr "هدف العميل"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__delivery_gps_lat
+msgid "Delivery Latitude"
+msgstr "خط العرض التسليم"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__delivery_gps_lng
+msgid "Delivery Longitude"
+msgstr "خط طول التسليم"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__reward_amount
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__loyalty_program_tier__reward_type__discount
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "Discount %"
+msgstr "تخفيض ٪"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__discount_product_id
+msgid "Discount Product"
+msgstr "منتج الخصم"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_order.py:0
+msgid "Discount on %s: %s (-%s%%)"
+msgstr "الخصم على %s: %s (-%s%%)"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_order.py:0
+msgid "Discount: %s (-%s%%)"
+msgstr "الخصم: %s (-%s%%)"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_area__display_name
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__minimum_amount
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "From"
+msgstr "من"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__gift_approval_needed
+msgid "Gift Approval Needed"
+msgstr "الموافقة على الهدية مطلوبة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__gift_approval_state
+msgid "Gift Approval State"
+msgstr "حالة الموافقة على الهدية"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "Gift Cards"
+msgstr "بطاقات الهدايا"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order_line__gift_progress_percent
+msgid "Gift Progress %"
+msgstr "تقدم الهدية %"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order_line__gift_status
+msgid "Gift Status"
+msgstr "حالة الهدية"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_sales_order_filter_inherit_promotion
+msgid "Has Promotions"
+msgstr "لديه الترقيات"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__has_return_risk
+msgid "High Return Risk"
+msgstr "مخاطر عائد عالية"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_area__id
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__id
+msgid "ID"
+msgstr "بطاقة تعريف"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__can_be_shared
+msgid "If checked, this program can stack with other shareable programs."
+msgstr "إذا تم تحديده، يمكن لهذا البرنامج أن يتكدس مع البرامج الأخرى القابلة للمشاركة."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__is_auto
+msgid "If checked, this promotion is automatically evaluated."
+msgstr "إذا تم تحديده، فسيتم تقييم هذا الترويج تلقائيًا."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__is_cash
+msgid "If checked, this promotion only applies to cash orders."
+msgstr "إذا تم تحديده، فإن هذا العرض الترويجي ينطبق فقط على الطلبات النقدية."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__limit_area_ids
+msgid "If set, this program only applies to customers in these areas."
+msgstr "إذا تم تعيينه، فسيتم تطبيق هذا البرنامج فقط على العملاء في هذه المناطق."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__limit_country_ids
+msgid "If set, this program only applies to customers in these countries."
+msgstr "في حالة تعيينه، ينطبق هذا البرنامج فقط على العملاء في هذه البلدان."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__limit_state_ids
+msgid "If set, this program only applies to customers in these states."
+msgstr "إذا تم تعيينه، فسيتم تطبيق هذا البرنامج فقط على العملاء في هذه الولايات."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__limit_partner_category_ids
+msgid "If set, this program only applies to customers with these tags."
+msgstr "إذا تم تعيينه، فسيتم تطبيق هذا البرنامج فقط على العملاء الذين لديهم هذه العلامات."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__limit_partner_ids
+msgid "If set, this program only applies to these customers."
+msgstr "إذا تم تعيينه، فسيتم تطبيق هذا البرنامج على هؤلاء العملاء فقط."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__is_cash
+msgid "Is Cash Order"
+msgstr "هو أمر نقدا"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order_line__is_gift
+msgid "Is Gift"
+msgstr "هل هدية"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order_line__is_tiered_reward
+msgid "Is Tiered Reward"
+msgstr "هي مكافأة متدرجة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_area__write_uid
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_area__write_date
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث بتاريخ"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program__priority
+msgid "Lower value = higher priority. Must be unique."
+msgstr "القيمة الأقل = الأولوية الأعلى. يجب أن تكون فريدة من نوعها."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model,name:sale_promotion_priority_share.model_loyalty_program
+msgid "Loyalty Program"
+msgstr "برنامج الولاء"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model,name:sale_promotion_priority_share.model_loyalty_program_tier
+msgid "Loyalty Program Tier"
+msgstr "فئة برنامج الولاء"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model,name:sale_promotion_priority_share.model_loyalty_area
+msgid "Loyalty Promotion Area"
+msgstr "منطقة تعزيز الولاء"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_search
+msgid "Non-Shareable"
+msgstr "غير قابلة للمشاركة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__sale_order__gift_approval_state__draft
+msgid "Not Required"
+msgstr "غير مطلوب"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__loyalty_program__tiers_type__order_line
+msgid "Order Line"
+msgstr "خط الطلب"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__sale_order_line__gift_status__pending
+msgid "Pending Stock"
+msgstr "الأسهم المعلقة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,help:sale_promotion_priority_share.field_loyalty_program_tier__reward_amount
+msgid "Percentage discount to apply (e.g. 3.0 = 3%)."
+msgstr "نسبة الخصم المطلوب تطبيقها (على سبيل المثال، 3.0 = 3%)."
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "Points"
+msgstr "نقاط"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__priority
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_search
+msgid "Priority"
+msgstr "أولوية"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "Priority Rules"
+msgstr "قواعد الأولوية"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.constraint,message:sale_promotion_priority_share.constraint_loyalty_program_unique_priority
+msgid ""
+"Priority must be unique. Another promotion program already uses this "
+"priority."
+msgstr "يجب أن تكون الأولوية فريدة من نوعها. يستخدم برنامج ترويج آخر هذه الأولوية بالفعل."
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "Priority must be unique. Program \"%s\" already uses priority %s."
+msgstr "يجب أن تكون الأولوية فريدة من نوعها. البرنامج \"%s\" يستخدم بالفعل الأولوية %s."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__rule_product_id
+msgid "Product Rule"
+msgstr "قاعدة المنتج"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__program_id
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order_line__program_id
+msgid "Program"
+msgstr "برنامج"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "Program Tiers"
+msgstr "طبقات البرنامج"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__program_type
+msgid "Program Type"
+msgstr "نوع البرنامج"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "Promo Codes"
+msgstr "الرموز الترويجية"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "Promotion Application Rules"
+msgstr "قواعد تطبيق الترويج"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__applied_program_count
+msgid "Promotion Count"
+msgstr "عدد الترويج"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "Promotion Info"
+msgstr "معلومات الترويج"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "Promotion Priority Settings"
+msgstr "إعدادات أولوية الترويج"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_order.py:0
+msgid "Promotions applied: %s"
+msgstr "الترقيات المطبقة: %s"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__loyalty_program_tier__trigger_type__quantity
+msgid "Quantity"
+msgstr "كمية"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__partner_return_rate
+msgid "Return Rate %"
+msgstr "معدل العائد %"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__reward_product_id
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "Reward Product"
+msgstr "منتج المكافأة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__reward_product_uom_category_id
+msgid "Reward Product UoM Category"
+msgstr "فئة وحدة قياس منتج المكافأة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__reward_type
+msgid "Reward Type"
+msgstr "نوع المكافأة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__rule_product_uom_category_id
+msgid "Rule Product UoM Category"
+msgstr "فئة وحدة قياس المنتج القاعدة"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "Rules Applied"
+msgstr "القواعد المطبقة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model,name:sale_promotion_priority_share.model_sale_order
+msgid "Sales Order"
+msgstr "أمر البيع"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model,name:sale_promotion_priority_share.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "بند أمر المبيعات"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__sequence
+msgid "Sequence"
+msgstr "تسلسل"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_search
+msgid "Shareable"
+msgstr "قابلة للمشاركة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__limit_partner_ids
+msgid "Specific Customers"
+msgstr "عملاء محددين"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__limit_state_ids
+msgid "States"
+msgstr "الدول"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_order.py:0
+msgid "This is a cash-only promotion and the order is not a cash order."
+msgstr "هذا عرض ترويجي نقدًا فقط، والأمر ليس أمرًا نقديًا."
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_order.py:0
+msgid "This is a non-cash promotion and the order is a cash order."
+msgstr "هذا عرض ترويجي غير نقدي والأمر عبارة عن أمر نقدي."
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "Tier \"%s\": \"To\" value must be greater than \"From\" value."
+msgstr "الطبقة \"%s\": يجب أن تكون قيمة \"إلى\" أكبر من قيمة \"من\"."
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "Tier \"%s\": Bonus reward requires a product."
+msgstr "الطبقة \"%s\": تتطلب المكافأة الإضافية وجود منتج."
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "Tier \"%s\": Discount %% must be greater than zero."
+msgstr "الطبقة \"%s\": يجب أن يكون الخصم %% أكبر من الصفر."
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__name
+msgid "Tier Name"
+msgstr "اسم الطبقة"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_order.py:0
+msgid "Tier promotions evaluated: %s"
+msgstr "تم تقييم ترقيات الطبقة: %s"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__program_tier_ids
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__loyalty_program__program_type__tier
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "Tiers"
+msgstr "طبقات"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program__tiers_type
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__tiers_type
+msgid "Tiers Type"
+msgstr "نوع الطبقات"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__maximum_amount
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "To"
+msgstr "ل"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__loyalty_program__tiers_type__order_total
+msgid "Total Order"
+msgstr "إجمالي الطلب"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__trigger_type
+msgid "Trigger By"
+msgstr "تشغيل بواسطة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__uom_id
+msgid "Unit of Measure"
+msgstr "وحدة القياس"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "UoM"
+msgstr "جامعة م"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_loyalty_program_tier__rule_uom_id
+msgid "UoM Rule"
+msgstr "قاعدة UoM"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields,field_description:sale_promotion_priority_share.field_sale_order__gift_location_id
+msgid "Van/Car Location"
+msgstr "موقع الشاحنة/السيارة"
+
+#. module: sale_promotion_priority_share
+#: model:ir.model.fields.selection,name:sale_promotion_priority_share.selection__sale_order__gift_approval_state__pending
+msgid "Waiting for Approval"
+msgstr "في انتظار الموافقة"
+
+#. module: sale_promotion_priority_share
+#. odoo-python
+#: code:addons/sale_promotion_priority_share/models/sale_loyalty_program.py:0
+msgid "eWallet"
+msgstr "المحفظة الإلكترونية"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "• <b>Is Cash</b>: Only applies to cash orders"
+msgstr "• <b>هو نقدا</b>: ينطبق فقط على الطلبات النقدية"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "• Highest priority program determines combination rules"
+msgstr "• يحدد البرنامج ذو الأولوية العليا قواعد الجمع"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "• Lower priority number = Higher priority (1 is highest)"
+msgstr "• رقم الأولوية الأدنى = الأولوية الأعلى (1 هو الأعلى)"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "• Non-shareable programs are applied alone"
+msgstr "• يتم تطبيق البرامج غير القابلة للمشاركة بمفردها"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "• Non-shareable programs block other standard programs"
+msgstr "• البرامج غير القابلة للمشاركة تمنع البرامج القياسية الأخرى"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "• Priority must be unique across all programs"
+msgstr "• يجب أن تكون الأولوية فريدة عبر كافة البرامج"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "• Promotions are applied only after order confirmation"
+msgstr "• يتم تطبيق العروض الترويجية فقط بعد تأكيد الطلب"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.view_order_form_inherit_promotion_info
+msgid "• Shareable programs are combined with other shareable programs"
+msgstr "• يتم دمج البرامج القابلة للمشاركة مع البرامج الأخرى القابلة للمشاركة"
+
+#. module: sale_promotion_priority_share
+#: model_terms:ir.ui.view,arch_db:sale_promotion_priority_share.loyalty_program_view_form
+msgid "• Tier programs are always evaluated independently"
+msgstr "• يتم دائمًا تقييم برامج المستوى بشكل مستقل"
