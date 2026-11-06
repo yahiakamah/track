@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<templates>
-    <t t-name="sdm_account_reports.JournalReportHeader" t-inherit="sdm_account_reports.AccountReportHeaderCustomizable">
-        <xpath expr="//thead[@id='table_header']" position="replace"/>
-    </t>
-</templates>

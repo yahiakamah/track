@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<templates>
-    <t t-name="sdm_account_reports.SalesReportFilters" t-inherit="sdm_account_reports.AccountReportFiltersCustomizable">
-        <xpath expr="//div[@id='filter_variant']" position="before">
-            <t t-call="sdm_account_reports.SalesReportFilterCode"/>
-        </xpath>
-    </t>
-</templates>
