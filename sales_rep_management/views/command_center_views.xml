@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="action_sales_command_center" model="ir.actions.client">
-        <field name="name">Sales Command Center</field>
-        <field name="tag">sales_command_center</field>
-    </record>
-    <menuitem id="menu_sales_command_center" name="Command Center" parent="sales_rep_management.menu_sales_rep_main"
-              action="action_sales_command_center" sequence="0" groups="sales_rep_management.group_sales_supervisor"/>
-</odoo>
