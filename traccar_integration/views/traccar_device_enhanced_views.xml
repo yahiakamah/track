@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Enhanced Device Form View -->
+        <record id="view_traccar_device_form_enhanced" model="ir.ui.view">
+            <field name="name">traccar.device.form.enhanced</field>
+            <field name="model">traccar.device</field>
+            <field name="inherit_id" ref="view_traccar_device_form"/>
+            <field name="arch" type="xml">
+
+                <!-- Add buttons to header -->
+                <xpath expr="//header" position="inside">
+                    <button name="send_position_request" type="object"
+                            string="Request Position" class="btn-primary"/>
+                    <button name="send_engine_stop" type="object"
+                            string="Stop Engine" class="btn-danger"
+                            confirm="Are you sure you want to stop the engine?"/>
+                    <button name="send_engine_resume" type="object"
+                            string="Resume Engine" class="btn-success"/>
+                </xpath>
+
+                <!-- Add Vehicle Status group after the group containing 'unique_id' -->
+                <xpath expr="//group[field[@name='unique_id']]" position="after">
+                    <group string="Vehicle Status">
+                        <field name="fuel_level"/>
+                        <field name="battery_level"/>
+                        <field name="maintenance_odometer"/>
+                        <field name="engine_hours"/>
+                    </group>
+                </xpath>
+
+                <!-- Insert Geofences and Commands before Attributes tab -->
+                <xpath expr="//page[field[@name='attributes']]" position="before">
+                    <page string="Geofences">
+                        <field name="geofence_ids">
+                            <list>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="active"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Commands">
+                        <group>
+                            <field name="last_command_time" readonly="1"/>
+                            <field name="last_command_result" widget="text" readonly="1"/>
+                        </group>
+                        <div class="oe_button_box">
+                            <button name="send_position_request" type="object"
+                                    string="Request Position" class="oe_highlight"/>
+                            <button name="send_engine_stop" type="object"
+                                    string="Stop Engine" class="btn-danger"
+                                    confirm="Stop engine?"/>
+                            <button name="send_engine_resume" type="object"
+                                    string="Resume Engine" class="btn-success"/>
+                        </div>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

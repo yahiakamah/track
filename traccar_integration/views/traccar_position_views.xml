@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Position Tree View -->
+        <record id="view_traccar_position_tree" model="ir.ui.view">
+            <field name="name">traccar.position.tree</field>
+            <field name="model">traccar.position</field>
+            <field name="arch" type="xml">
+                <list default_order="device_time desc">
+                    <field name="device_id"/>
+                    <field name="device_time"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="speed_kmh"/>
+                    <field name="course"/>
+                    <field name="valid" 
+                           decoration-success="valid==True"
+                           decoration-danger="valid==False"/>
+                    <field name="outdated"
+                           decoration-warning="outdated==True"/>
+                    <button name="open_map_view" type="object" 
+                            string="Map" class="btn-link"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Position Map View -->
+        <record id="view_traccar_position_leaflet-map" model="ir.ui.view">
+            <field name="name">traccar.position.leaflet.map</field>
+            <field name="model">traccar.position</field>
+            <field name="arch" type="xml">
+                <leaflet_map string="Positions">
+                    <field name="device_id"/>
+                    <field name="device_time"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="speed_kmh"/>
+                    <field name="course"/>
+                    <field name="valid"
+                           decoration-success="valid==True"
+                           decoration-danger="valid==False"/>
+                    <field name="outdated"
+                           decoration-warning="outdated==True"/>
+                    <button name="open_map_view" type="object"
+                            string="Map" class="btn-link"/>
+                </leaflet_map>
+            </field>
+        </record>
+
+        <!-- Position Form View -->
+        <record id="view_traccar_position_form" model="ir.ui.view">
+            <field name="name">traccar.position.form</field>
+            <field name="model">traccar.position</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="open_map_view" type="object"
+                                string="Show on Map" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Position Information">
+                                <field name="device_id"/>
+                                <field name="device_time"/>
+                                <field name="fix_time"/>
+                                <field name="server_time"/>
+                                <field name="protocol"/>
+                                <field name="traccar_id" readonly="1" invisible="1"/>
+                            </group>
+                            <group string="Location Data">
+                                <field name="latitude"/>
+                                <field name="longitude"/>
+                                <field name="altitude"/>
+                                <field name="accuracy"/>
+                                <field name="address"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Movement Data">
+                                <field name="speed"/>
+                                <field name="speed_kmh"/>
+                                <field name="course"/>
+                            </group>
+                            <group string="Status">
+                                <field name="valid"/>
+                                <field name="outdated"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <!-- <page string="Map View">
+                                <div class="o_field_widget">
+                                    <field name="latitude" invisible="1"/>
+                                    <field name="longitude" invisible="1"/>
+                                    <field name="device_id" invisible="1"/>
+                                    <field name="device_time" invisible="1"/>
+                                    <field name="speed_kmh" invisible="1"/>
+                                    <field name="course" invisible="1"/>
+                                    <field name="altitude" invisible="1"/>
+
+                                    <field name="map_widget"
+                                           widget="traccar_map"
+                                           options="{
+                                               'lat_field': 'latitude',
+                                               'lng_field': 'longitude',
+                                               'title': 'device_id',
+                                               'default_zoom': 13
+                                           }"/>
+                                </div>
+                            </page> -->
+                            <!-- <page string="Attributes">
+                                <field name="attributes" widget="text"/>
+                            </page>
+                            <page string="Network Info">
+                                <field name="network" widget="text"/>
+                            </page> -->
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Position Search View -->
+        <record id="view_traccar_position_search" model="ir.ui.view">
+            <field name="name">traccar.position.search</field>
+            <field name="model">traccar.position</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="device_id"/>
+                    <field name="device_time"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <filter name="valid_positions" string="Valid Positions"
+                            domain="[('valid', '=', True)]"/>
+                    <filter name="today" string="Today"
+                            domain="[('device_time','&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter name="this_week" string="This Week"
+                            domain="[('device_time', '>=', (datetime.datetime.now() - datetime.timedelta(days=7)))]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Device" name="group_device"
+                                context="{'group_by': 'device_id'}"/>
+                        <filter string="Date" name="group_date"
+                                context="{'group_by': 'device_time:day'}"/>
+                        <filter string="Valid" name="group_valid"
+                                context="{'group_by': 'valid'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Position Action -->
+        <record id="action_traccar_position" model="ir.actions.act_window">
+            <field name="name">GPS Positions</field>
+            <field name="res_model">traccar.position</field>
+            <field name="view_mode">list,form,leaflet_map</field>
+            <field name="context">{'search_default_today': 1, 'search_default_valid_positions': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No GPS positions found
+                </p>
+                <p>
+                    GPS positions will appear here after synchronization with
+                    your Traccar server. Positions are automatically fetched
+                    based on your sync configuration.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

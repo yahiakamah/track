@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Device Tree View -->
+        <record id="view_traccar_device_tree" model="ir.ui.view">
+            <field name="name">traccar.device.list</field>
+            <field name="model">traccar.device</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="unique_id"/>
+                    <field name="status" 
+                           decoration-success="status=='online'"
+                           decoration-muted="status=='offline'"
+                           decoration-warning="status=='unknown'"/>
+                    <field name="last_update"/>
+                    <field name="phone"/>
+                    <field name="model"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+
+                    <button name="open_positions" type="object" 
+                            string="View Positions" class="btn-link"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Position Map View -->
+        <record id="view_traccar_device_leaflet_map" model="ir.ui.view">
+            <field name="name">traccar.device.leaflet.map</field>
+            <field name="model">traccar.device</field>
+            <field name="arch" type="xml">
+                <leaflet_map string="Device Map" res_partner="name" latitude="last_position_id.latitude" longitude="last_position_id.longitude" name="name">
+                    <field name="name"/>
+                    <field name="unique_id"/>
+                    <field name="status" decoration-success="status=='online'" decoration-muted="status=='offline'" decoration-warning="status=='unknown'"/>
+                    <field name="latest_position_id"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                </leaflet_map>
+            </field>
+        </record>
+
+        <!-- Device Form View -->
+        <record id="view_traccar_device_form" model="ir.ui.view">
+            <field name="name">traccar.device.form</field>
+            <field name="model">traccar.device</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="open_positions" type="object"
+                                string="View Positions" class="oe_highlight"
+                                invisible="unique_id == 'DASHBOARD_ONLY'"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"
+                             invisible="unique_id == 'DASHBOARD_ONLY'">
+                            <button class="oe_stat_button" type="object"
+                                    name="open_positions" icon="fa-map-marker">
+                                <field string="Positions" name="position_ids" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group string="Device Information">
+                                <field name="name" readonly="unique_id == 'DASHBOARD_ONLY'"/>
+                                <field name="unique_id" readonly="1"/>
+                                <field name="traccar_id" readonly="1"/>
+                                <field name="status" readonly="1"/>
+                                <field name="last_update" readonly="1"/>
+                                <field name="battery_level" readonly="1"/>
+                            </group>
+                            <!-- <group string="Device Details"
+                                   invisible="unique_id == 'DASHBOARD_ONLY'">
+                                <field name="phone"/>
+                                <field name="model"/>
+                                <field name="contact"/>
+                                <field name="category"/>
+                                <field name="group_id"/>
+                                <field name="disabled"/>
+                            </group> -->
+                        </group>
+                        <!-- <group string="Fleet Integration"
+                               invisible="unique_id == 'DASHBOARD_ONLY'">
+                            <field name="fleet_vehicle_id"/>
+                        </group> -->
+                        <group string="Latest Position" invisible="not latest_position_id">
+                            <field name="latitude" readonly="1"/>
+                            <field name="longitude" readonly="1"/>
+                            <field name="latest_position_id" readonly="1">
+                                <list>
+                                    <field name="device_time"/>
+                                    <field name="latitude"/>
+                                    <field name="longitude"/>
+                                    <field name="speed_kmh"/>
+                                    <field name="valid"/>
+                                </list>
+                            </field>
+                        </group>
+                        <notebook invisible="unique_id == 'DASHBOARD_ONLY'">
+                            <!-- <page string="Positions">
+                                <field name="position_ids" readonly="1">
+                                    <list limit="100">
+                                        <field name="device_time"/>
+                                        <field name="latitude"/>
+                                        <field name="longitude"/>
+                                        <field name="speed_kmh"/>
+                                        <field name="course"/>
+                                        <field name="valid"/>
+                                        <button name="open_map_view" type="object"
+                                                string="Map" class="btn-link"/>
+                                    </list>
+                                </field>
+                            </page> -->
+                            <!-- <page string="Attributes">
+                                <field name="attributes" widget="text"/>
+                            </page> -->
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Device Action -->
+        <record id="action_traccar_device" model="ir.actions.act_window">
+            <field name="name">GPS Devices</field>
+            <field name="res_model">traccar.device</field>
+            <field name="view_mode">list,form,leaflet_map</field>
+            <!-- 👇 Exclude the dummy dashboard record -->
+            <field name="domain">[('unique_id', '!=', 'DASHBOARD_ONLY')]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No GPS devices found
+                </p>
+                <p>
+                    GPS devices will appear here after synchronization with
+                    your Traccar server. Make sure your server is configured
+                    and run a data synchronization.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Traccar Device Stop Tree View -->
+        <record id="view_traccar_device_stop_tree" model="ir.ui.view">
+            <field name="name">traccar.device.stop.tree</field>
+            <field name="model">traccar.device.stop</field>
+            <field name="arch" type="xml">
+                <list string="Stops and Waiting Time">
+                    <header>
+                        <button name="calculate_all_stops" type="object" string="Recalculate All Stops" class="btn-primary"/>
+                    </header>
+                    <field name="device_id"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                    <field name="duration_formatted" string="Waiting Time (HH:MM:SS)"/>
+                    <!-- <field name="duration" string="Waiting Time (Min)"/> -->
+                    <!-- <field name="latitude"/>
+                    <field name="longitude"/> -->
+                </list>
+            </field>
+        </record>
+
+        <!-- Traccar Device Stop Form View -->
+        <record id="view_traccar_device_stop_form" model="ir.ui.view">
+            <field name="name">traccar.device.stop.form</field>
+            <field name="model">traccar.device.stop</field>
+            <field name="arch" type="xml">
+                <form string="Stop Detail">
+                    <!-- <header>
+                        <button name="calculate_all_stops" type="object" string="Recalculate All Stops" class="btn-primary"/>
+                    </header> -->
+                    <sheet>
+                        <group>
+                            <group string="Stop Info">
+                                <field name="device_id" readonly="1"/>
+                                <field name="start_time" readonly="1"/>
+                                <field name="end_time" readonly="1"/>
+                                <field name="duration_formatted" string="Waiting Time (HH:MM:SS)" readonly="1"/>
+                            </group>
+                            <group string="Location Details">
+                                <field name="latitude" readonly="1"/>
+                                <field name="longitude" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Stopped Positions" name="stopped_positions">
+                                <field name="position_ids" readonly="1">
+                                    <list>
+                                        <field name="device_time"/>
+                                        <field name="latitude"/>
+                                        <field name="longitude"/>
+                                        <field name="speed_kmh" string="Speed (km/h)"/>
+                                        <field name="altitude"/>
+                                        <field name="course"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Traccar Device Stop Action -->
+        <record id="action_traccar_device_stop" model="ir.actions.act_window">
+            <field name="name">Stops &amp; Waiting Time</field>
+            <field name="res_model">traccar.device.stop</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Stop records found
+                </p>
+                <p>
+                    Click on "Recalculate All Stops" to analyze GPS positions and detect device stopped periods.
+                </p>
+            </field>
+        </record>
+
+
+
+        <!-- Stops Menu Item -->
+        <menuitem id="menu_traccar_stops"
+                  name="Stops &amp; Waiting Time"
+                  parent="menu_traccar_root"
+                  action="action_traccar_device_stop"
+                  sequence="30"/>
+    </data>
+</odoo>

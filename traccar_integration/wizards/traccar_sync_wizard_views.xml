@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Sync Wizard Form View -->
+        <record id="view_traccar_sync_wizard_form" model="ir.ui.view">
+            <field name="name">traccar.sync.wizard.form</field>
+            <field name="model">traccar.sync.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="config_id"/>
+                        </group>
+                        <group string="Synchronization Options">
+                            <field name="sync_devices"/>
+                            <field name="sync_positions"/>
+                        </group>
+                        <group string="Position Sync Settings"
+                               modifiers="{'invisible': [['sync_positions', '=', false]]}">
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                            <field name="device_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_sync_data" type="object"
+                                string="Start Synchronization" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Sync Wizard Action -->
+        <record id="action_traccar_sync_wizard" model="ir.actions.act_window">
+            <field name="name">Synchronize Traccar Data</field>
+            <field name="res_model">traccar.sync.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- Add to menu -->
+        <menuitem id="menu_traccar_sync_wizard"
+                  name="Sync Data"
+                  parent="menu_traccar_config_parent"
+                  action="action_traccar_sync_wizard"
+                  sequence="20"/>
+    </data>
+</odoo>

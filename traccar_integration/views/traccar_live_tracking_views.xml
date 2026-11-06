@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Dummy record used as container for the Live Tracking dashboard.
+             This is required for the form view to function. -->
+        <record id="traccar_live_tracking_dummy" model="traccar.device">
+            <field name="name">Fleet Control Center</field>
+            <field name="unique_id">DASHBOARD_ONLY</field>
+            <field name="status">unknown</field>
+            <field name="disabled">True</field>
+        </record>
+    </data>
+
+    <data>
+        <!-- Live Tracking View -->
+        <record id="view_traccar_live_tracking" model="ir.ui.view">
+            <field name="name">traccar.live.tracking</field>
+            <field name="model">traccar.device</field>
+            <field name="arch" type="xml">
+                <form string="Live GPS Tracking" create="false" edit="false" delete="false">
+                    <!-- <header>
+                        <button name="sync_all_data" type="object"
+                                string="Full Sync" class="btn-primary" icon="fa-refresh"/>
+                        <button name="open_devices" type="object"
+                                string="Device Management" class="btn-secondary" icon="fa-list"/>
+                        <div class="ms-auto d-flex align-items-center me-3">
+                            <span id="header_status_badge" class="status-pill-header">
+                                <i class="fa fa-circle-o-notch fa-spin me-1 d-none" id="header_status_spinner"></i>
+                                <span id="header_status_text">Ready</span>
+                            </span>
+                        </div>
+                    </header> -->
+                    <sheet>
+                        <div class="traccar-dashboard-wrapper">
+
+                            <!-- ===== MAIN LAYOUT: Sidebar + Map ===== -->
+                            <div class="traccar-main-layout">
+
+                                <!-- ── LEFT SIDEBAR ── -->
+                                <div class="traccar-sidebar">
+
+                                    <!-- Search Bar -->
+                                    <div class="search-wrapper">
+                                        <div class="search-bar">
+                                            <i class="fa fa-search" title="Search"></i>
+                                            <input type="text" id="device_search" placeholder="Search devices, contacts…"/>
+                                            <a id="btn_filter_menu" class="filter-btn" title="Toggle Filters">
+                                                <i class="fa fa-filter" id="filter_icon"></i>
+                                            </a>
+                                            <a id="btn_sort_az" class="sort-btn" title="Sort A-Z">
+                                                <i class="fa fa-sort-alpha-asc" id="sort_icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Device List -->
+                                    <div class="sidebar-list" id="device_list_container">
+                                        <div class="text-center p-4 text-muted">
+                                            <i class="fa fa-spinner fa-spin mb-2"></i>
+                                            <p>Loading devices…</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ── MAP SECTION ── -->
+                                <div class="traccar-map-section">
+                                    <div id="traccar_live_map_container">
+                                        <div id="traccar_live_map"></div>
+
+                                        <!-- Floating map controls -->
+                                        <div class="map-overlay-controls">
+                                            <a id="btn_fit_bounds" class="map-btn" title="Fit all devices" role="button">
+                                                <i class="fa fa-expand"/>
+                                            </a>
+                                            <a id="btn_toggle_fullscreen" class="map-btn" title="Expand Map" role="button">
+                                                <i class="fa fa-arrows-alt"/>
+                                            </a>
+                                            <a id="btn_center_car" class="map-btn d-none" title="Track car" role="button">
+                                                <i class="fa fa-car"/>
+                                            </a>
+                                        </div>
+
+                                        <!-- Map Filters Overlay -->
+                                        <div id="traccar_filter_overlay" class="traccar-filter-overlay d-none">
+                                            <div class="filter-card">
+                                                <!-- Header -->
+                                                <div class="filter-header">
+                                                    <div class="filter-header-left">
+                                                        <i class="fa fa-filter"></i>
+                                                        <span>Map Filters</span>
+                                                    </div>
+                                                    <a class="btn-close-filter" title="Close">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="filter-body">
+                                                    <div class="filter-group-title">Filter by Type</div>
+                                                    <div class="filter-pills">
+                                                        <a href="#" id="filter_all" class="filter-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> All
+                                                        </a>
+                                                        <a href="#" id="filter_reps" class="filter-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> Reps
+                                                        </a>
+                                                        <a href="#" id="filter_customers" class="filter-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> Contacts
+                                                        </a>
+                                                        <a href="#" id="filter_visits" class="filter-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> Visits
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="filter-group-title rep-status-filter">Reps Status</div>
+                                                    <div class="sub-filter-group rep-status-filter" id="rep_status_panel">
+                                                        <a href="#" id="filter_rep_online" class="sub-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> 🟢 Online
+                                                        </a>
+                                                        <a href="#" id="filter_rep_offline" class="sub-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> 🔴 Offline
+                                                        </a>
+                                                        <a href="#" id="filter_rep_unknown" class="sub-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> 🟡 Unknown
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="filter-group-title location-type-filter">Contacts Classification</div>
+                                                    <!-- Location-type sub-pills -->
+                                                    <div class="sub-filter-group location-type-filter" id="customer_sub_types_panel">
+                                                        <a href="#" id="filter_loc_customer" class="sub-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> 👤 Customer
+                                                        </a>
+                                                        <a href="#" id="filter_loc_house" class="sub-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> 🏠 House
+                                                        </a>
+                                                        <a href="#" id="filter_loc_company" class="sub-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> 🏢 Company
+                                                        </a>
+                                                        <a href="#" id="filter_loc_other" class="sub-pill active">
+                                                            <i class="fa fa-check-square filter-checkbox"></i> 📍 Other
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="filter-group-title" id="date_filter_title">Scheduled Visits Range</div>
+                                                    <!-- Date range stacked -->
+                                                    <div class="date-filter-panel" id="date_filter_container">
+                                                        <div class="date-input-row">
+                                                            <span class="date-label">From</span>
+                                                            <input type="datetime-local" id="visit_date_from" class="form-control form-control-sm"/>
+                                                        </div>
+                                                        <div class="date-input-row mt-1">
+                                                            <span class="date-label">To</span>
+                                                            <input type="datetime-local" id="visit_date_to" class="form-control form-control-sm"/>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Route Replay Overlay -->
+                                        <div id="traccar_replay_overlay" class="traccar-replay-overlay d-none">
+                                            <div class="replay-card">
+                                                <!-- Header -->
+                                                <div class="replay-header">
+                                                    <div class="replay-header-left">
+                                                        <i class="fa fa-history"></i>
+                                                        <span>Route Replay</span>
+                                                    </div>
+                                                    <div class="replay-header-actions" style="display: flex; align-items: center; gap: 6px;">
+                                                        <a id="btn_collapse_replay" title="Collapse" class="btn-collapse-replay" role="button" style="background: rgba(255,255,255,0.15); border: none; color: white; width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; transition: background 0.15s; font-size: 11px;">
+                                                            <i class="fa fa-chevron-up"></i>
+                                                        </a>
+                                                        <a class="btn-close-replay" title="Close">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="replay-body">
+                                                    <!-- Date Inputs -->
+                                                    <div class="replay-date-group">
+                                                        <div class="replay-date-field">
+                                                            <span class="replay-label">From</span>
+                                                            <input type="datetime-local" id="replay_from" class="replay-input"/>
+                                                        </div>
+                                                        <div class="replay-date-field">
+                                                            <span class="replay-label">To</span>
+                                                            <input type="datetime-local" id="replay_to" class="replay-input"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Show Route Button -->
+                                                    <a id="btn_confirm_replay" class="btn-replay" role="button">
+                                                        <i class="fa fa-route"></i> Show Route
+                                                    </a>
+
+                                                    <!-- Loading Spinner -->
+                                                    <div id="replay_status" class="replay-loading d-none">
+                                                        <i class="fa fa-spinner fa-spin"></i> Searching…
+                                                    </div>
+
+                                                    <!-- Playback Controls -->
+                                                    <div id="playback_container" class="playback-panel d-none">
+                                                        <!-- Distance Badge -->
+                                                        <div class="playback-distance-row">
+                                                            <span class="playback-badge distance">
+                                                                <i class="fa fa-road"></i>
+                                                                <span id="replay_total_distance">0.00 km</span>
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- Layer Toggles -->
+                                                        <div class="playback-toggles-container" style="background: rgba(248, 250, 252, 0.8); border: 1px solid var(--fc-border); border-radius: 10px; padding: 10px; margin-top: 10px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px;">
+                                                            <!-- Waiting Points Row -->
+                                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                                <span class="playback-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase;">
+                                                                    <i class="fa fa-clock-o"></i> Stops: <span id="replay_waiting_count">0</span>
+                                                                </span>
+                                                                <span class="o_form_label" style="font-size: 10.5px; font-weight: 600; color: #475569; display: flex; align-items: center; cursor: pointer; margin: 0;">
+                                                                    <input type="checkbox" id="toggle_waiting_points" checked="checked" style="margin-right: 5px; cursor: pointer;"/> Show Stops
+                                                                </span>
+                                                            </div>
+
+                                                            <!-- Route Line Row -->
+                                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                                <span class="playback-badge" style="background: rgba(37, 99, 235, 0.15); color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase;">
+                                                                    <i class="fa fa-road"></i> Route Line
+                                                                </span>
+                                                                <span class="o_form_label" style="font-size: 10.5px; font-weight: 600; color: #475569; display: flex; align-items: center; cursor: pointer; margin: 0;">
+                                                                    <input type="checkbox" id="toggle_route_line" checked="checked" style="margin-right: 5px; cursor: pointer;"/> Show Line
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Slider Row -->
+                                                        <div class="playback-slider-row">
+                                                            <a id="btn_play_pause" class="playback-play-btn" role="button" title="Play/Pause">
+                                                                <i class="fa fa-play"></i>
+                                                            </a>
+                                                            <input type="range" id="replay_slider" class="playback-slider" min="0" value="0" step="1"/>
+                                                        </div>
+
+                                                        <!-- Coords Row -->
+                                                        <div class="playback-coords-row" style="display: flex; align-items: center; justify-content: center; margin-top: 6px; margin-bottom: 8px;">
+                                                            <span class="playback-badge location" id="replay_current_coords" style="background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3); font-size: 10.5px; font-weight: 600; padding: 3px 12px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px;">
+                                                                <i class="fa fa-map-marker"></i> 0.000000, 0.000000
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- Info Row -->
+                                                        <div class="playback-info-row">
+                                                            <span class="playback-badge time" id="replay_current_time">
+                                                                <i class="fa fa-clock-o"></i> --:--
+                                                            </span>
+                                                            <span class="playback-badge speed" id="replay_current_speed">
+                                                                <i class="fa fa-tachometer"></i> 0 km/h
+                                                            </span>
+                                                            <select id="playback_speed_mult" class="playback-speed-select">
+                                                                <option value="0.25">0.25×</option>
+                                                                <option value="0.5">0.5×</option>
+                                                                <option value="1" selected="selected">1×</option>
+                                                                <option value="2">2×</option>
+                                                                <option value="5">5×</option>
+                                                                <option value="10">10×</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Live Tracking Action -->
+        <record id="action_traccar_live_tracking" model="ir.actions.act_window">
+            <field name="name">Live GPS Tracking</field>
+            <field name="res_model">traccar.device</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_traccar_live_tracking"/>
+            <field name="target">current</field>
+            <field name="res_id" ref="traccar_live_tracking_dummy"/>
+            <field name="context">{'form_view_initial_mode': 'view', 'create': False, 'edit': False}</field>
+        </record>
+
+        <menuitem id="menu_traccar_live_tracking"
+                  name="Live Map"
+                  parent="menu_traccar_root"
+                  action="action_traccar_live_tracking"
+                  sequence="5"/>
+    </data>
+</odoo>

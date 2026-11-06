@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Automatic Sync Cron Job (Inline Code - Deactivated) -->
+        <record id="ir_cron_traccar_sync" model="ir.cron">
+            <field name="name">Traccar: Sync GPS Data (Legacy API)</field>
+            <field name="model_id" ref="model_traccar_config"/>
+            <field name="state">code</field>
+            <field name="code">pass</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active">False</field>
+        </record>
+
+        <!-- Traccar Synchronization Cron (Method-Based - RECOMMENDED) -->
+        <record id="ir_cron_traccar_sync_method" model="ir.cron">
+            <field name="name">Traccar: Sync GPS Data</field>
+            <field name="model_id" ref="model_traccar_config"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_sync_all_data()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="active">True</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+
+        <!-- Automated Cron Job for Stops & Alert Notifications -->
+        <record id="cron_traccar_device_stop_alert" model="ir.cron">
+            <field name="name">Traccar: Process Device Stops and Send Alerts</field>
+            <field name="model_id" ref="model_traccar_device_stop"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_process_stops_and_alert()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="active">True</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+    </data>
+</odoo>

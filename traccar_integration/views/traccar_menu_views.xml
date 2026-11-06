@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Main Menu -->
+        <menuitem id="menu_traccar_root"
+                  name="GPS Tracking"
+                  web_icon="traccar_integration,static/description/icon.png"
+                  sequence="50"/>
+
+        <!-- Parent Configuration Menu (no action, just a parent) -->
+        <menuitem id="menu_traccar_config_parent"
+                  name="Configuration"
+                  parent="menu_traccar_root"
+                  sequence="40"/>
+
+        <!-- Child Configuration Menu (with action) -->
+        <menuitem id="menu_traccar_config_action"
+                  name="Settings"
+                  parent="menu_traccar_config_parent"
+                  action="action_traccar_config_settings"
+                  sequence="10"/>
+
+        <!-- Devices Menu -->
+        <menuitem id="menu_traccar_devices"
+                  name="Devices"
+                  parent="menu_traccar_root"
+                  action="action_traccar_device"
+                  sequence="10"/>
+
+        <!-- Positions Menu -->
+        <menuitem id="menu_traccar_positions"
+                  name="Positions"
+                  parent="menu_traccar_root"
+                  action="action_traccar_position"
+                  sequence="20"/>
+
+    </data>
+</odoo>

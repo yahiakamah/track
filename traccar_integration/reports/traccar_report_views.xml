@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Report Wizard Form View -->
+        <record id="view_traccar_report_wizard_form" model="ir.ui.view">
+            <field name="name">traccar.report.wizard.form</field>
+            <field name="model">traccar.report.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Report Settings">
+                                <field name="report_type"/>
+                                <field name="export_format"/>
+                            </group>
+                            <group string="Filters">
+                                <field name="device_ids" widget="many2many_tags"/>
+                                <field name="from_date"/>
+                                <field name="to_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="generate_report" type="object" 
+                                string="Generate Report" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Report Wizard Action -->
+        <record id="action_traccar_report_wizard" model="ir.actions.act_window">
+            <field name="name">Generate Reports</field>
+            <field name="res_model">traccar.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- Add to menu -->
+        <menuitem id="menu_traccar_reports"
+                  name="Reports"
+                  parent="menu_traccar_root"
+                  action="action_traccar_report_wizard"
+                  sequence="30"/>
+    </data>
+</odoo>

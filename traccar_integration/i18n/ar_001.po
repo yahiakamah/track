@@ -1,0 +1,1024 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* traccar_integration
+#
+msgid ""
+msgstr "Project-Id-Version: Odoo Server 18.0+e-20250820\n Report-Msgid-Bugs-To: \n POT-Creation-Date: 2026-06-30 18:18+0000\n PO-Revision-Date: 2026-06-30 18:18+0000\n Last-Translator: \n Language-Team: \n MIME-Version: 1.0\n Content-Type: text/plain; charset=UTF-8\n Content-Transfer-Encoding: \n Plural-Forms: \n"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "* Showing first 1000 records. For full data, please use Excel export."
+msgstr "* عرض أول 1000 سجل. للحصول على البيانات الكاملة، يرجى استخدام تصدير Excel."
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<i class=\"fa fa-play\"/> Show Route"
+msgstr "<i class=\"fa fa-play\"/> عرض الطريق"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<i class=\"fa fa-spinner fa-spin\"/> Searching..."
+msgstr "<i class=\"fa fa-spinner fa-spin\"/> جارٍ البحث..."
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<span class=\"o_form_label small fw-bold\">From</span>"
+msgstr "<span class=\"o_form_label small fw-bold\">من</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<span class=\"o_form_label small fw-bold\">To</span>"
+msgstr "<span class=\"o_form_label small fw-bold\">ل</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.fleet_vehicle_view_form_inherit
+msgid ""
+"<span class=\"o_stat_text\">GPS</span>\n"
+"                            <span class=\"o_stat_text\">Tracking</span>"
+msgstr "<span class=\"o_stat_text\">نظام تحديد المواقع</span>\n                            <span class=\"o_stat_text\">تتبع</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid ""
+"<span id=\"header_status_badge\" class=\"badge rounded-pill bg-info-light text-info border border-info px-3 py-2\">\n"
+"                                <i class=\"fa fa-circle-o-notch fa-spin me-1 d-none\" id=\"header_status_spinner\"/>\n"
+"                                <span id=\"header_status_text\">Ready</span>\n"
+"                            </span>"
+msgstr "<span id=\"header_status_badge\" class=\"badge rounded-pill bg-info-light text-info border border-info px-3 py-2\">\n                                <i class=\"fa fa-circle-o-notch fa-spin me-1 d-none\" id=\"header_status_spinner\"/>\n                                <span id=\"header_status_text\">مستعد</span>\n                            </span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid ""
+"<span id=\"replay_current_speed\" class=\"fw-bold text-primary\">0 km/h</span>\n"
+"                                                                <select id=\"playback_speed_mult\" class=\"form-select form-select-sm border-0 bg-transparent p-0\" style=\"width: 40px; font-size: 10px; cursor: pointer;\">\n"
+"                                                                    <option value=\"1\">1x</option>\n"
+"                                                                    <option value=\"2\">2x</option>\n"
+"                                                                    <option value=\"5\">5x</option>\n"
+"                                                                    <option value=\"10\">10x</option>\n"
+"                                                                </select>"
+msgstr "<span id=\"replay_current_speed\" class=\"fw-bold text-primary\">0 كم/ساعة</span>\n                                                                <select id=\"playback_speed_mult\" class=\"form-select form-select-sm border-0 bg-transparent p-0\" style=\"width: 40px; font-size: 10px; cursor: pointer;\">\n                                                                    <option value=\"1\">1x</option>\n                                                                    <option value=\"2\">2x</option>\n                                                                    <option value=\"5\">5x</option>\n                                                                    <option value=\"10\">10x</option>\n                                                                </select>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<span id=\"replay_current_time\">--:--</span>"
+msgstr ""
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid ""
+"<span id=\"replay_total_distance\" class=\"fw-bold px-2 py-1 rounded-pill\" "
+"style=\"font-size: 11px; background: #f8fafc; border: 1px solid #e2e8f0; "
+"color: #1e293b;\">0.00 km</span>"
+msgstr "<span id=\"replay_total_distance\" class=\"fw-bold px-2 py-1 rounded-pill\" style=\"font-size: 11px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b;\">0.00 كم</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<span><i class=\"fa fa-history\"/> Route Replay</span>"
+msgstr "<span><i class=\"fa fa-history\"/> إعادة تشغيل المسار</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<span>Offline</span>"
+msgstr "<span>غير متصل</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<span>Online</span>"
+msgstr "<span>متصل</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<span>Total</span>"
+msgstr "<span>المجموع</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "<span>Unknown</span>"
+msgstr "<span>مجهول</span>"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "<strong>Period:</strong>"
+msgstr "<strong>فترة:</strong>"
+
+#. module: traccar_integration
+#: model:res.groups,comment:traccar_integration.group_traccar_user
+msgid "Access to GPS tracking data"
+msgstr "الوصول إلى بيانات تتبع نظام تحديد المواقع"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__accuracy
+msgid "Accuracy"
+msgstr "دقة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__active
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__active
+msgid "Active"
+msgstr "نشيط"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__address
+msgid "Address"
+msgstr "عنوان"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__altitude
+msgid "Altitude (m)"
+msgstr "الارتفاع (م)"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__area
+msgid "Area Coordinates"
+msgstr "إحداثيات المنطقة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_fleet_vehicle__traccar_device_id
+msgid "Associated GPS tracking device"
+msgstr "جهاز تتبع GPS مرتبط"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__attributes
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__attributes
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__attributes
+msgid "Attributes"
+msgstr "صفات"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_config_form
+msgid "Automatic sync interval in minutes"
+msgstr "الفاصل الزمني للمزامنة التلقائية في دقائق"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_config__sync_interval
+msgid "Automatic synchronization interval in minutes"
+msgstr "الفاصل الزمني للمزامنة التلقائية في دقائق"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__battery
+msgid "Battery Level"
+msgstr "مستوى البطارية"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__battery_level
+msgid "Battery Level (%)"
+msgstr "مستوى البطارية (%)"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__calendar_id
+msgid "Calendar ID"
+msgstr "معرف التقويم"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_sync_wizard_form
+msgid "Cancel"
+msgstr "يلغي"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__category
+msgid "Category"
+msgstr "فئة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_api__config_id
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__config_id
+#: model:ir.ui.menu,name:traccar_integration.menu_traccar_config_parent
+msgid "Configuration"
+msgstr "إعدادات"
+
+#. module: traccar_integration
+#: model_terms:ir.actions.act_window,help:traccar_integration.action_traccar_config
+msgid "Configure your Traccar GPS server connection"
+msgstr "قم بتكوين اتصال خادم Traccar GPS الخاص بك"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__contact
+msgid "Contact"
+msgstr "اتصال"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__course
+msgid "Course (degrees)"
+msgstr "الدورة (بالدرجات)"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_api__create_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__create_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__create_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__create_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__create_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__create_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__create_uid
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_api__create_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__create_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__create_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__create_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__create_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__create_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__create_date
+msgid "Created on"
+msgstr "تم الإنشاء بتاريخ"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_fleet_vehicle__current_location
+msgid "Current Location"
+msgstr "الموقع الحالي"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.fleet_vehicle_view_form_inherit
+msgid "Current Position"
+msgstr "المنصب الحالي"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_search
+msgid "Date"
+msgstr "تاريخ"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__description
+msgid "Description"
+msgstr "وصف"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__device_id
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_search
+msgid "Device"
+msgstr "جهاز"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_device_form
+msgid "Device Information"
+msgstr "معلومات الجهاز"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "Device Management"
+msgstr "إدارة الجهاز"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_device_leaflet_map
+msgid "Device Map"
+msgstr "خريطة الجهاز"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__name
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Device Name"
+msgstr "اسم الجهاز"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_report_wizard__report_type__device_summary
+msgid "Device Summary"
+msgstr "ملخص الجهاز"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Device Summary Report"
+msgstr "تقرير ملخص الجهاز"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__device_time
+msgid "Device Time"
+msgstr "وقت الجهاز"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__device_ids
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__device_ids
+#: model:ir.ui.menu,name:traccar_integration.menu_traccar_devices
+msgid "Devices"
+msgstr "الأجهزة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__disabled
+msgid "Disabled"
+msgstr "عاجز"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_api__display_name
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__display_name
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__display_name
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__display_name
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__display_name
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__display_name
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_sync_wizard__to_date
+msgid "End date for position synchronization"
+msgstr "تاريخ الانتهاء لمزامنة الموقف"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__engine_hours
+msgid "Engine Hours"
+msgstr "ساعات المحرك"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_report_wizard__export_format__xlsx
+msgid "Excel"
+msgstr "اكسل"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "Expand Map"
+msgstr "قم بتوسيع الخريطة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__export_format
+msgid "Export Format"
+msgstr "تنسيق التصدير"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_report_wizard_form
+msgid "Filters"
+msgstr "المرشحات"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "Fit all devices"
+msgstr "تناسب جميع الأجهزة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__fix_time
+msgid "Fix Time"
+msgstr "إصلاح الوقت"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__fleet_vehicle_id
+msgid "Fleet Vehicle"
+msgstr "مركبة الأسطول"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__fleet_vehicle_ids
+msgid "Fleet Vehicles"
+msgstr "مركبات الأسطول"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__from_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__from_date
+msgid "From Date"
+msgstr "من التاريخ"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__fuel_level
+msgid "Fuel Level (%)"
+msgstr "مستوى الوقود (٪)"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "Full Sync"
+msgstr "مزامنة كاملة"
+
+#. module: traccar_integration
+#: model:res.groups,comment:traccar_integration.group_traccar_manager
+msgid "Full access to GPS tracking system"
+msgstr "الوصول الكامل إلى نظام تتبع GPS"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_fleet_vehicle__traccar_device_id
+#: model_terms:ir.ui.view,arch_db:traccar_integration.fleet_vehicle_view_form_inherit
+msgid "GPS Device"
+msgstr "جهاز تحديد المواقع"
+
+#. module: traccar_integration
+#: model:ir.actions.act_window,name:traccar_integration.action_traccar_device
+msgid "GPS Devices"
+msgstr "أجهزة تحديد المواقع"
+
+#. module: traccar_integration
+#: model:ir.model,name:traccar_integration.model_traccar_position
+msgid "GPS Position Data"
+msgstr "بيانات موقع GPS"
+
+#. module: traccar_integration
+#: model:ir.actions.act_window,name:traccar_integration.action_traccar_position
+msgid "GPS Positions"
+msgstr "مواقع نظام تحديد المواقع"
+
+#. module: traccar_integration
+#: model:ir.ui.menu,name:traccar_integration.menu_traccar_root
+#: model_terms:ir.ui.view,arch_db:traccar_integration.fleet_vehicle_view_form_inherit
+msgid "GPS Tracking"
+msgstr "تتبع نظام تحديد المواقع"
+
+#. module: traccar_integration
+#: model:res.groups,name:traccar_integration.group_traccar_manager
+msgid "GPS Tracking Manager"
+msgstr "مدير تتبع نظام تحديد المواقع"
+
+#. module: traccar_integration
+#: model:res.groups,name:traccar_integration.group_traccar_user
+msgid "GPS Tracking User"
+msgstr "مستخدم تتبع نظام تحديد المواقع"
+
+#. module: traccar_integration
+#: model_terms:ir.actions.act_window,help:traccar_integration.action_traccar_device
+msgid ""
+"GPS devices will appear here after synchronization with\n"
+"                    your Traccar server. Make sure your server is configured\n"
+"                    and run a data synchronization."
+msgstr "ستظهر أجهزة GPS هنا بعد المزامنة مع\n خادم Traccar الخاص بك. تأكد من تكوين الخادم الخاص بك\n وقم بتشغيل مزامنة البيانات."
+
+#. module: traccar_integration
+#: model_terms:ir.actions.act_window,help:traccar_integration.action_traccar_position
+msgid ""
+"GPS positions will appear here after synchronization with\n"
+"                    your Traccar server. Positions are automatically fetched\n"
+"                    based on your sync configuration."
+msgstr "ستظهر مواقع GPS هنا بعد المزامنة مع\n خادم Traccar الخاص بك. يتم جلب المواضع تلقائيًا\n بناءً على تكوين المزامنة لديك."
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_report_wizard_form
+msgid "Generate Report"
+msgstr "إنشاء تقرير"
+
+#. module: traccar_integration
+#: model:ir.actions.act_window,name:traccar_integration.action_traccar_report_wizard
+msgid "Generate Reports"
+msgstr "إنشاء التقارير"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__geofence_ids
+msgid "Geofences"
+msgstr "السياج الجغرافي"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_search
+msgid "Group By"
+msgstr "المجموعة حسب"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__group_id
+msgid "Group ID"
+msgstr "معرف المجموعة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_config__browser_sync_interval
+msgid "How often the Live Map triggers an API sync from the browser"
+msgstr "عدد المرات التي تقوم فيها Live Map بتشغيل مزامنة API من المتصفح"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_api__id
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__id
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__id
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__id
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__id
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__id
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__id
+msgid "ID"
+msgstr "بطاقة تعريف"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__last_command_result
+msgid "Last Command Result"
+msgstr "نتيجة الأوامر الأخيرة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__last_command_time
+msgid "Last Command Time"
+msgstr "آخر وقت للأمر"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_fleet_vehicle__last_position_time
+msgid "Last Position Time"
+msgstr "آخر موقف الوقت"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__last_sync
+msgid "Last Synchronization"
+msgstr "المزامنة الأخيرة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__last_update
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Last Update"
+msgstr "التحديث الأخير"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_api__write_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__write_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__write_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__write_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__write_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__write_uid
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_api__write_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__write_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__write_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__write_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__write_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__write_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث بتاريخ"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__latitude
+msgid "Latest Latitude"
+msgstr "أحدث خط العرض"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__longitude
+msgid "Latest Longitude"
+msgstr "أحدث خط الطول"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__latest_position_id
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_device_form
+msgid "Latest Position"
+msgstr "أحدث موقف"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__latitude
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Latitude"
+msgstr "خط العرض"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_sync_wizard__device_ids
+msgid "Leave empty to sync all devices"
+msgstr "اتركه فارغًا لمزامنة جميع الأجهزة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_device__fleet_vehicle_id
+msgid "Link to fleet vehicle if applicable"
+msgstr "رابط لمركبة الأسطول إن أمكن"
+
+#. module: traccar_integration
+#: model:ir.actions.act_window,name:traccar_integration.action_traccar_live_tracking
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "Live GPS Tracking"
+msgstr "تتبع GPS المباشر"
+
+#. module: traccar_integration
+#: model:ir.ui.menu,name:traccar_integration.menu_traccar_live_tracking
+msgid "Live Map"
+msgstr "خريطة حية"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__browser_sync_interval
+msgid "Live Map Sync Interval (seconds)"
+msgstr "الفاصل الزمني لمزامنة الخريطة الحية (بالثواني)"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "Loading devices..."
+msgstr "جارٍ تحميل الأجهزة..."
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_form
+msgid "Location Data"
+msgstr "بيانات الموقع"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__longitude
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Longitude"
+msgstr "خط الطول"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__maintenance_odometer
+msgid "Maintenance Odometer"
+msgstr "عداد المسافات الصيانة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__map_widget
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_leaflet-map
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_tree
+msgid "Map"
+msgstr "رسم خريطة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__model
+msgid "Model"
+msgstr "نموذج"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_form
+msgid "Movement Data"
+msgstr "بيانات الحركة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__name
+msgid "Name"
+msgstr "اسم"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__network
+msgid "Network Info"
+msgstr "معلومات الشبكة"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "No"
+msgstr "لا"
+
+#. module: traccar_integration
+#: model_terms:ir.actions.act_window,help:traccar_integration.action_traccar_device
+msgid "No GPS devices found"
+msgstr "لم يتم العثور على أجهزة GPS"
+
+#. module: traccar_integration
+#: model_terms:ir.actions.act_window,help:traccar_integration.action_traccar_position
+msgid "No GPS positions found"
+msgstr "لم يتم العثور على مواقع GPS"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_device__status__offline
+msgid "Offline"
+msgstr "غير متصل"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_device__status__online
+msgid "Online"
+msgstr "متصل"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__outdated
+msgid "Outdated"
+msgstr "عفا عليها الزمن"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_report_wizard__export_format__pdf
+msgid "PDF"
+msgstr "قوات الدفاع الشعبي"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "PDF layout for"
+msgstr "تخطيط PDF ل"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__password
+msgid "Password"
+msgstr "كلمة المرور"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__phone
+msgid "Phone"
+msgstr "هاتف"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_geofence__area
+msgid "Polygon coordinates in WKT format"
+msgstr "إحداثيات المضلع بتنسيق WKT"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_report_wizard__report_type__position_history
+msgid "Position History"
+msgstr "تاريخ الموقف"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Position History Report"
+msgstr "تقرير تاريخ الموقف"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_form
+msgid "Position Information"
+msgstr "معلومات الموقف"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_sync_wizard_form
+msgid "Position Sync Settings"
+msgstr "إعدادات مزامنة الموضع"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__position_ids
+#: model:ir.ui.menu,name:traccar_integration.menu_traccar_positions
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_device_form
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_leaflet-map
+msgid "Positions"
+msgstr "المواقف"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__protocol
+msgid "Protocol"
+msgstr "بروتوكول"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_report_wizard_form
+msgid "Report Settings"
+msgstr "إعدادات التقرير"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__report_type
+msgid "Report Type"
+msgstr "نوع التقرير"
+
+#. module: traccar_integration
+#: model:ir.ui.menu,name:traccar_integration.menu_traccar_reports
+msgid "Reports"
+msgstr "التقارير"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_live_tracking
+msgid "Search devices..."
+msgstr "أجهزة البحث..."
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_config_form
+msgid "Server Configuration"
+msgstr "تكوين الخادم"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__server_time
+msgid "Server Time"
+msgstr "وقت الخادم"
+
+#. module: traccar_integration
+#: model_terms:ir.actions.act_window,help:traccar_integration.action_traccar_config
+msgid ""
+"Set up the connection to your Traccar server to start\n"
+"                    tracking GPS devices and positions."
+msgstr "قم بإعداد الاتصال بخادم Traccar لبدء\n تتبع أجهزة GPS والمواقع."
+
+#. module: traccar_integration
+#: model:ir.ui.menu,name:traccar_integration.menu_traccar_config_action
+msgid "Settings"
+msgstr "إعدادات"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_form
+msgid "Show on Map"
+msgstr "عرض على الخريطة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__device_ids
+msgid "Specific Devices"
+msgstr "أجهزة محددة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__speed_kmh
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Speed (km/h)"
+msgstr "السرعة (كم/ساعة)"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__speed
+msgid "Speed (knots)"
+msgstr "السرعة (عقدة)"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_sync_wizard_form
+msgid "Start Synchronization"
+msgstr "ابدأ المزامنة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_sync_wizard__from_date
+msgid "Start date for position synchronization"
+msgstr "تاريخ البدء لمزامنة الموقف"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__status
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__status
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_form
+msgid "Status"
+msgstr "حالة"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_report_wizard__report_type__stop_report
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Stop Report"
+msgstr "توقف عن التقرير"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_config_form
+msgid "Sync All Data"
+msgstr "مزامنة كافة البيانات"
+
+#. module: traccar_integration
+#: model:ir.ui.menu,name:traccar_integration.menu_traccar_sync_wizard
+msgid "Sync Data"
+msgstr "مزامنة البيانات"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__sync_devices
+msgid "Sync Devices"
+msgstr "أجهزة المزامنة"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__sync_interval
+msgid "Sync Interval (minutes)"
+msgstr "الفاصل الزمني للمزامنة (بالدقائق)"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__sync_positions
+msgid "Sync Positions"
+msgstr "مواقف المزامنة"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_config_form
+msgid "Synchronization"
+msgstr "التزامن"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_sync_wizard_form
+msgid "Synchronization Options"
+msgstr "خيارات المزامنة"
+
+#. module: traccar_integration
+#: model:ir.actions.act_window,name:traccar_integration.action_traccar_sync_wizard
+msgid "Synchronize Traccar Data"
+msgstr "مزامنة بيانات Traccar"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_sync_wizard__sync_devices
+msgid "Synchronize device information from Traccar"
+msgstr "مزامنة معلومات الجهاز من Traccar"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_sync_wizard__sync_positions
+msgid "Synchronize position data from Traccar"
+msgstr "مزامنة بيانات الموقع من Traccar"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_config_form
+msgid "Test Connection"
+msgstr "اتصال الاختبار"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_search
+msgid "This Week"
+msgstr "هذا الاسبوع"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Time"
+msgstr "وقت"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_report_wizard__to_date
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_sync_wizard__to_date
+msgid "To Date"
+msgstr "حتى الآن"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_search
+msgid "Today"
+msgstr "اليوم"
+
+#. module: traccar_integration
+#: model:ir.model,name:traccar_integration.model_traccar_api
+msgid "Traccar API Interface"
+msgstr "واجهة برمجة تطبيقات تراكار"
+
+#. module: traccar_integration
+#: model:ir.actions.act_window,name:traccar_integration.action_traccar_config
+msgid "Traccar Configuration"
+msgstr "تكوين تراكار"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__traccar_id
+msgid "Traccar Device ID"
+msgstr "معرف جهاز تراكار"
+
+#. module: traccar_integration
+#: model:ir.model,name:traccar_integration.model_traccar_device
+msgid "Traccar GPS Device"
+msgstr "جهاز تراكار جي بي إس"
+
+#. module: traccar_integration
+#: model:ir.model,name:traccar_integration.model_traccar_geofence
+msgid "Traccar Geofence"
+msgstr "تراككار السياج الجغرافي"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_geofence__traccar_id
+msgid "Traccar Geofence ID"
+msgstr "معرف السياج الجغرافي للتتبع"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__traccar_id
+msgid "Traccar Position ID"
+msgstr "معرف موقف Traccar"
+
+#. module: traccar_integration
+#: model:ir.actions.report,name:traccar_integration.action_traccar_pdf_report
+msgid "Traccar Report"
+msgstr "تقرير تراكار"
+
+#. module: traccar_integration
+#: model:ir.model,name:traccar_integration.model_traccar_report_wizard
+msgid "Traccar Reports Wizard"
+msgstr "معالج تقارير Traccar"
+
+#. module: traccar_integration
+#: model:ir.model,name:traccar_integration.model_traccar_config
+msgid "Traccar Server Configuration"
+msgstr "تكوين خادم Traccar"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__server_url
+msgid "Traccar Server URL"
+msgstr "عنوان URL لخادم Tracar"
+
+#. module: traccar_integration
+#: model:ir.model,name:traccar_integration.model_traccar_sync_wizard
+msgid "Traccar Synchronization Wizard"
+msgstr "معالج مزامنة Traccar"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_config__password
+msgid "Traccar password for API access"
+msgstr "كلمة مرور Traccar للوصول إلى واجهة برمجة التطبيقات (API)."
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_config__username
+msgid "Traccar username for API access"
+msgstr "اسم مستخدم Traccar للوصول إلى واجهة برمجة التطبيقات (API)."
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_fleet_vehicle__tracking_active
+msgid "Tracking Active"
+msgstr "تتبع نشط"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_report_wizard__report_type__travel_report
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Travel Report"
+msgstr "تقرير السفر"
+
+#. module: traccar_integration
+#: model:ir.model.fields,help:traccar_integration.field_traccar_config__server_url
+msgid "URL of your Traccar server (e.g., http://your-server:8082)"
+msgstr "عنوان URL لخادم Traccar (على سبيل المثال، http://your-server:8082)"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_device__unique_id
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Unique ID"
+msgstr "معرف فريد"
+
+#. module: traccar_integration
+#: model:ir.model.fields.selection,name:traccar_integration.selection__traccar_device__status__unknown
+msgid "Unknown"
+msgstr "مجهول"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_config__username
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#. module: traccar_integration
+#: model:ir.model.fields,field_description:traccar_integration.field_traccar_position__valid
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_search
+msgid "Valid"
+msgstr "صالح"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_position_search
+msgid "Valid Positions"
+msgstr "مواقف صالحة"
+
+#. module: traccar_integration
+#: model:ir.model,name:traccar_integration.model_fleet_vehicle
+msgid "Vehicle"
+msgstr "المركبة"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_device_form
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_device_tree
+msgid "View Positions"
+msgstr "عرض المواقف"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "Yes"
+msgstr "نعم"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_config_form
+msgid "e.g. 30"
+msgstr "على سبيل المثال 30"
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.view_traccar_config_form
+msgid "http://your-traccar-server:8082"
+msgstr ""
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid ""
+"is currently under development. \n"
+"                                        Please use Excel export for these reports."
+msgstr "قيد التطوير حاليًا. \n الرجاء استخدام تصدير Excel لهذه التقارير."
+
+#. module: traccar_integration
+#: model_terms:ir.ui.view,arch_db:traccar_integration.report_traccar_wizard_template
+msgid "to"
+msgstr "ل"

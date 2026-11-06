@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Traccar Configuration Tree View -->
+        <record id="view_traccar_config_tree" model="ir.ui.view">
+            <field name="name">traccar.config.tree</field>
+            <field name="model">traccar.config</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="server_url"/>
+                    <field name="username"/>
+                    <field name="active"/>
+                    <field name="last_sync"/>
+                    <field name="sync_interval"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Traccar Configuration Form View -->
+        <record id="view_traccar_config_form" model="ir.ui.view">
+            <field name="name">traccar.config.form</field>
+            <field name="model">traccar.config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="test_connection" type="object" string="Test Connection" class="oe_highlight"/>
+                        <button name="sync_all_data" type="object" string="Sync All Data" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Server Configuration">
+                                <field name="server_url" placeholder="http://your-traccar-server:8082"/>
+                                <field name="username"/>
+                                <field name="password" password="True"/>
+                                <field name="active"/>
+                            </group>
+                            <group string="Synchronization">
+                                <field name="sync_interval" help="Automatic sync interval in minutes"/>
+                                <field name="browser_sync_interval" placeholder="e.g. 30"/>
+                                <field name="last_sync" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Traccar Configuration Action -->
+        <record id="action_traccar_config" model="ir.actions.act_window">
+            <field name="name">Traccar Configuration</field>
+            <field name="res_model">traccar.config</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Configure your Traccar GPS server connection
+                </p>
+                <p>
+                    Set up the connection to your Traccar server to start
+                    tracking GPS devices and positions.
+                </p>
+            </field>
+        </record>
+
+        <!-- Res Config Settings inherited view for Traccar -->
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.traccar</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="95"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app data-string="Traccar GPS Integration" string="Traccar GPS Integration" name="traccar_integration">
+                        <block title="Connection with the server" name="traccar_connection_setting">
+                            <setting id="traccar_server_connection" help="Configure connection parameters for Traccar server.">
+                                <div class="content-group">
+                                    <div class="text-left mb-1 text-primary fw-bold fs-5">
+                                        Connection Settings
+                                    </div>
+                                    <div class="text-left mb-4 text-muted small">
+                                        Set up connection parameters to communicate with your Traccar GPS server.
+                                    </div>
+                                    <group>
+                                        <field name="traccar_server_url" placeholder="e.g. http://your-traccar-server:8082" class="w-100"/>
+                                        <field name="traccar_username" placeholder="e.g. admin" class="w-100"/>
+                                        <field name="traccar_password" password="True" class="w-100"/>
+                                        <field name="traccar_active"/>
+                                    </group>
+                                    <div class="mt24 d-flex gap-2">
+                                        <button name="test_connection" type="object" string="Test Connection" class="btn btn-primary"/>
+                                        <button name="sync_all_data" type="object" string="Sync All Data" class="btn btn-secondary"/>
+                                    </div>
+                                    <group class="mt16 pt-3 border-top">
+                                        <field name="traccar_last_sync" readonly="1" class="text-muted fw-bold"/>
+                                    </group>
+                                </div>
+                            </setting>
+                            <setting id="traccar_synchronization" help="Configure synchronization parameters.">
+                                <div class="content-group">
+                                    <div class="text-left mb-1 text-primary fw-bold fs-5">
+                                        Synchronization Settings
+                                    </div>
+                                    <div class="text-left mb-4 text-muted small">
+                                        Configure automatic interval rates and view synchronization logs.
+                                    </div>
+                                    <group>
+                                        <field name="traccar_sync_interval" class="w-100"/>
+                                        <field name="traccar_browser_sync_interval" class="w-100"/>
+                                    </group>
+                                </div>
+                            </setting>
+                        </block>
+                        <block title="Notifications" name="traccar_notifications">
+                            <setting id="traccar_notifications" help="Configure alerts when a device remains in the same position for too long.">
+                                <div class="content-group">
+                                    <div class="text-left mb-1 text-primary fw-bold fs-5">
+                                        Notifications Alert
+                                    </div>
+                                    <div class="text-left mb-4 text-muted small">
+                                        Configure alerts sent when a device remains in the same position for too long.
+                                    </div>
+                                    <group>
+                                        <field name="traccar_notification_type"/>
+                                        <field name="traccar_alert_time"/>
+                                    </group>
+                                    <div class="mt16">
+                                        <label for="traccar_alert_user_ids" class="o_light_label fw-bold mb-2"/>
+                                        <div>
+                                            <field name="traccar_alert_user_ids" widget="many2many_tags" options="{'no_create': True}" class="w-100"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </setting>
+                        </block>
+                    </app>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Traccar Settings Action -->
+        <record id="action_traccar_config_settings" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'traccar_integration', 'bin_size': False}</field>
+        </record>
+    </data>
+</odoo>

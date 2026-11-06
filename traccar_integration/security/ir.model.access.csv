@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_traccar_config_user,traccar.config.user,model_traccar_config,base.group_user,1,1,1,1
+access_traccar_device_user,traccar.device.user,model_traccar_device,base.group_user,1,1,1,1
+access_traccar_position_user,traccar.position.user,model_traccar_position,base.group_user,1,1,1,1
+access_traccar_api_user,traccar.api.user,model_traccar_api,base.group_user,1,1,1,1
+access_traccar_geofence_user,traccar.geofence.user,model_traccar_geofence,base.group_user,1,1,1,1
+access_traccar_sync_wizard_user,traccar.sync.wizard.user,model_traccar_sync_wizard,base.group_user,1,1,1,1
+access_traccar_report_wizard_user,traccar.report.wizard.user,model_traccar_report_wizard,base.group_user,1,1,1,1
+access_traccar_device_stop_user,traccar.device.stop.user,model_traccar_device_stop,base.group_user,1,1,1,1
