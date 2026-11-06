@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Visit Result Wizard Form View -->
+        <record id="view_visit_result_wizard_form" model="ir.ui.view">
+            <field name="name">visit.result.wizard.form</field>
+            <field name="model">visit.result.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Complete Visit">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="visit_result" required="1"/>
+                                <field name="follow_up_required"/>
+                                <field name="next_visit_date" modifiers="{'invisible': [('follow_up_required', '=', False)]}"/>
+                            </group>
+                        </group>
+                        <field name="visit_notes" placeholder="Enter visit details and outcomes..." nolabel="1"/>
+                    </sheet>
+                    <footer>
+                        <button name="action_confirm_visit" string="Confirm Visit Completion" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

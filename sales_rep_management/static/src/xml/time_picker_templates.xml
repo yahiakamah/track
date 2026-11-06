@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="sales_rep_management.RecurrentTimePicker" owl="1">
+        <div class="o_recurrent_time_picker_wrapper" t-ref="root">
+            <!-- The Display Trigger (Looks like a float input) -->
+            <div class="o_time_picker_trigger" t-on-click="_togglePicker">
+                <i class="oi oi-clock me-2 text-primary"/>
+                <span class="o_time_value" t-esc="state.displayTime"/>
+            </div>
+
+            <!-- The Popover Clock -->
+            <div t-if="state.isOpen" class="o_material_clock_picker o_clock_popover">
+                <div class="o_clock_header">
+                    <span class="o_clock_title text-muted">Select time</span>
+                    <div class="o_clock_digital_display mt-2">
+                        <div class="o_digital_box o_hour_box o_active">
+                            <t t-esc="state.hour12.toString().padStart(2, '0')"/>
+                        </div>
+                        <span class="o_separator mx-2">:</span>
+                        <div class="o_digital_box o_minute_box">
+                            00
+                        </div>
+                        <div class="o_ampm_selector ms-3">
+                            <div class="o_ampm_option" 
+                                 t-att-class="{ 'o_active': !state.isPM }"
+                                 t-on-click="() => this._toggleAMPM('AM')">AM</div>
+                            <div class="o_ampm_option" 
+                                 t-att-class="{ 'o_active': state.isPM }"
+                                 t-on-click="() => this._toggleAMPM('PM')">PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="o_clock_face_container mt-4">
+                    <div class="o_clock_face">
+                        <div class="o_clock_center"></div>
+                        <div class="o_clock_hand" t-attf-style="transform: rotate({{ _getRotation(state.hour12) }}deg)">
+                            <div class="o_clock_hand_line"></div>
+                            <div class="o_clock_hand_circle">
+                                <!-- Redundant number removed from here -->
+                            </div>
+                        </div>
+                        
+                        <t t-foreach="hours" t-as="hour" t-key="hour">
+                            <div t-attf-class="o_clock_number o_hour_{{ hour }} {{ hour == state.hour12 ? 'o_selected' : '' }}"
+                                 t-on-click="() => this._onHourClick(hour)">
+                                <t t-esc="hour"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+                
+                <div class="o_clock_footer mt-3 justify-content-end">
+                    <span class="o_clock_btn o_primary" t-on-click="_onConfirm">OK</span>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

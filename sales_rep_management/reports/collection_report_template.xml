@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_collection_report">
+        <t t-call="web.html_container">
+            <t t-set="o" t-value="docs[0] if docs else env['collection.report.wizard'].browse(doc_ids[0]) if doc_ids else False"/>
+            <t t-set="collections" t-value="env['account.payment'].sudo().browse(collection_ids) if collection_ids else o._get_collections() if o else []"/>
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-center mt32">
+                        <h2>Collection Report</h2>
+                        <div class="row">
+                            <div class="col-12">
+                                <strong>Period: </strong> 
+                                <span t-esc="o.date_from if o else ''"/> to <span t-esc="o.date_to if o else ''"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <strong>Sales Representatives: </strong> 
+                                <span t-esc="o.get_sales_rep_names() if o else 'All'"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-sm mt32">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Sales Rep</th>
+                                <th>Customer</th>
+                                <th class="text-right">Payment</th>
+                                <th>Payment Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="total_amount" t-value="0.0"/>
+                            <t t-foreach="collections" t-as="collection">
+                                <tr>
+                                    <td><span t-field="collection.date" t-options="{'widget': 'date'}"/></td>
+                                    <td><span t-field="collection.sales_rep_id.name"/></td>
+                                    <td><span t-field="collection.partner_id.name"/></td>
+                                    <td class="text-right">
+                                        <span t-field="collection.amount" t-options="{'widget': 'monetary', 'display_currency': collection.currency_id or res_company.currency_id}"/>
+                                        <t t-set="total_amount" t-value="total_amount + collection.amount"/>
+                                    </td>
+                                    <td><span t-field="collection.journal_id.name"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr class="border-black font-weight-bold">
+                                <td colspan="3">Total Payment</td>
+                                <td class="text-right">
+                                    <span t-esc="total_amount" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_collection_report" model="ir.actions.report">
+        <field name="name">Collection Report</field>
+        <field name="model">collection.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sales_rep_management.report_collection_report</field>
+        <field name="report_file">sales_rep_management.report_collection_report</field>
+        <field name="print_report_name">'Collection Report'</field>
+        <field name="binding_model_id" ref="model_collection_report_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

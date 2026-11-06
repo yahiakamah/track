@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Sales Representative Sequence -->
+        <record id="seq_sales_representative" model="ir.sequence">
+            <field name="name">Sales Representative</field>
+            <field name="code">sales.representative</field>
+            <field name="prefix">REP</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sales Rep Route Sequence -->
+        <record id="seq_sales_rep_route" model="ir.sequence">
+            <field name="name">Sales Rep Route</field>
+            <field name="code">sales.rep.route</field>
+            <field name="prefix">RT%(year)s%(month)s%(day)s-</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sales Rep Visit Sequence -->
+        <record id="seq_sales_rep_visit" model="ir.sequence">
+            <field name="name">Sales Rep Visit</field>
+            <field name="code">sales.rep.visit</field>
+            <field name="prefix">VST</field>
+            <field name="padding">6</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sales Rep Collection Sequence (Commented out because sales.rep.collection model is deprecated/commented)
+        <record id="seq_sales_rep_collection" model="ir.sequence">
+            <field name="name">Sales Rep Collection</field>
+            <field name="code">sales.rep.collection</field>
+            <field name="prefix">COL%(year)s%(month)s%(day)s-</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        -->
+
+        <!-- Receipt Number Sequence -->
+        <record id="seq_sales_rep_receipt" model="ir.sequence">
+            <field name="name">Sales Rep Receipt</field>
+            <field name="code">sales.rep.receipt</field>
+            <field name="prefix">RCP</field>
+            <field name="padding">6</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Daily Report Sequence (Commented out because sales.rep.daily.report model is deprecated/commented)
+        <record id="seq_sales_rep_daily_report" model="ir.sequence">
+            <field name="name">Sales Rep Daily Report</field>
+            <field name="code">sales.rep.daily.report</field>
+            <field name="prefix">DR%(year)s%(month)s%(day)s-</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        -->
+
+        <!-- Inventory Adjustment Sequence -->
+        <record id="seq_sales_rep_inventory_adjustment" model="ir.sequence">
+            <field name="name">Sales Rep Inventory Adjustment</field>
+            <field name="code">sales.rep.inventory.adjustment</field>
+            <field name="prefix">ADJ%(year)s%(month)s%(day)s-</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    
+        <record id="seq_sales_rep_day_close" model="ir.sequence">
+            <field name="name">Sales Rep Day Close</field>
+            <field name="code">sales.rep.day.close</field>
+            <field name="prefix">DC/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+</data>
+</odoo>

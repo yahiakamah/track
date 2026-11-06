@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sales_report_wizard_form" model="ir.ui.view">
+        <field name="name">sales.report.wizard.form</field>
+        <field name="model">sales.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sales Report">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="is_branch" invisible="1"/>
+                        <field name="company_id" groups="base.group_multi_company" readonly="is_branch"/>
+                        <field name="sales_rep_ids" widget="many2many_tags" options="{'no_create': True}" domain="[('company_id', '=', company_id)]"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_print_pdf" string="Print PDF" type="object" class="btn-primary"/>
+                    <button name="action_print_excel" string="Print Excel" type="object" class="btn-secondary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sales_report_wizard" model="ir.actions.act_window">
+        <field name="name">Sales Report</field>
+        <field name="res_model">sales.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_sales_report_wizard"
+              name="Sales Report"
+              parent="menu_sales_rep_reports"
+              action="action_sales_report_wizard"
+              sequence="11"/>
+</odoo>
