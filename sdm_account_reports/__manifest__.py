@@ -14,7 +14,7 @@
     'category': 'Accounting/Accounting',
     'description': """Odoo Accounting offers key financial reports like Profit & Loss, Balance Sheet, Cash Flow, and General Ledger, providing real-time insights to track financial performance and ensure accurate financial management.
 """,
-    'version': '17.0.1.0.0',
+    'version': '18.0.1.0.0',
     'website': 'https://realwebdigital.com',
     'support': 'support@realwebdigital.com',
     'author': "Realweb Digital Agency",
