@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================ -->
+    <!-- List view                                                        -->
+    <!-- ================================================================ -->
+    <record id="view_customer_return_request_list" model="ir.ui.view">
+        <field name="name">customer.return.request.list</field>
+        <field name="model">customer.return.request</field>
+        <field name="arch" type="xml">
+            <list string="Customer Return Requests"
+                  decoration-muted="state in ('rejected', 'cancelled')"
+                  decoration-success="state == 'done'"
+                  decoration-info="state == 'approved'">
+                <field name="name"/>
+                <field name="return_date"/>
+                <field name="partner_id"/>
+                <field name="location_dest_id"/>
+                <field name="reason_id"/>
+                <field name="requested_by" optional="show"/>
+                <field name="total_qty" optional="hide"/>
+                <field name="total_inventory_value" optional="hide"/>
+                <field name="total_credit_amount" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="company_currency_id" column_invisible="1"/>
+                <field name="company_id" groups="base.group_multi_company"
+                       optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'approved'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state in ('rejected', 'cancelled')"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================================================================ -->
+    <!-- Form view                                                        -->
+    <!-- ================================================================ -->
+    <record id="view_customer_return_request_form" model="ir.ui.view">
+        <field name="name">customer.return.request.form</field>
+        <field name="model">customer.return.request</field>
+        <field name="arch" type="xml">
+            <form string="Customer Return Request">
+                <header>
+                    <button name="action_submit" type="object" string="Submit"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_request_approval" type="object"
+                            string="Request Approval" class="btn-primary"
+                            invisible="state != 'submitted'"/>
+                    <button name="action_approve" type="object" string="Approve"
+                            class="btn-primary"
+                            invisible="state != 'waiting_approval'"
+                            groups="customer_return_request.group_customer_return_manager"/>
+                    <button name="action_open_reject_wizard" type="object"
+                            string="Reject"
+                            invisible="state not in ('submitted', 'waiting_approval')"
+                            groups="customer_return_request.group_customer_return_manager"/>
+                    <button name="action_done" type="object" string="Mark Done"
+                            class="btn-primary" invisible="state != 'approved'"
+                            groups="customer_return_request.group_customer_return_manager"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('draft', 'done', 'cancelled', 'rejected')"
+                            groups="customer_return_request.group_customer_return_manager"/>
+                    <button name="action_reset_to_draft" type="object"
+                            string="Reset to Draft"
+                            invisible="state not in ('rejected', 'cancelled')"
+                            groups="customer_return_request.group_customer_return_manager"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submitted,waiting_approval,approved,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_pickings" type="object"
+                                class="oe_stat_button" icon="fa-truck"
+                                invisible="picking_count == 0">
+                            <field name="picking_count" widget="statinfo"
+                                   string="Pickings"/>
+                        </button>
+                        <button name="action_view_credit_notes" type="object"
+                                class="oe_stat_button" icon="fa-pencil-square-o"
+                                invisible="credit_note_count == 0">
+                            <field name="credit_note_count" widget="statinfo"
+                                   string="Credit Notes"/>
+                        </button>
+                        <button name="action_view_journal_entries" type="object"
+                                class="oe_stat_button" icon="fa-book"
+                                invisible="journal_entry_count == 0">
+                            <field name="journal_entry_count" widget="statinfo"
+                                   string="Journal Entries"/>
+                        </button>
+                        <button name="action_view_valuation" type="object"
+                                class="oe_stat_button" icon="fa-money"
+                                invisible="valuation_count == 0">
+                            <field name="valuation_count" widget="statinfo"
+                                   string="Valuation"/>
+                        </button>
+                        <button name="action_view_attachments" type="object"
+                                class="oe_stat_button" icon="fa-paperclip">
+                            <field name="attachment_count" widget="statinfo"
+                                   string="Attachments"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="partner_id"
+                                   readonly="state != 'draft'"/>
+                            <field name="location_dest_id"
+                                   readonly="state != 'draft'"/>
+                            <field name="reason_id"
+                                   readonly="state != 'draft'"/>
+                            <field name="reference"
+                                   readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="return_date"
+                                   readonly="state != 'draft'"/>
+                            <field name="requested_by"/>
+                            <field name="approved_by"
+                                   invisible="not approved_by"/>
+                            <field name="approval_date"
+                                   invisible="not approval_date"/>
+                            <field name="create_credit_note"
+                                   readonly="state not in ('draft', 'submitted', 'waiting_approval')"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="company_currency_id" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Return Lines" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id" readonly="state != 'draft'"/>
+                                    <field name="product_uom_category_id"
+                                           column_invisible="1" readonly="state != 'draft'"/>
+                                    <field name="tracking" column_invisible="1" readonly="state != 'draft'"/>
+                                    <field name="currency_id" column_invisible="1" readonly="state != 'draft'"/>
+                                    <field name="company_currency_id" column_invisible="1" readonly="state != 'draft'"/>
+                                    <field name="quantity" readonly="state != 'draft'"/>
+                                    <field name="product_uom_id"
+                                           groups="uom.group_uom" readonly="state != 'draft'"/>
+                                    <field name="lot_id"
+                                           groups="stock.group_production_lot"
+                                           readonly="tracking == 'none' or state != 'draft'"/>
+                                    <field name="inventory_unit_cost" readonly="state not in ('draft', 'submitted', 'waiting_approval')"/>
+                                    <field name="credit_note_unit_price" readonly="state not in ('draft', 'submitted', 'waiting_approval')"/>
+                                    <field name="inventory_value"
+                                           optional="show" readonly="state != 'draft'"/>
+                                    <field name="price_subtotal"
+                                           string="Subtotal" readonly="state != 'draft'"/>
+                                    <field name="reason_notes" optional="hide" readonly="state != 'draft'"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer" colspan="2">
+                                <field name="total_qty"/>
+                                <field name="total_inventory_value"/>
+                                <field name="total_credit_amount"/>
+                            </group>
+                        </page>
+                        <page string="Manager Notes" name="manager_notes">
+                            <field name="manager_notes"
+                                   placeholder="Approval / rejection notes..."
+                                   groups="customer_return_request.group_customer_return_manager"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================ -->
+    <!-- Search view                                                      -->
+    <!-- ================================================================ -->
+    <record id="view_customer_return_request_search" model="ir.ui.view">
+        <field name="name">customer.return.request.search</field>
+        <field name="model">customer.return.request</field>
+        <field name="arch" type="xml">
+            <search string="Customer Return Requests">
+                <field name="name" string="Request"/>
+                <field name="partner_id"/>
+                <field name="location_dest_id"/>
+                <field name="reason_id"/>
+                <field name="reference"/>
+                <filter name="my_requests" string="My Requests"
+                        domain="[('requested_by', '=', uid)]"/>
+                <separator/>
+                <filter name="draft" string="Draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter name="submitted" string="Submitted"
+                        domain="[('state', '=', 'submitted')]"/>
+                <filter name="waiting" string="Waiting Approval"
+                        domain="[('state', '=', 'waiting_approval')]"/>
+                <filter name="approved" string="Approved"
+                        domain="[('state', '=', 'approved')]"/>
+                <filter name="done" string="Done"
+                        domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="filter_return_date" string="Return Date"
+                        date="return_date"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_customer" string="Customer"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_location" string="Destination Location"
+                            context="{'group_by': 'location_dest_id'}"/>
+                    <filter name="group_reason" string="Return Reason"
+                            context="{'group_by': 'reason_id'}"/>
+                    <filter name="group_state" string="State"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================================================================ -->
+    <!-- Action                                                           -->
+    <!-- ================================================================ -->
+    <record id="action_customer_return_request" model="ir.actions.act_window">
+        <field name="name">Customer Return Requests</field>
+        <field name="res_model">customer.return.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id"
+               ref="view_customer_return_request_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new customer return request
+            </p>
+            <p>
+                Handle commercial customer returns that do not originate from a
+                Sale Order, Delivery or Invoice while keeping inventory
+                valuation and accounting consistent with Odoo.
+            </p>
+        </field>
+    </record>
+
+</odoo>

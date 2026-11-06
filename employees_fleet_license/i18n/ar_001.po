@@ -1,0 +1,177 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* employees_fleet_license
+#
+msgid ""
+msgstr "Project-Id-Version: Odoo Server 18.0+e-20250820\n Report-Msgid-Bugs-To: \n POT-Creation-Date: 2026-06-30 18:08+0000\n PO-Revision-Date: 2026-06-30 18:08+0000\n Last-Translator: \n Language-Team: \n MIME-Version: 1.0\n Content-Type: text/plain; charset=UTF-8\n Content-Transfer-Encoding: \n Plural-Forms: \n"
+
+#. module: employees_fleet_license
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_employee_form_inherit
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_vehicle_form_inherit_notify
+msgid "<span>days</span>"
+msgstr "<span>أيام</span>"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields.selection,name:employees_fleet_license.selection__fleet_vehicle__notification_type__both
+#: model:ir.model.fields.selection,name:employees_fleet_license.selection__hr_employee__notification_type__both
+msgid "Activity and Email"
+msgstr "النشاط والبريد الإلكتروني"
+
+#. module: employees_fleet_license
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_employee_form_inherit
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_vehicle_form_inherit_notify
+msgid "Attachments"
+msgstr "المرفقات"
+
+#. module: employees_fleet_license
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_vehicle_form_inherit_notify
+msgid "Car License"
+msgstr "رخصة السيارة"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,help:employees_fleet_license.field_hr_employee__is_driver
+#: model:ir.model.fields,help:employees_fleet_license.field_hr_employee_public__is_driver
+msgid "Check this box if the employee is a driver."
+msgstr "ضع علامة في هذا المربع إذا كان الموظف سائقًا."
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,help:employees_fleet_license.field_fleet_vehicle__get_notify
+#: model:ir.model.fields,help:employees_fleet_license.field_hr_employee__get_notify
+#: model:ir.model.fields,help:employees_fleet_license.field_hr_employee_public__get_notify
+msgid "Check this box if you want to get notification before the expiration"
+msgstr "حدد هذا المربع إذا كنت تريد الحصول على إشعار قبل انتهاء الصلاحية"
+
+#. module: employees_fleet_license
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_employee_form_inherit
+msgid "Driver License"
+msgstr "رخصة القيادة"
+
+#. module: employees_fleet_license
+#: model:ir.actions.server,name:employees_fleet_license.ir_cron_check_license_expiration_ir_actions_server
+msgid "Driver License: Check Expirations"
+msgstr "رخصة القيادة: التحقق من انتهاء الصلاحية"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields.selection,name:employees_fleet_license.selection__fleet_vehicle__notification_type__email
+#: model:ir.model.fields.selection,name:employees_fleet_license.selection__hr_employee__notification_type__email
+msgid "Email"
+msgstr "بريد إلكتروني"
+
+#. module: employees_fleet_license
+#: model:ir.model,name:employees_fleet_license.model_hr_employee
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: employees_fleet_license
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_employee_form_inherit
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_vehicle_form_inherit_notify
+msgid "Expiration Notification Settings"
+msgstr "إعدادات إشعار انتهاء الصلاحية"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_fleet_vehicle__license_expiry_date
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__license_expiry_date
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee_public__license_expiry_date
+msgid "Expiry Date"
+msgstr "تاريخ انتهاء الصلاحية"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_fleet_vehicle__get_notify
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__get_notify
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee_public__get_notify
+msgid "Get Notifications"
+msgstr "احصل على الإخطارات"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__is_driver
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee_public__is_driver
+msgid "Is Driver"
+msgstr "هو سائق"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_fleet_vehicle__license_issue_date
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__license_issue_date
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee_public__license_issue_date
+msgid "Issue Date"
+msgstr "تاريخ الإصدار"
+
+#. module: employees_fleet_license
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_employee_form_inherit
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_vehicle_form_inherit_notify
+msgid "License Details"
+msgstr "تفاصيل الترخيص"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_fleet_vehicle__license_number
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__license_number
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee_public__license_number
+msgid "License Number"
+msgstr "رقم الترخيص"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_fleet_vehicle__license_attachment
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__license_attachment
+msgid "License Scan"
+msgstr "مسح الترخيص"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_fleet_vehicle__notification_type
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__notification_type
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee_public__notification_type
+msgid "Notification Method"
+msgstr "طريقة الإخطار"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_fleet_vehicle__notify_before_days
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__notify_before_days
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee_public__notify_before_days
+msgid "Notify Before (Days)"
+msgstr "الإخطار قبل (أيام)"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,help:employees_fleet_license.field_fleet_vehicle__notify_before_days
+#: model:ir.model.fields,help:employees_fleet_license.field_hr_employee__notify_before_days
+#: model:ir.model.fields,help:employees_fleet_license.field_hr_employee_public__notify_before_days
+msgid "Number of days before the expiration date to send the notification."
+msgstr "عدد الأيام قبل تاريخ انتهاء الصلاحية لإرسال الإخطار."
+
+#. module: employees_fleet_license
+#: model:ir.model.fields.selection,name:employees_fleet_license.selection__fleet_vehicle__notification_type__odoo
+#: model:ir.model.fields.selection,name:employees_fleet_license.selection__hr_employee__notification_type__odoo
+msgid "Odoo Activity"
+msgstr "نشاط أودو"
+
+#. module: employees_fleet_license
+#: model:ir.model,name:employees_fleet_license.model_hr_employee_public
+msgid "Public Employee"
+msgstr "موظف في القطاع العام"
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,field_description:employees_fleet_license.field_fleet_vehicle__notification_recipient_ids
+#: model:ir.model.fields,field_description:employees_fleet_license.field_hr_employee__notification_recipient_ids
+msgid "Recipients"
+msgstr "المستلمون"
+
+#. module: employees_fleet_license
+#. odoo-python
+#: code:addons/employees_fleet_license/models/fleet_vehicle.py:0
+#: code:addons/employees_fleet_license/models/hr_employee.py:0
+msgid "There is no attachment to view."
+msgstr "لا يوجد مرفق للعرض."
+
+#. module: employees_fleet_license
+#: model:ir.model.fields,help:employees_fleet_license.field_fleet_vehicle__notification_recipient_ids
+#: model:ir.model.fields,help:employees_fleet_license.field_hr_employee__notification_recipient_ids
+msgid "Users who will receive the notification."
+msgstr "المستخدمون الذين سيتلقون الإشعار."
+
+#. module: employees_fleet_license
+#: model:ir.model,name:employees_fleet_license.model_fleet_vehicle
+msgid "Vehicle"
+msgstr "المركبة"
+
+#. module: employees_fleet_license
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_employee_form_inherit
+#: model_terms:ir.ui.view,arch_db:employees_fleet_license.view_vehicle_form_inherit_notify
+msgid "View"
+msgstr "منظر"

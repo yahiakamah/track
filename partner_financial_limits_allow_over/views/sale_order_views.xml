@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+        <!-- Sale Order Form View - Add Credit Limit Info -->
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+        <record id="view_sale_order_form_credit_limit" model="ir.ui.view">
+            <field name="name">sale.order.form.credit.limit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <!-- Warning Banner for Draft Orders -->
+                <xpath expr="//form/sheet" position="before">
+                    <div class="alert alert-warning text-center mb-3" role="alert"
+                         invisible="not show_credit_warning">
+                        <field name="credit_limit_warning" readonly="1"/>
+                    </div>
+                </xpath>
+
+                <!-- Credit Limit Information - Add after payment_term_id field -->
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="show_credit_warning" invisible="1"/>
+                    <field name="partner_credit_limit" 
+                           widget="monetary" 
+                           readonly="1"
+                           invisible="not partner_credit_limit"
+                           string="Credit Limit"/>
+                    <field name="partner_credit_used" 
+                           widget="monetary" 
+                           readonly="1"
+                           invisible="not partner_credit_limit"
+                           string="Credit Used"/>
+                    <field name="partner_credit_available" 
+                           widget="monetary" 
+                           readonly="1"
+                           invisible="not partner_credit_limit"
+                           string="Credit Available"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+        <!-- Sale Order List View - Add Credit Status -->
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+        <record id="view_sale_order_list_credit_limit" model="ir.ui.view">
+            <field name="name">sale.order.list.credit.limit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="partner_credit_available" 
+                           widget="monetary" 
+                           optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

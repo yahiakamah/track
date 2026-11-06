@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+        <!-- Purchase Order Form View - Add Debit Limit Info -->
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+        <record id="view_purchase_order_form_debit_limit" model="ir.ui.view">
+            <field name="name">purchase.order.form.debit.limit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <!-- Warning Banner for Draft Orders -->
+                <xpath expr="//form/sheet" position="before">
+                    <div class="alert alert-warning text-center mb-3" role="alert"
+                         invisible="not show_debit_warning">
+                        <field name="debit_limit_warning" readonly="1"/>
+                    </div>
+                </xpath>
+
+                <!-- Debit Limit Information - Add after partner_ref field -->
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="show_debit_warning" invisible="1"/>
+                    <field name="partner_debit_limit" 
+                           widget="monetary" 
+                           readonly="1"
+                           invisible="not partner_debit_limit"
+                           string="Debit Limit"/>
+                    <field name="partner_debit_used" 
+                           widget="monetary" 
+                           readonly="1"
+                           invisible="not partner_debit_limit"
+                           string="Debit Used"/>
+                    <field name="partner_debit_available" 
+                           widget="monetary" 
+                           readonly="1"
+                           invisible="not partner_debit_limit"
+                           string="Debit Available"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+        <!-- Purchase Order List View - Add Debit Status -->
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+        <record id="view_purchase_order_list_debit_limit" model="ir.ui.view">
+            <field name="name">purchase.order.list.debit.limit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="partner_debit_available" 
+                           widget="monetary" 
+                           optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+        <!-- Partner Form View - Add Financial Limits Tab -->
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+        <record id="view_partner_form_financial_limits" model="ir.ui.view">
+            <field name="name">res.partner.form.financial.limits</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales_purchases']" position="after">
+                    <page string="Financial Limits" name="financial_limits"
+                          groups="partner_financial_limits_allow_over.group_manage_partner_limits,account.group_account_manager">
+                        <group>
+                            <group string="حدود المبيعات / Sales Limits">
+                                <field name="sale_credit_limit" 
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="allow_over_sale_credit"
+                                       widget="boolean_toggle"/>
+                                <field name="sale_credit_used" 
+                                       widget="monetary" 
+                                       readonly="1"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="sale_credit_available" 
+                                       widget="monetary" 
+                                       readonly="1"
+                                       options="{'currency_field': 'currency_id'}"
+                                       invisible="not sale_credit_limit"/>
+                                <field name="sale_credit_usage_percent" 
+                                       widget="progressbar"
+                                       invisible="not sale_credit_limit"/>
+                                <field name="sale_limit_warning" 
+                                       widget="badge"
+                                       invisible="not sale_credit_limit"
+                                       decoration-success="sale_limit_warning == 'ok'"
+                                       decoration-warning="sale_limit_warning == 'warning'"
+                                       decoration-danger="sale_limit_warning == 'exceeded'"/>
+                            </group>
+                            <group string="حدود المشتريات / Purchase Limits">
+                                <field name="purchase_debit_limit" 
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="allow_over_purchase_debit"
+                                       widget="boolean_toggle"/>
+                                <field name="purchase_debit_used" 
+                                       widget="monetary" 
+                                       readonly="1"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="purchase_debit_available" 
+                                       widget="monetary" 
+                                       readonly="1"
+                                       options="{'currency_field': 'currency_id'}"
+                                       invisible="not purchase_debit_limit"/>
+                                <field name="purchase_debit_usage_percent" 
+                                       widget="progressbar"
+                                       invisible="not purchase_debit_limit"/>
+                                <field name="purchase_limit_warning" 
+                                       widget="badge"
+                                       invisible="not purchase_debit_limit"
+                                       decoration-success="purchase_limit_warning == 'ok'"
+                                       decoration-warning="purchase_limit_warning == 'warning'"
+                                       decoration-danger="purchase_limit_warning == 'exceeded'"/>
+                            </group>
+                        </group>
+                       
+                            <div class="alert alert-info" role="alert">
+                                <strong>ملاحظة / Note:</strong><br/>
+                                • اترك الحد فارغًا أو صفرًا لإلغاء التقييد<br/>
+                                • Leave limit empty or zero for no restriction<br/>
+                                • يتم احتساب المستحقات من الفواتير المرحّلة غير المدفوعة فقط<br/>
+                                • Outstanding amounts are calculated from posted unpaid invoices only<br/>
+                                • تفعيل "السماح بتجاوز الحد" يتيح للشريك تجاوز الحد دون قيود<br/>
+                                • Enabling "Allow Over Credit/Debit" allows the partner to exceed the limit without restrictions
+                            </div>
+                      
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+        <!-- Partner List View - Add Limit Columns -->
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+        <record id="view_partner_list_financial_limits" model="ir.ui.view">
+            <field name="name">res.partner.list.financial.limits</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="sale_credit_limit" 
+                           widget="monetary" 
+                           optional="hide"
+                           groups="partner_financial_limits_allow_over.group_manage_partner_limits"/>
+                    <field name="allow_over_sale_credit" 
+                           widget="boolean"
+                           optional="hide"
+                           groups="partner_financial_limits_allow_over.group_manage_partner_limits"/>
+                    <field name="sale_limit_warning" 
+                           widget="badge"
+                           optional="hide"
+                           decoration-success="sale_limit_warning == 'ok'"
+                           decoration-warning="sale_limit_warning == 'warning'"
+                           decoration-danger="sale_limit_warning == 'exceeded'"
+                           groups="partner_financial_limits_allow_over.group_manage_partner_limits"/>
+                    <field name="purchase_debit_limit" 
+                           widget="monetary" 
+                           optional="hide"
+                           groups="partner_financial_limits_allow_over.group_manage_partner_limits"/>
+                    <field name="allow_over_purchase_debit" 
+                           widget="boolean"
+                           optional="hide"
+                           groups="partner_financial_limits_allow_over.group_manage_partner_limits"/>
+                    <field name="purchase_limit_warning" 
+                           widget="badge"
+                           optional="hide"
+                           decoration-success="purchase_limit_warning == 'ok'"
+                           decoration-warning="purchase_limit_warning == 'warning'"
+                           decoration-danger="purchase_limit_warning == 'exceeded'"
+                           groups="partner_financial_limits_allow_over.group_manage_partner_limits"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+        <!-- Partner Search View - Add Limit Filters -->
+        <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+        <record id="view_partner_search_financial_limits" model="ir.ui.view">
+            <field name="name">res.partner.search.financial.limits</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='inactive']" position="after">
+                    <separator/>
+                    <filter string="Has Sale Credit Limit" 
+                            name="has_sale_limit"
+                            domain="[('sale_credit_limit', '>', 0)]"/>
+                    <filter string="Allow Over Sale Credit" 
+                            name="allow_over_sale"
+                            domain="[('allow_over_sale_credit', '=', True)]"/>
+                    <filter string="Has Purchase Debit Limit" 
+                            name="has_purchase_limit"
+                            domain="[('purchase_debit_limit', '>', 0)]"/>
+                    <filter string="Allow Over Purchase Debit" 
+                            name="allow_over_purchase"
+                            domain="[('allow_over_purchase_debit', '=', True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

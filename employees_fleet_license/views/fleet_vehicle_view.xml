@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record id="view_vehicle_form_inherit_notify" model="ir.ui.view">
+            <field name="name">fleet.vehicle.form.inherit.notify</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Car License" name="vehicle_license_page">
+                        <group>
+                            <group string="License Details">
+                                <field name="license_number"/>
+                                <field name="license_issue_date"/>
+                                <field name="license_expiry_date"/>
+                            </group>
+                            <group string="Attachments">
+                                <field name="license_attachment" widget="binary" filename="license_attachment_filename"/>
+                                <div class="o_row">
+                                    <button name="action_view_attachment" type="object" icon="fa-eye"
+                                        string="View" class="btn btn-secondary" invisible="license_attachment == False"/>
+                                </div>
+                            </group>
+                        </group>
+                        <group string="Expiration Notification Settings">
+                            <field name="get_notify"/>
+                            <label for="notify_before_days" invisible="get_notify == False"/>
+                            <div class="o_row" invisible="get_notify == False">
+                                <field name="notify_before_days"/>
+                                <span>days</span>
+                            </div>
+                            <field name="notification_type" invisible="get_notify == False"/>
+                            <field name="notification_recipient_ids" widget="many2many_tags" invisible="get_notify == False"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

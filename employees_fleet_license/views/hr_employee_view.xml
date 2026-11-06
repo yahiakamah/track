@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_email']" position="after">
+                    <field name="is_driver"/>
+                </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Driver License" name="driver_license_page" invisible="is_driver == False">
+                        <group>
+                            <group string="License Details">
+                                <field name="license_number"/>
+                                <field name="license_issue_date"/>
+                                <field name="license_expiry_date"/>
+                            </group>
+                            <group string="Attachments">
+                                <field name="license_attachment" widget="binary" filename="license_attachment_filename"/>
+                                <div class="o_row">
+                                    <button name="action_view_attachment" type="object" icon="fa-eye"
+                                        string="View" class="btn btn-secondary" invisible="license_attachment == False"/>
+                                </div>
+                            </group>
+                        </group>
+                        <group string="Expiration Notification Settings">
+                            <field name="get_notify"/>
+                            <label for="notify_before_days" invisible="get_notify == False"/>
+                            <div class="o_row" invisible="get_notify == False">
+                                <field name="notify_before_days"/>
+                                <span>days</span>
+                            </div>
+                            <field name="notification_type" invisible="get_notify == False"/>
+                            <field name="notification_recipient_ids" widget="many2many_tags" invisible="get_notify == False"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

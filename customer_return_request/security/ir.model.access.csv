@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_return_reason_user,customer.return.reason.user,model_customer_return_reason,group_customer_return_user,1,0,0,0
+access_return_reason_manager,customer.return.reason.manager,model_customer_return_reason,group_customer_return_manager,1,1,1,1
+access_return_request_user,customer.return.request.user,model_customer_return_request,group_customer_return_user,1,1,1,1
+access_return_request_manager,customer.return.request.manager,model_customer_return_request,group_customer_return_manager,1,1,1,1
+access_return_request_line_user,customer.return.request.line.user,model_customer_return_request_line,group_customer_return_user,1,1,1,1
+access_return_request_line_manager,customer.return.request.line.manager,model_customer_return_request_line,group_customer_return_manager,1,1,1,1
+access_return_reject_wizard_manager,customer.return.reject.wizard.manager,model_customer_return_reject_wizard,group_customer_return_manager,1,1,1,1

@@ -1,0 +1,104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* partner_financial_limits_allow_over
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.model.fields,field_description:partner_financial_limits_allow_over.field_res_partner__sale_credit_limit
+msgid "Sale Credit Limit"
+msgstr "حد الاستحقاق في المبيعات"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.model.fields,field_description:partner_financial_limits_allow_over.field_res_partner__purchase_debit_limit
+msgid "Purchase Debit Limit"
+msgstr "حد الاستحقاق في المشتريات"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.model.fields,field_description:partner_financial_limits_allow_over.field_res_partner__allow_over_sale_credit
+msgid "Allow Over Sale Credit"
+msgstr "السماح بتجاوز حد المبيعات"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.model.fields,field_description:partner_financial_limits_allow_over.field_res_partner__allow_over_purchase_debit
+msgid "Allow Over Purchase Debit"
+msgstr "السماح بتجاوز حد المشتريات"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.model.fields,field_description:partner_financial_limits_allow_over.field_res_partner__sale_credit_used
+msgid "Sale Credit Used"
+msgstr "المستخدم من حد المبيعات"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.model.fields,field_description:partner_financial_limits_allow_over.field_res_partner__sale_credit_available
+msgid "Sale Credit Available"
+msgstr "المتاح من حد المبيعات"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.model.fields,field_description:partner_financial_limits_allow_over.field_res_partner__purchase_debit_used
+msgid "Purchase Debit Used"
+msgstr "المستخدم من حد المشتريات"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.model.fields,field_description:partner_financial_limits_allow_over.field_res_partner__purchase_debit_available
+msgid "Purchase Debit Available"
+msgstr "المتاح من حد المشتريات"
+
+#. module: partner_financial_limits_allow_over
+#: model:res.groups,name:partner_financial_limits_allow_over.group_exceed_partner_limit
+msgid "Allow Exceed Partner Limit"
+msgstr "السماح بتجاوز حد الشريك"
+
+#. module: partner_financial_limits_allow_over
+#: model:res.groups,name:partner_financial_limits_allow_over.group_manage_partner_limits
+msgid "Manage Partner Financial Limits"
+msgstr "إدارة حدود الاستحقاق المالي"
+
+#. module: partner_financial_limits_allow_over
+#: model:ir.module.category,name:partner_financial_limits_allow_over.module_category_partner_financial_limits
+msgid "Partner Financial Limits"
+msgstr "حدود الاستحقاق المالي للشركاء"
+
+#. module: partner_financial_limits_allow_over
+msgid "Financial Limits"
+msgstr "حدود الاستحقاق"
+
+#. module: partner_financial_limits_allow_over
+msgid "Sales Limits"
+msgstr "حدود المبيعات"
+
+#. module: partner_financial_limits_allow_over
+msgid "Purchase Limits"
+msgstr "حدود المشتريات"
+
+#. module: partner_financial_limits_allow_over
+msgid "Credit Limit"
+msgstr "حد الاستحقاق"
+
+#. module: partner_financial_limits_allow_over
+msgid "Debit Limit"
+msgstr "حد الاستحقاق"
+
+#. module: partner_financial_limits_allow_over
+msgid "Partner Limit"
+msgstr "حد الشريك"
+
+#. module: partner_financial_limits_allow_over
+msgid "Amount Used"
+msgstr "المبلغ المستخدم"
+
+#. module: partner_financial_limits_allow_over
+msgid "Amount Available"
+msgstr "المبلغ المتاح"

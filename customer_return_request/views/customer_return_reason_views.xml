@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List (editable) with handle for reordering -->
+    <record id="view_customer_return_reason_list" model="ir.ui.view">
+        <field name="name">customer.return.reason.list</field>
+        <field name="model">customer.return.reason</field>
+        <field name="arch" type="xml">
+            <list string="Return Reasons" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="description" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company"
+                       optional="show"/>
+                <field name="active" widget="boolean_toggle" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_customer_return_reason_form" model="ir.ui.view">
+        <field name="name">customer.return.reason.form</field>
+        <field name="model">customer.return.reason</field>
+        <field name="arch" type="xml">
+            <form string="Return Reason">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_customer_return_reason_search" model="ir.ui.view">
+        <field name="name">customer.return.reason.search</field>
+        <field name="model">customer.return.reason</field>
+        <field name="arch" type="xml">
+            <search string="Return Reasons">
+                <field name="name"/>
+                <filter name="archived" string="Archived"
+                        domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_customer_return_reason" model="ir.actions.act_window">
+        <field name="name">Return Reasons</field>
+        <field name="res_model">customer.return.reason</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new return reason
+            </p>
+            <p>
+                Return reasons are configurable master data used on customer
+                return requests. You can reorder, edit or archive them at any
+                time without changing the code.
+            </p>
+        </field>
+    </record>
+
+</odoo>

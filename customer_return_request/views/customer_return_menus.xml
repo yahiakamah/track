@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inventory > Operations > Customer Return Requests -->
+    <menuitem id="menu_customer_return_request"
+              name="Customer Return Requests"
+              parent="stock.menu_stock_warehouse_mgmt"
+              action="action_customer_return_request"
+              sequence="95"
+              groups="group_customer_return_user"/>
+
+    <!-- Inventory > Configuration > Customer Returns -->
+    <menuitem id="menu_customer_return_config"
+              name="Customer Returns"
+              parent="stock.menu_stock_config_settings"
+              sequence="95"
+              groups="group_customer_return_manager"/>
+
+    <!-- Inventory > Configuration > Customer Returns > Return Reasons -->
+    <menuitem id="menu_customer_return_reason"
+              name="Return Reasons"
+              parent="menu_customer_return_config"
+              action="action_customer_return_reason"
+              sequence="10"
+              groups="group_customer_return_manager"/>
+
+</odoo>

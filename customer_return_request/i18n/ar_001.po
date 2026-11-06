@@ -1,0 +1,1081 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* customer_return_request
+#
+msgid ""
+msgstr "Project-Id-Version: Odoo Server 18.0+e-20250820\n Report-Msgid-Bugs-To: \n POT-Creation-Date: 2026-06-30 18:09+0000\n PO-Revision-Date: 2026-06-30 18:09+0000\n Last-Translator: \n Language-Team: \n MIME-Version: 1.0\n Content-Type: text/plain; charset=UTF-8\n Content-Transfer-Encoding: \n Plural-Forms: \n"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "%s: a lot/serial number is required for tracked products."
+msgstr "%s: مطلوب رقم المجموعة/الرقم التسلسلي للمنتجات المتعقبة."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "%s: credit note unit price must be greater than zero."
+msgstr "%s: يجب أن يكون سعر وحدة إشعار الدائن أكبر من الصفر."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "%s: inventory unit cost must be greater than zero."
+msgstr "%s: يجب أن تكون تكلفة وحدة المخزون أكبر من الصفر."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "%s: quantity must be greater than zero."
+msgstr "%s: يجب أن تكون الكمية أكبر من الصفر."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "%s: the unit of measure does not belong to the product UoM category."
+msgstr "%s: وحدة القياس لا تنتمي إلى فئة وحدة قياس المنتج."
+
+#. module: customer_return_request
+#: model:ir.actions.report,print_report_name:customer_return_request.action_report_customer_return_request
+msgid "'Return - %s' % (object.name)"
+msgstr "'العودة - %s' % (اسم الكائن)"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid ""
+"<br/>\n"
+"                                <strong>Destination Location:</strong>"
+msgstr "<br/>\n                                <strong>موقع الوجهة:</strong>"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid ""
+"<br/>\n"
+"                                <strong>Reference:</strong>"
+msgstr "<br/>\n                                <strong>مرجع:</strong>"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid ""
+"<br/>\n"
+"                                <strong>Return Reason:</strong>"
+msgstr "<br/>\n                                <strong>سبب الإرجاع:</strong>"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid ""
+"<br/>\n"
+"                                <strong>Status:</strong>"
+msgstr "<br/>\n                                <strong>حالة:</strong>"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "<br/>Reason: %s"
+msgstr "<br/>السبب: %s"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "<strong>Customer:</strong>"
+msgstr "<strong>عميل:</strong>"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "<strong>Manager Notes:</strong><br/>"
+msgstr "<strong>ملاحظات المدير:</strong><br/>"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "<strong>Return Date:</strong>"
+msgstr "<strong>تاريخ العودة:</strong>"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "<strong>Total Credit Amount</strong>"
+msgstr "<strong>إجمالي مبلغ الائتمان</strong>"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "<strong>Total Inventory Value</strong>"
+msgstr "<strong>إجمالي قيمة المخزون</strong>"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "<strong>Total Quantity</strong>"
+msgstr "<strong>الكمية الإجمالية</strong>"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "A line has no product."
+msgstr "الخط ليس له منتج."
+
+#. module: customer_return_request
+#: model:ir.model.constraint,message:customer_return_request.constraint_customer_return_reason_name_company_uniq
+msgid "A return reason with the same name already exists for this company."
+msgstr "يوجد بالفعل سبب إرجاع بنفس الاسم لهذه الشركة."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء مطلوب"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__active
+msgid "Active"
+msgstr "نشيط"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_ids
+msgid "Activities"
+msgstr "أنشطة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "رمز نوع النشاط"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Add at least one return line before approval."
+msgstr "قم بإضافة سطر إرجاع واحد على الأقل قبل الموافقة."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Add at least one return line before submitting."
+msgstr "قم بإضافة سطر إرجاع واحد على الأقل قبل الإرسال."
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Approval / rejection notes..."
+msgstr "ملاحظات الموافقة/الرفض..."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__approval_date
+msgid "Approval Date"
+msgstr "تاريخ الموافقة"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Approve"
+msgstr "يعتمد"
+
+#. module: customer_return_request
+#: model:ir.model.fields.selection,name:customer_return_request.selection__customer_return_request__state__approved
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Approved"
+msgstr "موافقة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__approved_by
+msgid "Approved By"
+msgstr "تمت الموافقة عليه بواسطة"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reason_form
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reason_search
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__attachment_count
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Attachments"
+msgstr "المرفقات"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Cancel"
+msgstr "يلغي"
+
+#. module: customer_return_request
+#: model:ir.model.fields.selection,name:customer_return_request.selection__customer_return_request__state__cancelled
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__product_uom_category_id
+msgid "Category"
+msgstr "فئة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__company_id
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__company_id
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__company_id
+msgid "Company"
+msgstr "شركة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__company_currency_id
+msgid "Company Currency"
+msgstr "عملة الشركة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr "لا يمكن أن يحدث التحويل بين وحدات القياس إلا إذا كانت تنتمي إلى نفس الفئة. سيتم إجراء التحويل على أساس النسب."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__create_credit_note
+msgid "Create Credit Note"
+msgstr "إنشاء مذكرة الائتمان"
+
+#. module: customer_return_request
+#: model_terms:ir.actions.act_window,help:customer_return_request.action_customer_return_request
+msgid "Create a new customer return request"
+msgstr "إنشاء طلب إرجاع عميل جديد"
+
+#. module: customer_return_request
+#: model_terms:ir.actions.act_window,help:customer_return_request.action_customer_return_reason
+msgid "Create a new return reason"
+msgstr "قم بإنشاء سبب إرجاع جديد"
+
+#. module: customer_return_request
+#: model:res.groups,comment:customer_return_request.group_customer_return_user
+msgid ""
+"Create, edit (draft only) and submit return\n"
+"                requests; read only their own requests."
+msgstr "إنشاء وتحرير (مسودة فقط) وإرسال طلبات الإرجاع\n؛ قراءة طلباتهم فقط."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__create_uid
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reject_wizard__create_uid
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__create_uid
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__create_uid
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__create_date
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reject_wizard__create_date
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__create_date
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__create_date
+msgid "Created on"
+msgstr "تم الإنشاء بتاريخ"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__credit_note_count
+msgid "Credit Note Count"
+msgstr "عدد إشعارات الائتمان"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__credit_note_unit_price
+msgid "Credit Note Unit Price"
+msgstr "سعر وحدة مذكرة الائتمان"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__credit_note_ids
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Credit Notes"
+msgstr "ملاحظات الائتمان"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "Credit Price"
+msgstr "سعر الائتمان"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__currency_id
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__company_currency_id
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__currency_id
+msgid "Currency"
+msgstr "عملة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__currency_id
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request_line__currency_id
+msgid "Currency used for the credit note (customer / pricelist currency)."
+msgstr "العملة المستخدمة لإشعار الدائن (عملة العميل/قائمة الأسعار)."
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__company_currency_id
+msgid ""
+"Currency used for the inventory valuation (always the company currency)."
+msgstr "العملة المستخدمة لتقييم المخزون (عملة الشركة دائمًا)."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__partner_id
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Customer"
+msgstr "عميل"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_stock_move__customer_return_line_id
+msgid "Customer Return Line"
+msgstr "خط إرجاع العملاء"
+
+#. module: customer_return_request
+#: model:res.groups,name:customer_return_request.group_customer_return_manager
+msgid "Customer Return Manager"
+msgstr "مدير إرجاع العملاء"
+
+#. module: customer_return_request
+#: model:ir.model,name:customer_return_request.model_customer_return_reason
+msgid "Customer Return Reason"
+msgstr "سبب إرجاع العميل"
+
+#. module: customer_return_request
+#: model:ir.model,name:customer_return_request.model_customer_return_reject_wizard
+msgid "Customer Return Reject Wizard"
+msgstr "معالج رفض إرجاع العميل"
+
+#. module: customer_return_request
+#: model:ir.actions.report,name:customer_return_request.action_report_customer_return_request
+#: model:ir.model,name:customer_return_request.model_customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_account_bank_statement_line__customer_return_request_id
+#: model:ir.model.fields,field_description:customer_return_request.field_account_move__customer_return_request_id
+#: model:ir.model.fields,field_description:customer_return_request.field_stock_picking__customer_return_request_id
+#: model:ir.model.fields,field_description:customer_return_request.field_stock_valuation_layer__customer_return_request_id
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Customer Return Request"
+msgstr "طلب إرجاع العميل"
+
+#. module: customer_return_request
+#: model:ir.model,name:customer_return_request.model_customer_return_request_line
+msgid "Customer Return Request Line"
+msgstr "خط طلب إرجاع العميل"
+
+#. module: customer_return_request
+#: model:ir.actions.act_window,name:customer_return_request.action_customer_return_request
+#: model:ir.ui.menu,name:customer_return_request.menu_customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_list
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Customer Return Requests"
+msgstr "طلبات إرجاع العملاء"
+
+#. module: customer_return_request
+#: model:res.groups,name:customer_return_request.group_customer_return_user
+msgid "Customer Return User"
+msgstr "مستخدم إرجاع العميل"
+
+#. module: customer_return_request
+#: model:ir.module.category,name:customer_return_request.module_category_customer_return
+#: model:ir.ui.menu,name:customer_return_request.menu_customer_return_config
+msgid "Customer Returns"
+msgstr "عوائد العملاء"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Customer credit note %s created."
+msgstr "تم إنشاء إشعار ائتمان العميل %s."
+
+#. module: customer_return_request
+#: model:ir.module.category,description:customer_return_request.module_category_customer_return
+msgid "Customer return requests management"
+msgstr "إدارة طلبات إرجاع العملاء"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__description
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reason_form
+msgid "Description"
+msgstr "وصف"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__location_dest_id
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Destination Location"
+msgstr "موقع الوجهة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__location_dest_id
+msgid "Destination of the returned goods."
+msgstr "وجهة البضائع المرتجعة."
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reject_wizard_form
+msgid "Discard"
+msgstr "ينبذ"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__display_name
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reject_wizard__display_name
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__display_name
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: customer_return_request
+#: model:ir.model.fields.selection,name:customer_return_request.selection__customer_return_request__state__done
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Done"
+msgstr "منتهي"
+
+#. module: customer_return_request
+#: model:ir.model.fields.selection,name:customer_return_request.selection__customer_return_request__state__draft
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request_line__tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr "ضمان إمكانية تتبع المنتج القابل للتخزين في المستودع الخاص بك."
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reject_wizard_form
+msgid "Explain why this request is rejected..."
+msgstr "توضيح سبب رفض هذا الطلب..."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "رمز الخط الرائع على سبيل المثال. مهام كرة القدم"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Group By"
+msgstr "المجموعة حسب"
+
+#. module: customer_return_request
+#: model_terms:ir.actions.act_window,help:customer_return_request.action_customer_return_request
+msgid ""
+"Handle commercial customer returns that do not originate from a\n"
+"                Sale Order, Delivery or Invoice while keeping inventory\n"
+"                valuation and accounting consistent with Odoo."
+msgstr "التعامل مع مرتجعات العملاء التجارية التي لا تنشأ من\n أمر بيع أو تسليم أو فاتورة مع الحفاظ على\n تقييم المخزون والمحاسبة بما يتوافق مع Odoo."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__has_message
+msgid "Has Message"
+msgstr "لديه رسالة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__id
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reject_wizard__id
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__id
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__id
+msgid "ID"
+msgstr "بطاقة تعريف"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_exception_icon
+msgid "Icon"
+msgstr "رمز"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط الاستثناء."
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم تحديدها، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__message_has_error
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده، فإن بعض الرسائل تحتوي على خطأ في التسليم."
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__create_credit_note
+msgid ""
+"If set, approving the request also creates a draft customer credit note "
+"using the Credit Note Unit Price of each line."
+msgstr "في حالة التعيين، تؤدي الموافقة على الطلب أيضًا إلى إنشاء مسودة إشعار ائتماني للعميل باستخدام سعر وحدة إشعار الائتمان لكل سطر."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Incoming transfer validated - request automatically set to Done."
+msgstr "تم التحقق من صحة التحويل الوارد - يتم ضبط الطلب تلقائيًا على "تم"."
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "Inv. Unit Cost"
+msgstr "الجرد. تكلفة الوحدة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__inventory_unit_cost
+msgid "Inventory Unit Cost"
+msgstr "تكلفة وحدة المخزون"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__inventory_value
+msgid "Inventory Value"
+msgstr "قيمة المخزون"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_is_follower
+msgid "Is Follower"
+msgstr "هو تابع"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Journal Entries"
+msgstr "إدخالات دفتر اليومية"
+
+#. module: customer_return_request
+#: model:ir.model,name:customer_return_request.model_account_move
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__journal_entry_count
+msgid "Journal Entry Count"
+msgstr "عدد إدخالات دفتر اليومية"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__write_uid
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reject_wizard__write_uid
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__write_uid
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__write_date
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reject_wizard__write_date
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__write_date
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث بتاريخ"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_reason__company_id
+msgid "Leave empty to share this reason across all companies."
+msgstr "اتركه فارغًا لمشاركة هذا السبب في جميع الشركات."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__lot_id
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "Lot/Serial"
+msgstr "الكثير / المسلسل"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__manager_notes
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Manager Notes"
+msgstr "ملاحظات المدير"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Mark Done"
+msgstr "مارك تم"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_ids
+msgid "Messages"
+msgstr "رسائل"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "My Requests"
+msgstr "طلباتي"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "New"
+msgstr "جديد"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "No customer location could be determined."
+msgstr "لا يمكن تحديد موقع العميل."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "No incoming operation type could be found."
+msgstr "لا يمكن العثور على نوع العملية الواردة."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب اتخاذ إجراء"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Only Approved requests can be marked Done."
+msgstr "يمكن وضع علامة "تم" على الطلبات التي تمت الموافقة عليها فقط."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Only Draft requests can be submitted."
+msgstr "يمكن تقديم طلبات المسودة فقط."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Only Rejected or Cancelled requests can be reset to Draft."
+msgstr "يمكن إعادة تعيين الطلبات المرفوضة أو الملغاة فقط إلى المسودة."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Only Submitted or Waiting Approval requests can be rejected."
+msgstr "يمكن رفض الطلبات المقدمة أو في انتظار الموافقة فقط."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Only Submitted requests can be sent for approval."
+msgstr "يمكن إرسال الطلبات المقدمة فقط للموافقة عليها."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Only a Customer Return Manager can perform this action."
+msgstr "يمكن لمدير إرجاع العملاء فقط تنفيذ هذا الإجراء."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Only requests in 'Waiting Approval' can be approved."
+msgstr "يمكن الموافقة على الطلبات الموجودة في "انتظار الموافقة" فقط."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__picking_count
+msgid "Picking Count"
+msgstr "عدد الانتقاء"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__picking_ids
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Pickings"
+msgstr "فضلات"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__product_id
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "Product"
+msgstr "منتج"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request_line.py:0
+msgid ""
+"Product %s is tracked by serial number, the quantity cannot exceed 1 per "
+"line."
+msgstr "يتم تعقب المنتج %s بواسطة الرقم التسلسلي، ولا يمكن أن تتجاوز الكمية قطعة واحدة في كل سطر."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__quantity
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "Quantity"
+msgstr "كمية"
+
+#. module: customer_return_request
+#: model:res.groups,comment:customer_return_request.group_customer_return_manager
+msgid ""
+"Read all requests; approve, reject, cancel,\n"
+"                reset to draft, edit approval information and manage\n"
+"                configuration."
+msgstr "قراءة جميع الطلبات. الموافقة، والرفض، والإلغاء،\n إعادة التعيين للمسودة، وتحرير معلومات الموافقة وإدارة\n التكوين."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__name
+msgid "Reason"
+msgstr "سبب"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__reason_notes
+msgid "Reason Notes"
+msgstr "ملاحظات السبب"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__reference
+msgid "Reference"
+msgstr "مرجع"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reject_wizard_form
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Reject"
+msgstr "يرفض"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reject_wizard_form
+msgid "Reject Return Request"
+msgstr "رفض طلب العودة"
+
+#. module: customer_return_request
+#: model:ir.model.fields.selection,name:customer_return_request.selection__customer_return_request__state__rejected
+msgid "Rejected"
+msgstr "مرفوض"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reject_wizard__reason
+msgid "Rejection Reason"
+msgstr "سبب الرفض"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Request"
+msgstr "طلب"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Request Approval"
+msgstr "طلب الموافقة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__name
+msgid "Request Number"
+msgstr "رقم الطلب"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Request approved by %s."
+msgstr "تمت الموافقة على الطلب بواسطة %s."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Request cancelled by %s."
+msgstr "تم إلغاء الطلب بواسطة %s."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Request marked as Done."
+msgstr "تم وضع علامة "تم" على الطلب."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Request rejected by %s."
+msgstr "تم رفض الطلب بواسطة %s."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Request reset to Draft."
+msgstr "طلب إعادة التعيين إلى المسودة."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Request sent for approval."
+msgstr "تم إرسال الطلب للموافقة."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Request submitted."
+msgstr "تم تقديم الطلب."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__requested_by
+msgid "Requested By"
+msgstr "طلب بواسطة"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Reset to Draft"
+msgstr "إعادة التعيين إلى المسودة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__return_date
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Return Date"
+msgstr "تاريخ العودة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__line_ids
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Return Lines"
+msgstr "خطوط العودة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__reason_id
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reason_form
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Return Reason"
+msgstr "سبب العودة"
+
+#. module: customer_return_request
+#: model:ir.actions.act_window,name:customer_return_request.action_customer_return_reason
+#: model:ir.ui.menu,name:customer_return_request.menu_customer_return_reason
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reason_list
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_reason_search
+msgid "Return Reasons"
+msgstr "أسباب العودة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reject_wizard__request_id
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__request_id
+msgid "Return Request"
+msgstr "طلب العودة"
+
+#. module: customer_return_request
+#: model_terms:ir.actions.act_window,help:customer_return_request.action_customer_return_reason
+msgid ""
+"Return reasons are configurable master data used on customer\n"
+"                return requests. You can reorder, edit or archive them at any\n"
+"                time without changing the code."
+msgstr "أسباب الإرجاع هي بيانات رئيسية قابلة للتكوين تُستخدم في طلبات الإرجاع\n الخاصة بالعميل. يمكنك إعادة ترتيبها أو تعديلها أو أرشفتها في أي وقت\n دون تغيير الرمز."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request_line__credit_note_unit_price
+msgid "Sale price used on the customer credit note (untaxed)."
+msgstr "سعر البيع المستخدم في مذكرة ائتمان العميل (غير خاضع للضريبة)."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_reason__sequence
+msgid "Sequence"
+msgstr "تسلسل"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__state
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__state
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "State"
+msgstr "ولاية"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "تعتمد الحالة على الأنشطة\nمتأخر عن الاستحقاق: لقد تم تجاوز تاريخ الاستحقاق بالفعل\nاليوم: تاريخ النشاط هو اليوم\nالمخطط له: الأنشطة المستقبلية."
+
+#. module: customer_return_request
+#: model:ir.model,name:customer_return_request.model_stock_move
+msgid "Stock Move"
+msgstr "حركة المخزون"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Stock Valuation"
+msgstr "تقييم الأسهم"
+
+#. module: customer_return_request
+#: model:ir.model,name:customer_return_request.model_stock_valuation_layer
+msgid "Stock Valuation Layer"
+msgstr "طبقة تقييم المخزون "
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Submit"
+msgstr "يُقدِّم"
+
+#. module: customer_return_request
+#: model:ir.model.fields.selection,name:customer_return_request.selection__customer_return_request__state__submitted
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Submitted"
+msgstr "مُقَدَّم"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__price_subtotal
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid ""
+"The request cannot be approved:\n"
+"\n"
+"- %s"
+msgstr "لا يمكن الموافقة على الطلب:\n\n- %s"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request_line.py:0
+msgid ""
+"The unit of measure of %s must belong to the same category as the product "
+"reference unit of measure."
+msgstr "يجب أن تنتمي وحدة القياس %s إلى نفس فئة وحدة القياس المرجعية للمنتج."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "This request can no longer be cancelled."
+msgstr "لم يعد من الممكن إلغاء هذا الطلب."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "This request cannot be rejected in its current state."
+msgstr "لا يمكن رفض هذا الطلب في حالته الحالية."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__total_credit_amount
+msgid "Total Credit Amount"
+msgstr "إجمالي مبلغ الائتمان"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__total_inventory_value
+msgid "Total Inventory Value"
+msgstr "إجمالي قيمة المخزون"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__total_qty
+msgid "Total Quantity"
+msgstr "الكمية الإجمالية"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__tracking
+msgid "Tracking"
+msgstr "تتبع"
+
+#. module: customer_return_request
+#: model:ir.model,name:customer_return_request.model_stock_picking
+msgid "Transfer"
+msgstr "تحويل "
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع نشاط الاستثناء المسجل."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "Undefined product"
+msgstr "منتج غير محدد"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request_line__inventory_unit_cost
+msgid ""
+"Unit cost used for the stock valuation layer when the request is approved. "
+"Expressed in the line unit of measure."
+msgstr "تكلفة الوحدة المستخدمة لطبقة تقييم المخزون عند الموافقة على الطلب. يتم التعبير عنها بوحدة القياس الخطية."
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request_line__product_uom_id
+msgid "Unit of Measure"
+msgstr "وحدة القياس"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.report_customer_return_document
+msgid "UoM"
+msgstr "جامعة م"
+
+#. module: customer_return_request
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_form
+msgid "Valuation"
+msgstr "تقييم"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__valuation_count
+msgid "Valuation Count"
+msgstr "عدد التقييم"
+
+#. module: customer_return_request
+#: model:ir.model.fields.selection,name:customer_return_request.selection__customer_return_request__state__waiting_approval
+#: model_terms:ir.ui.view,arch_db:customer_return_request.view_customer_return_request_search
+msgid "Waiting Approval"
+msgstr "في انتظار الموافقة"
+
+#. module: customer_return_request
+#: model:ir.model.fields,field_description:customer_return_request.field_customer_return_request__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: customer_return_request
+#: model:ir.model.fields,help:customer_return_request.field_customer_return_request__website_message_ids
+msgid "Website communication history"
+msgstr "تاريخ اتصالات الموقع"
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid ""
+"You can only delete return requests that are Draft, Rejected or Cancelled."
+msgstr "يمكنك فقط حذف طلبات الإرجاع المسودة أو المرفوضة أو الملغاة."
+
+#. module: customer_return_request
+#. odoo-python
+#: code:addons/customer_return_request/models/customer_return_request.py:0
+msgid "You can only edit a return request while it is in the Draft state."
+msgstr "لا يمكنك تعديل طلب الإرجاع إلا عندما يكون في حالة المسودة."
