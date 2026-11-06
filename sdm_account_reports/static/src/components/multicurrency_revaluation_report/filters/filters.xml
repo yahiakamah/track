@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="sdm_account_reports.MulticurrencyRevaluationReportFilters" t-inherit="sdm_account_reports.AccountReportFiltersCustomizable">
+        <xpath expr="//div[@id='filter_extra_options']" position="before">
+            <t t-if="'currency_rates' in this.controller.options">
+                <div id="filter_exchange_rate" class="filter_exchange_rate">
+                    <t t-call="sdm_account_reports.MulticurrencyRevaluationReportFilterExchangeRate"/>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>
