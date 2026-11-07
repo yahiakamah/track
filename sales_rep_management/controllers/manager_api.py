@@ -122,11 +122,42 @@ class ManagerApiBase(http.Controller, SalesRepUtils):
                 'image_url': f'/web/image/res.users/{rep.user_id.id}/avatar_128' if rep.user_id else ''}
 
     @staticmethod
-    def _position(rep):
-        if not rep.last_location_at:
+    def _traccar_position(rep):
+        """Newest Traccar fix of the vehicle(s) driven by this representative (optional)."""
+        try:
+            env = rep.env
+            if 'traccar.device' not in env or 'traccar_device_id' not in env['fleet.vehicle']._fields:
+                return None
+            partners = rep.user_id.partner_id
+            contact = getattr(rep.employee_id, 'work_contact_id', False)
+            if contact:
+                partners |= contact
+            if not partners:
+                return None
+            vehicles = env['fleet.vehicle'].sudo().search(
+                [('driver_id', 'in', partners.ids), ('traccar_device_id', '!=', False)])
+            best = None
+            for pos in vehicles.mapped('traccar_device_id.latest_position_id'):
+                if pos.device_time and (best is None or pos.device_time > best.device_time):
+                    best = pos
+            if best and (best.latitude or best.longitude):
+                return {'latitude': best.latitude, 'longitude': best.longitude,
+                        'at': _dt(best.device_time), 'source': 'traccar',
+                        'speed_kmh': best.speed_kmh or 0.0}
+        except Exception:
             return None
-        return {'latitude': rep.last_latitude, 'longitude': rep.last_longitude,
-                'at': _dt(rep.last_location_at), 'source': rep.last_location_source or ''}
+        return None
+
+    @staticmethod
+    def _position(rep):
+        own = None
+        if rep.last_location_at:
+            own = {'latitude': rep.last_latitude, 'longitude': rep.last_longitude,
+                   'at': _dt(rep.last_location_at), 'source': rep.last_location_source or ''}
+        traccar = ManagerApiBase._traccar_position(rep)
+        if traccar and (not own or (traccar['at'] or '') >= (own['at'] or '')):
+            return traccar
+        return own
 
 
 class ManagerApi(ManagerApiBase):
